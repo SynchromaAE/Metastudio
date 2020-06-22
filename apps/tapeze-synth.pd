@@ -1,0 +1,25 @@
+#N canvas 0 0 357 451 10;
+#X obj 37 38 notein;
+#X obj 37 124 trapeze~;
+#X obj 37 76 spigot;
+#X obj 53 57 > 0;
+#X msg 37 95 pitch \$1;
+#X obj 37 300 vcfvcaeg~;
+#X obj 26 423 dac~;
+#X msg 296 98 dephase 4;
+#X obj 296 79 loadbang;
+#X msg 296 274 pitch 61 \, depth 3870 \, fa 8 \, fd 200 \, fs 18 \,
+fr 1000 \, res 0.3;
+#X connect 0 0 2 0;
+#X connect 0 1 3 0;
+#X connect 0 1 5 1;
+#X connect 1 0 5 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 4 0 1 0;
+#X connect 5 0 6 0;
+#X connect 5 0 6 1;
+#X connect 7 0 1 0;
+#X connect 8 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 5 1;

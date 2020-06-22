@@ -1,0 +1,32 @@
+#N canvas 0 0 357 451 10;
+#X obj 37 38 notein;
+#X obj 37 76 spigot;
+#X obj 53 57 > 0;
+#X msg 37 95 pitch \$1;
+#X obj 37 300 vcfvcaeg~;
+#X obj 26 423 dac~;
+#X obj 296 79 loadbang;
+#X msg 296 274 pitch 61 \, depth 3870 \, fa 8 \, fd 200 \, fs 18 \,
+fr 1000 \, res 0.3;
+#X obj 37 216 pwosc~;
+#X obj 72 135 sinosc~;
+#X msg 238 112 freq 1.7;
+#X obj 272 197 *~;
+#X obj 301 176 nbx 5 14 0.001 1 1 0 empty empty depth 0 -8 0 10 -262144
+-1 -1 0.198096 256;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 0 1 4 1;
+#X connect 1 0 3 0;
+#X connect 2 0 1 1;
+#X connect 3 0 8 0;
+#X connect 4 0 5 0;
+#X connect 4 0 5 1;
+#X connect 6 0 10 0;
+#X connect 6 0 7 0;
+#X connect 7 0 4 1;
+#X connect 8 0 4 0;
+#X connect 9 0 11 0;
+#X connect 10 0 9 0;
+#X connect 11 0 8 2;
+#X connect 12 0 11 1;
