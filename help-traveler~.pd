@@ -1,0 +1,150 @@
+#N canvas 3 50 695 567 10;
+#X obj 31 372 traveler~ h4 l4;
+#X obj 31 271 tester~;
+#X msg 31 251 loop 1;
+#X obj 31 231 loadbang;
+#X obj 31 109 cnv 15 260 120 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 31 14 cnv 15 400 90 empty empty traveler~ 10 12 0 18 -232576
+-45076 0;
+#X text 103 356 V;
+#X text 35 346 audio;
+#X text 35 356 inlet;
+#X text 103 349 |;
+#X text 116 300 automation and patching;
+#X text 117 311 |;
+#X text 282 338 V;
+#X text 282 330 |;
+#X obj 31 436 dac~;
+#X text 395 505 V;
+#X text 395 497 |;
+#X text 395 487 |;
+#X text 319 514 automation and patching out;
+#X text 33 124 SIGNAL: audio in;
+#X text 33 138 CONTROL: message tagged control parameters;
+#X text 33 109 Metastudio FX have two or more inlets:;
+#X text 42 152 and in this fx;
+#X msg 446 74 \; pd dsp 1;
+#X obj 297 155 cnv 15 260 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 299 155 Message tagged control parameters;
+#X text 299 173 Any of the fx parameters may be altered by;
+#X text 298 186 sending the object a message followed by a;
+#X text 298 199 value in the second inlet:;
+#X obj 197 235 cnv 15 360 40 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 200 236 For a list of control parameters for this;
+#X text 200 250 unit \, click on this subpatch -->;
+#N canvas 9 100 662 353 control 0;
+#X obj 211 295 outlet;
+#X floatatom 46 141 5 0 20000 0 - - -;
+#X floatatom 98 99 5 2 100 0 - - -;
+#X msg 294 159 gang \$1;
+#X obj 294 140 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 37 113 highpass;
+#X text 35 123 frequency;
+#X msg 46 161 hpf \$1;
+#X obj 98 120 / 10;
+#X text 88 69 highpass;
+#X text 104 81 Q;
+#X msg 98 160 hq \$1;
+#X floatatom 146 141 5 0 20000 0 - - -;
+#X floatatom 198 99 5 2 100 0 - - -;
+#X text 135 123 frequency;
+#X obj 198 120 / 10;
+#X text 204 81 Q;
+#X text 137 113 lowpass;
+#X text 188 69 lowpass;
+#X msg 146 161 lpf \$1;
+#X msg 198 160 lq \$1;
+#X floatatom 198 141 5 0 0 0 - - -;
+#X floatatom 98 141 5 0 0 0 - - -;
+#X text 287 123 gang*;
+#X text 269 206 *gang prevents the filters being crossed over. If the
+lowpass frequency is pushed lower than the highpass frequency \, the
+highpass frequency is adjusted and vice-versa.;
+#X floatatom 237 140 5 0 2000 2 - - -;
+#X msg 237 159 porta \$1;
+#X text 233 123 porta**;
+#X text 270 251 **portamento only affects control-rate changes to a
+frequency or Q. Signal inputs to the frequency or Q are not affected.
+;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 7 0 0 0;
+#X connect 8 0 22 0;
+#X connect 11 0 0 0;
+#X connect 12 0 19 0;
+#X connect 13 0 15 0;
+#X connect 15 0 21 0;
+#X connect 19 0 0 0;
+#X connect 20 0 0 0;
+#X connect 21 0 20 0;
+#X connect 22 0 11 0;
+#X connect 25 0 26 0;
+#X connect 26 0 0 0;
+#X restore 399 253 pd control parameters;
+#X obj 411 369 cnv 15 260 94 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X text 413 397 CONTROL: message tagged control parameters;
+#X text 413 369 Metastudio FX have two outlets;
+#X text 413 383 SIGNAL: audio out;
+#X text 414 410 All manipulations of the GUI \, patch file;
+#X text 415 422 locations and patch changes are sent out;
+#X text 416 434 of the second outlet so that they may be;
+#X text 406 312 (C) 2009 Edward Kelly;
+#X text 399 327 GNU/GPL license enclosed;
+#X text 424 297 METASTUDIO 0.3;
+#X text 415 446 recorded.;
+#X text 38 33 ...is a dual resonant filter. It's creation arguments
+determine the order of the highpass and lowpass filter used. It is
+based on the filter of the Korg 770 analogue synth \, and the "gang"
+switch simulates the physical restrictions of this unit - where plastic
+tabs prevented the filters from being crossed-over frequency-wise.
+;
+#X text 33 166 SIGNAL: highpass cutoff frequency;
+#X text 33 180 SIGNAL: highpass Q (resonance);
+#X text 33 196 SIGNAL: lowpass cutoff frequency;
+#X text 33 210 SIGNAL: lowpass Q (resonance);
+#X msg 465 211 hpf 440;
+#X text 105 340 /;
+#X text 108 334 /;
+#X text 111 328 /;
+#X text 115 320 /;
+#X text 224 317 modulation (hpf hq lpf lq);
+#X text 176 357 V;
+#X text 176 349 |;
+#X text 394 357 V;
+#X text 394 349 |;
+#X text 322 357 V;
+#X text 322 349 |;
+#X text 249 357 V;
+#X text 249 349 |;
+#X text 178 339 _____________________________________;
+#X obj 396 473 print traveler;
+#N canvas 3 50 328 222 creation 0;
+#X obj 11 14 cnv 15 300 190 empty empty creation_arguments 7 12 0 24
+-138233 -25945 0;
+#X text 18 38 h2 \, h4 \, h6 \, h8 are the highpass filters;
+#X text 18 52 l2 \, l4 \, l6 \, l8 are the lowpass filters;
+#X text 18 87 so...;
+#X text 18 102 traveler~ h2 l8;
+#X text 18 115 traveler~ h6 l4;
+#X text 18 128 traveler~ h8 l6;
+#X text 17 72 The highpass ALWAYS goes before the lowpass.;
+#X text 19 141 ... are all okay \, but...;
+#X text 18 156 traveler~ l4 h4;
+#X text 18 169 ... is not \, and neither is...;
+#X text 19 182 traveler~ h3 l7;
+#X restore 411 120 pd creation arguments;
+#X connect 0 0 14 0;
+#X connect 0 0 14 1;
+#X connect 0 1 64 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 32 0 0 1;
+#X connect 49 0 0 1;

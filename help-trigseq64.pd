@@ -1,0 +1,521 @@
+#N canvas 89 11 980 636 10;
+#X obj 10 -103 cnv 15 380 90 empty empty trigseq64 20 18 0 28 -163135
+-13330 0;
+#X obj 10 -9 cnv 15 220 220 empty empty empty 20 12 0 14 -200369 -42246
+0;
+#X text 40 2 = start/stop playback;
+#X text 40 26 = receive sync bang;
+#X text 40 50 = external clock / position;
+#X text 70 84 = length of sequence;
+#X text 70 70 = start of sequence;
+#X text 70 98 = skip value;
+#X text 63 154 = (count) sequences played;
+#X text 49 121 = current step (position);
+#X obj 18 7 tgl 12 0 \$0-seq-on \$0-seq-on-set run -1 -5 0 8 -220667
+-355 -355 0 1;
+#X obj 18 30 tgl 12 0 \$0-sync \$0-sync-set sync -3 -5 0 8 -241142
+-143491 -90133 0 1;
+#X obj 18 53 tgl 12 0 \$0-clock-ext \$0-clock-ext-set ext -1 -5 0 8
+-241142 -143491 -90133 0 1;
+#X obj 15 87 nbx 2 12 1 56 0 0 \$0-len \$0-len-set len 25 6 0 8 -175864
+-1109 -1109 1 256;
+#X obj 15 73 nbx 2 12 1 56 0 0 \$0-start \$0-start-set start 25 6 0
+8 -175864 -1109 -1109 1 256;
+#X obj 39 101 nbx 2 12 1 56 0 0 \$0-step \$0-step-set step -21 6 0
+8 -175864 -1109 -1109 1 256;
+#X obj 16 125 nbx 2 12 1 128 0 0 empty \$0-pos-display position -3
+-6 0 8 -262144 -1 -1 1 256;
+#X obj 16 125 nbx 2 12 1 128 0 0 \$0-pos-disp \$0-pos-display empty
+0 -6 0 10 -262144 -1 -1 1 256;
+#X obj 16 137 bng 8 250 50 0 \$0-reset \$0-reset-bng reset 11 4 0 7
+-261689 -42246 -143491;
+#X text 49 132 = reset position;
+#X obj 23 157 nbx 2 12 1 9999 0 0 empty \$0-count-display count 0 -6
+0 10 -262144 -1 -1 1 256;
+#X obj 15 157 nbx 4 12 1 9999 0 0 \$0-count-disp \$0-count-display
+empty 0 -6 0 10 -262144 -1 -1 1 256;
+#X obj 16 182 bng 12 250 50 0 \$0-reset-count \$0-reset-count-bng reset
+4 -6 0 10 -262144 -1 -1;
+#X obj 28 182 nbx 3 12 1 128 0 0 \$0-count_set \$0-count_set-set empty
+0 -6 0 8 -262144 -1 -1 1 256;
+#X text 64 178 = reset count to number;
+#X text 77 190 (song position);
+#X obj 234 -9 cnv 15 414 230 empty empty empty 20 12 0 14 -126623 -42246
+0;
+#X obj 394 -103 cnv 15 254 94 empty empty empty 20 12 0 14 -126623
+-42246 0;
+#X text 399 -99 Note: <div> values are fractions of;
+#X text 396 -87 a 1/4th note \, so a <div> value of 6;
+#X text 400 -75 means that the note is 1/6th of 1/4th;
+#X text 397 -63 note long = a 1/24th note (6x4=24).;
+#X text 278 -7 The tempo is set here \, but also the subdivision and
+multiple of the beat \, and the swing factor.;
+#X text 25 -71 ...is one of the sequencers included with metastudio-0.3
+and incorporates keyboard entry \, switchable polyrhythm \, variable
+density randomization \, multiple modes of playback and a variety of
+stored parameters.;
+#X text 280 37 The tempo in beats-per-minute is set using the tempo
+slider. Polyrhythmic subdivisions are relative to four 1/16th notes
+so a <div> value of 5 means there will be 5/20th notes in the same
+amount of time.;
+#X text 280 111 The <num> value is how many of these rhythmic units
+each step lasts for \, so <num>=5 and <div>=6 means that each step
+will be 5/24th notes long.;
+#X obj 246 24 hsl 200 12 2 400 0 0 \$0-tempo \$0-tempo-set tempo 35
+6 0 7 -204780 -42247 -42247 0 0;
+#X obj 243 36 nbx 3 12 2 2000 0 0 \$0-tempo-disp \$0-tempo empty 0
+-6 0 8 -204780 -42246 -42246 2 256;
+#X obj 393 98 nbx 3 10 1 99 0 0 \$0-div-real-num \$0-div-real empty
+0 -6 0 8 -199801 -50198 -50198 1 256;
+#X obj 393 88 nbx 3 10 1 99 0 0 \$0-num-real-pipe \$0-num-real empty
+0 -6 0 8 -204337 -66893 -66893 1 256;
+#X obj 265 100 hradio 8 1 0 16 \$0-adddiv-div \$0-adddiv-div-set div
+-18 4 0 8 -195704 -50199 -50199 0;
+#X obj 265 90 hradio 8 1 0 16 \$0-adddiv-num \$0-adddiv-num-set num
+-18 4 0 8 -204336 -66893 -66893 0;
+#X obj 241 150 nbx 5 12 -99.9 99.9 0 0 \$0-swing-num \$0-swing-set
+swing 9 -5 0 8 -204780 -13381 -13381 0 256;
+#X text 286 157 Swing is calculated as a percentage of the beat that
+odd-numbered beats steal from even-numbered beats. It may be positive
+or negative. A positive value results in a long-short pattern of alternate
+beats \, whereas a negative value results in short-long alternations.
+;
+#X obj 653 -103 cnv 15 214 200 empty empty empty 20 12 0 14 -192439
+-66577 0;
+#X obj 659 -92 vradio 10 1 0 5 \$0-typenum \$0-typenum-set type -6
+-6 0 10 -196265 -62668 -62668 0;
+#X obj 657 -29 tgl 15 0 \$0-typing \$0-typing-set type -4 -6 0 10 -196265
+-62668 -62668 0 1;
+#X obj 655 17 nbx 2 12 1 56 0 0 \$0-end_type \$0-end_type-set end 25
+6 0 8 -196265 -62668 -62668 1 256;
+#X obj 655 -6 nbx 2 12 1 56 0 0 \$0-start_type \$0-start_type-set start
+25 6 0 8 -196265 -62668 -62668 1 256;
+#X text 682 -95 keyboard entry allows you to;
+#X text 680 -83 "type" a sequence in using the;
+#X text 684 -70 1 and 0 keys.;
+#X text 678 -55 = which row to type;
+#X text 678 -30 = turn keyboard entry on;
+#X text 710 -8 = which sequence step to;
+#X text 737 3 start on;
+#X text 710 15 = which sequence step to;
+#X text 742 26 end on;
+#X text 653 41 when the end is less than the;
+#X text 653 53 start \, the typed entry wraps;
+#X text 653 65 round from the last step to the;
+#X text 653 77 first.;
+#X obj 653 102 cnv 15 270 130 empty empty randomizations 10 8 0 12
+-200119 -13330 0;
+#X obj 678 123 cnv 15 32 101 empty empty dense 4 9 0 8 -162998 -13330
+0;
+#X obj 678 139 nbx 3 10 0 100 0 0 \$0-density-1 \$0-density-1-set empty
+0 -8 0 8 -228218 -45076 -45076 0 256;
+#X obj 678 151 nbx 3 10 0 100 0 0 \$0-density-2 \$0-density-2-set empty
+0 -8 0 8 -220856 -13330 -13330 0 256;
+#X obj 678 163 nbx 3 10 0 100 0 0 \$0-density-3 \$0-density-3-set empty
+0 -8 0 8 -229038 -13381 -13381 0 256;
+#X obj 678 175 nbx 3 10 0 100 0 0 \$0-density-4 \$0-density-4-set empty
+0 -8 0 8 -220856 -13330 -13330 0 256;
+#X obj 678 187 nbx 3 10 0 100 0 0 \$0-density-5 \$0-density-5-set empty
+0 -8 0 8 -241016 -86277 -86277 0 256;
+#X obj 678 208 nbx 3 12 0 100 0 0 \$0-density-all \$0-density-all-set
+empty 0 -8 0 10 -187834 -13330 -13330 0 256;
+#X obj 658 123 cnv 12 19 101 empty empty rand 1 6 0 8 -162998 -13330
+0;
+#X obj 665 175 bng 10 250 50 0 \$0-rand-4-bang \$0-rand-4-in empty
+0 14 0 6 -220856 -1109 -1109;
+#X obj 665 187 bng 10 250 50 0 \$0-rand-5-bang \$0-rand-5-in empty
+0 14 0 6 -241016 -143491 -143491;
+#X obj 665 151 bng 10 250 50 0 \$0-rand-2-bang \$0-rand-2-in empty
+0 14 0 6 -220856 -1109 -1109;
+#X obj 665 163 bng 10 250 50 0 \$0-rand-3-bang \$0-rand-3-in empty
+0 14 0 6 -229038 -42246 -42246;
+#X obj 665 139 bng 10 250 50 0 \$0-rand-1-bang \$0-rand-1-in empty
+0 14 0 6 -228218 -90133 -90133;
+#X obj 664 208 bng 12 250 50 0 \$0-random-all \$0-rndall all -1 -5
+0 8 -187834 -1109 -1109;
+#X text 714 132 rows may be filled with randomly;
+#X text 715 144 placed 1s and 0s. The density of;
+#X text 715 157 1s (checked boxes) is controlled;
+#X text 716 169 by the "dense" parameter. This is;
+#X text 716 181 the percentage of 1s that the row;
+#X text 716 193 will contain.;
+#X obj 653 268 cnv 15 270 135 empty empty bank 8 8 0 10 -188065 -42246
+0;
+#X text 690 268 To make a new pattern from the current;
+#X text 691 280 pattern click the;
+#X text 816 280 button.;
+#X text 710 318 and;
+#X text 691 300 To recall a pattern \, drag;
+#X obj 653 236 cnv 15 270 28 empty empty empty 20 12 0 14 -216627 -66577
+0;
+#X obj 661 247 bng 12 250 50 0 \$0-reset-all \$0-rstall init -1 -5
+0 7 -187834 -1109 -1109;
+#X text 697 242 init buttons set all values to 0;
+#X obj 695 324 bng 12 250 50 0 \$0-seq-load empty LOAD -4 -5 0 8 -225271
+-42246 -42246;
+#X obj 734 324 bng 12 250 50 0 \$0-seq-save empty SAVE -4 -5 0 8 -261689
+-258699 -143491;
+#X obj 660 288 nbx 2 12 1 99 0 0 \$0-cuput \$0-cpdcop empty 25 6 0
+8 -232507 -90133 -90133 1 256;
+#X obj 660 288 nbx 2 12 1 99 0 0 \$0-patterns-num \$0-patterns-num-set
+patterns -6 -5 0 8 -232507 -90133 -90133 1 256;
+#X obj 851 302 nbx 2 12 0 1 0 0 \$0-current-pattern \$0-current-pattern-set
+current -6 16 0 8 -232507 -90133 -90133 0 256;
+#X obj 801 284 bng 12 250 50 0 \$0-new-pattern \$0-new-bng new -3 17
+0 10 -232507 -90133 -90133;
+#X text 747 319 sets of patterns to disk;
+#X obj 20 215 loadbang;
+#X msg 20 278 denseall \$1;
+#X msg 99 270 newpat;
+#N canvas 5 48 450 300 battery 0;
+#X obj 104 80 inlet;
+#X obj 104 142 metro 200;
+#X obj 103 108 t b b;
+#X msg 199 162 0;
+#X obj 104 196 cup;
+#X obj 149 193 >= 4;
+#X obj 149 217 sel 1;
+#X obj 150 245 del 0;
+#X msg 209 99 0;
+#X obj 85 260 outlet;
+#X obj 84 232 t b b;
+#X obj 140 271 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 2 1 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 4 0 10 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 10 0 9 0;
+#X connect 10 1 11 0;
+#X restore 20 235 pd battery;
+#X obj 20 433 route t1 t2 t3 t4 t5;
+#X obj 20 454 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 43 454 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 66 454 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 90 454 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 113 454 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 124 474 clik~;
+#N canvas 0 0 450 300 init~ 0;
+#X obj 97 223 outlet;
+#X obj 38 38 loadbang;
+#X msg 37 77 file datasets/click.pat \, randpat \, on 1;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X restore 137 454 pd init~;
+#X obj 124 495 dac~;
+#N canvas 5 48 611 386 control_output 0;
+#X obj 40 30 inlet;
+#X floatatom 40 184 5 0 0 3 tempo - -;
+#X floatatom 71 153 5 0 0 3 swing - -;
+#X floatatom 102 123 5 0 0 3 dur* - -;
+#X floatatom 134 93 5 0 0 3 pat(tern) - -;
+#X floatatom 165 190 5 0 0 3 patterns - -;
+#X floatatom 196 158 5 0 0 3 pos(ition) - -;
+#X floatatom 228 127 5 0 0 3 count - -;
+#X floatatom 259 98 5 0 0 3 numerator - -;
+#X obj 356 174 unpack f f f f f f f;
+#X floatatom 356 257 5 0 0 3 numerator - -;
+#X floatatom 375 227 5 0 0 3 divider** - -;
+#X floatatom 395 196 5 0 0 3 step - -;
+#X floatatom 414 257 5 0 0 3 start - -;
+#X floatatom 434 228 5 0 0 3 length - -;
+#X floatatom 453 196 5 0 0 3 tempo - -;
+#X floatatom 473 257 5 0 0 3 swing - -;
+#X text 39 270 *dur is the time duration in ms of each pulse.;
+#X floatatom 290 190 5 0 0 3 divider** - -;
+#X obj 40 50 route tempo swing dur pat patterns pos count num div paras
+sync;
+#X text 363 156 control parameters;
+#X obj 353 85 bng 15 250 50 0 empty empty sync 17 7 0 10 -262144 -1
+-1;
+#X text 40 284 **note that the numerator and divider refer to their
+values' position on the radio button.;
+#X connect 0 0 19 0;
+#X connect 9 0 10 0;
+#X connect 9 1 11 0;
+#X connect 9 2 12 0;
+#X connect 9 3 13 0;
+#X connect 9 4 14 0;
+#X connect 9 5 15 0;
+#X connect 9 6 16 0;
+#X connect 19 0 1 0;
+#X connect 19 1 2 0;
+#X connect 19 2 3 0;
+#X connect 19 3 4 0;
+#X connect 19 4 5 0;
+#X connect 19 5 6 0;
+#X connect 19 6 7 0;
+#X connect 19 7 8 0;
+#X connect 19 8 18 0;
+#X connect 19 9 9 0;
+#X connect 19 10 21 0;
+#X restore 532 432 pd control_output;
+#X obj 20 256 random 50;
+#X obj 659 360 bng 10 250 50 0 \$0-resave empty re- 1 -5 0 8 -261689
+-258699 -143491;
+#X text 657 337 Once you have saved a pattern file you can;
+#X text 674 350 save it \, overwriting the pattern file;
+#X obj 378 225 cnv 15 270 58 empty empty empty 20 12 0 14 -228650 -66577
+0;
+#N canvas 184 48 1132 586 control_parameters 0;
+#X msg 10 146 start;
+#X msg 63 146 stop;
+#X msg 114 146 cont;
+#X text 11 108 start;
+#X text 19 118 at;
+#X text -3 128 beginning;
+#X text 65 117 stop;
+#X text 53 128 playback;
+#X text 105 117 continue;
+#X text 105 128 playback;
+#X msg 159 146 c_ext \$1;
+#X obj 159 123 tgl 15 0 empty empty clock* 17 7 0 10 -262144 -1 -1
+0 1;
+#X text 160 107 external;
+#X msg 15 249 paras 2 5 1 1 48 136 20;
+#X msg 232 249 num \$1;
+#X msg 277 249 div \$1;
+#X msg 419 249 step \$1;
+#X msg 514 249 len \$1;
+#X msg 619 249 swing \$1;
+#X msg 561 249 tempo \$1;
+#X floatatom 619 228 5 -100 100 2 swing**** - -;
+#X floatatom 561 230 5 10 300 2 tempo - -;
+#X floatatom 514 229 5 1 56 2 length - -;
+#X floatatom 474 229 5 1 56 2 start - -;
+#X floatatom 419 229 5 0 0 2 step*** - -;
+#X obj 277 237 hradio 8 1 0 16 empty empty divider 0 -6 0 8 -195704
+-50199 -50199 0;
+#X obj 232 217 hradio 8 1 0 16 empty empty numerator 0 -6 0 8 -204336
+-66893 -66893 0;
+#X obj 39 451 outlet;
+#X msg 474 249 st \$1;
+#X msg 413 146 countset \$1;
+#X floatatom 413 126 3 1 999 0 - - -;
+#X msg 380 146 sync;
+#X msg 269 146 trig;
+#X msg 221 146 pos \$1;
+#X floatatom 221 126 5 1 56 2 position* - -;
+#X msg 198 78 save;
+#X msg 233 78 savefile datasets/temp.pattern;
+#X msg 13 78 file datasets/trigseq.pattern;
+#X text 199 51 save;
+#X text 195 61 prompt;
+#X text 242 61 save <path>;
+#X text 26 62 load <path>;
+#X text 553 51 recall;
+#X text 548 61 pattern;
+#X msg 600 78 randpat;
+#X text 603 51 random;
+#X text 601 61 pattern;
+#X msg 871 143 newpat;
+#X text 859 115 copy pattern;
+#X text 856 126 to new buffer;
+#X obj 942 123 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 942 142 set 3 25 \$1;
+#X msg 316 146 syncon \$1;
+#X obj 316 128 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 164 249 getpars;
+#X text 377 129 sync;
+#X text 260 129 advance*;
+#X msg 654 78 next;
+#X msg 715 146 init4;
+#X msg 778 146 initall;
+#X msg 425 78 resave;
+#X msg 518 145 dense2 35;
+#X msg 619 145 denseall 80;
+#X text 515 108 randomize row;
+#X text 516 118 with density;
+#X text 614 118 with density;
+#X text 613 108 randomize all;
+#X text 696 106 initialize row;
+#X text 702 118 (set to 0);
+#X text 772 128 (set to 0);
+#X text 766 116 initialize all;
+#X text 421 32 save again;
+#X text 422 42 overwriting;
+#X text 422 52 previously saved;
+#X text 422 62 pattern file;
+#X text 313 111 receive sync*;
+#X text 410 109 count set**;
+#X text 17 232 control parameters*****;
+#X text 517 128 percentage******;
+#X text 615 128 percentage;
+#X text 161 232 parameters;
+#X text 161 222 get control;
+#X text 652 62 next pattern;
+#X msg 553 78 pat 3;
+#X text 684 182 *the sequencer can be synchronised to other sequencer
+objects in a variety of ways. Turning the external clock (ext) on means
+that you can control the sequencer either with a [pos \$1( message
+\, in which it follows the other sequencer step-by-step. Sending it
+a [trig( message means that the sequencer will step through according
+to its own control parameters (start \, length \, step) but directly
+synchronised to the other sequencer -------------------->;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X obj 144 147 outlet;
+#X restore 1046 188 pd;
+#X obj 1046 209 route pos;
+#X msg 1046 229 trig;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X obj 152 92 inlet;
+#X restore 1046 251 pd;
+#X obj 1040 186 cnv 15 30 20 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X text 1047 171 control;
+#X text 1030 189 other sequencer;
+#X text 1036 180 outlet from;
+#X obj 1044 250 cnv 15 30 20 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X text 1038 250 inlet to;
+#X text 1036 259 sequencer;
+#X text 683 271 If ext clock is not checked \, the sequencer may be
+re-synchronised if sync is turned on \, by sending it a sync message.
+These are generated by the sequencers at the start of each pattern.
+This allows you to create synchronised polyrhythmic patterns.;
+#X text 682 327 **the count tells you how many patterns have been played
+so far. This can be used to schedule changes or events that happen
+at a certain point in a musical structure \, such as verse \, chorus
+\, verse \, chorus etc. This can be reset using the [countset( message.
+;
+#X text 682 384 ***the step value is how many steps are advanced with
+each pulse when running freely or using [trig( as shown above. A step
+value that is length - 1 will make the sequence play backwards.;
+#X text 682 429 ****swing is set as a percentage of the time of each
+beat. A positive value results in long-short beat patterns \, whereas
+a negative value results in short-long rhythms.;
+#X text 681 462 *****control parameters may be given as a paras list
+\, or individually. [getpars( tells the sequencer to output the current
+parameter list.;
+#X text 939 106 set row \, column \, value*******;
+#X text 919 157 <row \, column \, value>;
+#X text 10 267 <num \, div \, step \, start \, length \, tempo \, swing%>
+;
+#X text 681 496 ******individual rows may be randomized with a percentage
+of density. A low density results in very few 1 values (a sparse rhythm)
+whereas a high density reults in very dense patterns (many 1s).;
+#X text 681 541 *******or individual elements of the pattern may be
+set externally.;
+#X text 291 199 ********;
+#X text 198 443 ********note that num and div refer to the position
+of the radio button when accessed directly \, but the div value in
+the paras list is an index starting from 1;
+#X text 245 479 ...perhaps this is pointless \, and will be fixed at
+some point!;
+#X msg 621 347 reframe;
+#X msg 420 347 refst 3;
+#X msg 482 347 reflen 12;
+#X msg 549 347 refstep 2;
+#X text 429 326 Reframe patterns -------------------;
+#X connect 0 0 27 0;
+#X connect 1 0 27 0;
+#X connect 2 0 27 0;
+#X connect 10 0 27 0;
+#X connect 11 0 10 0;
+#X connect 13 0 27 0;
+#X connect 14 0 27 0;
+#X connect 15 0 27 0;
+#X connect 16 0 27 0;
+#X connect 17 0 27 0;
+#X connect 18 0 27 0;
+#X connect 19 0 27 0;
+#X connect 20 0 18 0;
+#X connect 21 0 19 0;
+#X connect 22 0 17 0;
+#X connect 23 0 28 0;
+#X connect 24 0 16 0;
+#X connect 25 0 15 0;
+#X connect 26 0 14 0;
+#X connect 28 0 27 0;
+#X connect 29 0 27 0;
+#X connect 30 0 29 0;
+#X connect 31 0 27 0;
+#X connect 32 0 27 0;
+#X connect 33 0 27 0;
+#X connect 34 0 33 0;
+#X connect 35 0 27 0;
+#X connect 36 0 27 0;
+#X connect 37 0 27 0;
+#X connect 44 0 27 0;
+#X connect 47 0 27 0;
+#X connect 50 0 51 0;
+#X connect 51 0 27 0;
+#X connect 52 0 27 0;
+#X connect 53 0 52 0;
+#X connect 54 0 27 0;
+#X connect 57 0 27 0;
+#X connect 58 0 27 0;
+#X connect 59 0 27 0;
+#X connect 60 0 27 0;
+#X connect 61 0 27 0;
+#X connect 62 0 27 0;
+#X connect 83 0 27 0;
+#X connect 85 0 86 0;
+#X connect 86 0 87 0;
+#X connect 87 0 88 0;
+#X connect 109 0 27 0;
+#X connect 110 0 27 0;
+#X connect 111 0 27 0;
+#X connect 112 0 27 0;
+#X restore 515 263 pd control_parameters;
+#X text 383 226 Most parameters of the trigseq \, as well as;
+#X text 383 237 messages to enable synchronisation of a;
+#X text 383 248 number of trigseq and sequencer units may;
+#X text 383 259 be set externally -->;
+#X text 384 457 (C) 2009 Edward Kelly;
+#X text 377 472 GNU/GPL license enclosed;
+#X text 402 442 METASTUDIO 0.3;
+#X obj 20 298 trigseq64;
+#X obj 653 407 cnv 15 270 85 empty empty reframe 8 6 0 10 -134011 -16662
+0;
+#X obj 826 411 nbx 2 12 1 64 0 0 \$0-reframe_len \$0-reframe_len-set
+len 25 6 0 8 -228028 -45076 -45076 1 256;
+#X obj 676 426 nbx 2 12 1 64 0 0 \$0-reframe_st \$0-reframe_st-set
+start 25 6 0 8 -228028 -45076 -45076 1 256;
+#X obj 895 425 nbx 2 12 1 64 0 0 \$0-reframe_step \$0-reframe_step-set
+step -21 6 0 8 -228028 -45076 -45076 1 256;
+#X obj 704 410 bng 12 250 50 0 \$0-reframe \$0-reframe-bng empty 17
+7 0 10 -228283 -45076 -45076;
+#X obj 659 375 bng 10 250 50 0 \$0-reload empty old 0 14 0 6 -225271
+-42246 -42246;
+#X text 657 387 version of trigseq with fewer than 64 steps;
+#X text 672 375 allows you to load patterns made with a;
+#X text 719 409 A chunk of length;
+#X text 867 408 starting;
+#X text 657 422 at;
+#X text 726 422 and with a skip value of;
+#X text 657 435 is copied repetitively into a new pattern \,;
+#X text 657 449 filling the pattern. If the length is kept;
+#X text 658 474 of a pattern may be created.;
+#X text 658 462 at 64 and the step at 1 \, reframed copies;
+#X connect 99 0 102 0;
+#X connect 100 0 126 0;
+#X connect 101 0 126 0;
+#X connect 102 0 101 0;
+#X connect 102 1 113 0;
+#X connect 103 0 104 0;
+#X connect 103 1 105 0;
+#X connect 103 2 106 0;
+#X connect 103 3 107 0;
+#X connect 103 4 108 0;
+#X connect 108 0 109 0;
+#X connect 109 0 111 0;
+#X connect 109 0 111 1;
+#X connect 110 0 109 1;
+#X connect 113 0 100 0;
+#X connect 118 0 126 0;
+#X connect 126 0 103 0;
+#X connect 126 1 112 0;

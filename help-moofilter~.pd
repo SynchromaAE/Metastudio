@@ -1,0 +1,385 @@
+#N canvas 4 55 594 590 10;
+#X declare -lib tof;
+#X obj 183 330 moofilter~;
+#X obj 8 10 cnv 15 380 160 empty empty moofilter~ 10 12 0 20 -203904
+-45076 0;
+#X obj 32 334 cnv 15 144 66 empty empty BE_Q_AWARE! 20 12 0 18 -261234
+-86277 0;
+#N canvas 0 0 633 442 modulate- 1;
+#X obj 62 277 outlet~;
+#X obj 64 71 trisaw~;
+#X obj 63 254 *~ 0;
+#X obj 84 220 tgl 30 0 empty empty modulate_freq -14 -6 0 10 -262144
+-1 -1 0 1;
+#X obj 63 189 *~;
+#X obj 105 189 line~;
+#X obj 105 169 pack f 20;
+#X obj 105 152 nbx 5 14 0.001 1 1 0 empty empty amount 0 -8 0 10 -262144
+-1 -1 0.289026 256;
+#X obj 322 277 outlet~;
+#X obj 323 254 *~ 0;
+#X obj 344 220 tgl 30 0 empty empty modulate_Q -6 -6 0 10 -262144 -1
+-1 0 1;
+#X obj 323 189 *~;
+#X obj 365 189 line~;
+#X obj 365 169 pack f 20;
+#X obj 365 152 nbx 5 14 0.001 0.5 1 0 empty empty amount 0 -8 0 10
+-262144 -1 -1 0.355935 256;
+#X obj 324 71 sinosc~;
+#X msg 64 51 freq 6;
+#X msg 324 51 freq 2;
+#X obj 64 31 loadbang;
+#X obj 150 254 *~ 0;
+#X obj 171 220 tgl 30 0 empty empty modulate_freq -12 -6 0 10 -262144
+-1 -1 0 1;
+#X obj 236 254 *~ 0;
+#X obj 257 220 tgl 30 0 empty empty modulate_Q -14 -6 0 10 -262144
+-1 -1 0 1;
+#X obj 42 315 miniscope~;
+#X msg 207 298 size 4 \, on 1;
+#X obj 342 315 miniscope~;
+#X obj 207 281 loadbang;
+#X connect 1 0 4 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 1;
+#X connect 4 0 2 0;
+#X connect 4 0 21 0;
+#X connect 4 0 23 0;
+#X connect 5 0 4 1;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 9 0 8 0;
+#X connect 10 0 9 1;
+#X connect 11 0 9 0;
+#X connect 11 0 19 0;
+#X connect 11 0 25 0;
+#X connect 12 0 11 1;
+#X connect 13 0 12 0;
+#X connect 14 0 13 0;
+#X connect 15 0 11 0;
+#X connect 16 0 1 0;
+#X connect 17 0 15 0;
+#X connect 18 0 16 0;
+#X connect 18 0 17 0;
+#X connect 19 0 0 0;
+#X connect 20 0 19 1;
+#X connect 21 0 8 0;
+#X connect 22 0 21 1;
+#X connect 24 0 23 1;
+#X connect 24 0 25 1;
+#X connect 26 0 24 0;
+#X restore 326 309 pd modulate-;
+#X obj 420 51 wavebank~;
+#X msg 420 30 loadbank snd/samples_1;
+#X obj 420 9 loadbang;
+#X obj 183 552 dac~;
+#X obj 183 479 record_m~;
+#X obj 184 229 wavevoice~;
+#X obj 489 227 route waves;
+#X obj 489 290 s waveRange;
+#X obj 184 185 nbx 5 14 1 32 0 0 empty waveRange empty 0 -8 0 10 -262144
+-1 -1 32 256;
+#X msg 184 203 wave \$1;
+#X msg 242 203 transpose \$1;
+#X msg 325 203 direction \$1;
+#X obj 242 185 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 1 256;
+#X obj 325 184 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 173 274 1;
+#X obj 315 439 print auto_out;
+#N canvas 0 0 723 366 automation 0;
+#X floatatom 114 31 5 0 0 0 cutoff_pitch - -;
+#X obj 114 51 mtof;
+#X obj 114 92 / 22050;
+#X obj 165 83 loadbang;
+#X obj 165 104 samplerate~;
+#X obj 165 125 * 0.5;
+#X floatatom 114 113 5 0 0 0 normalized_cutoff - -;
+#X floatatom 114 71 0 0 0 0 cutoff_frequency - -;
+#X msg 114 132 fc \$1;
+#X floatatom 282 46 5 0 0 0 - - -;
+#X obj 282 66 * 0.01;
+#X floatatom 282 87 5 0 1 0 resonance - -;
+#X msg 282 132 q \$1;
+#X obj 437 48 nbx 5 14 1.5 10000 1 0 empty empty attack_1 0 -8 0 10
+-262144 -1 -1 1.5 256;
+#X msg 437 133 a1 \$1;
+#X obj 497 48 nbx 5 14 1.5 10000 1 0 empty empty decay_1 0 -8 0 10
+-262144 -1 -1 1.5 256;
+#X msg 497 133 d1 \$1;
+#X obj 557 48 nbx 5 14 0 100 0 0 empty empty sustain%_1 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 627 48 nbx 5 14 1.5 10000 1 0 empty empty release_1 0 -8 0 10
+-262144 -1 -1 1.5 256;
+#X msg 557 133 s1 \$1;
+#X msg 627 133 r1 \$1;
+#X floatatom 388 46 5 -100 100 0 - - -;
+#X obj 388 66 * 0.01;
+#X floatatom 388 87 5 0 1 0 eg_depth_1 - -;
+#X msg 388 132 eg1 \$1;
+#X obj 437 178 nbx 5 14 1.5 10000 1 0 empty empty attack_2 0 -8 0 10
+-262144 -1 -1 1.5 256;
+#X obj 497 178 nbx 5 14 1.5 10000 1 0 empty empty decay_2 0 -8 0 10
+-262144 -1 -1 1.5 256;
+#X obj 557 178 nbx 5 14 0 100 0 0 empty empty sustain%_2 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 627 178 nbx 5 14 1.5 10000 1 0 empty empty release_2 0 -8 0
+10 -262144 -1 -1 1.5 256;
+#X floatatom 388 176 5 -100 100 0 - - -;
+#X obj 388 196 * 0.01;
+#X floatatom 388 217 5 0 1 0 eg_depth_2 - -;
+#X msg 627 263 r2 \$1;
+#X msg 557 263 s2 \$1;
+#X msg 497 263 d2 \$1;
+#X msg 437 263 a2 \$1;
+#X msg 388 262 eg2 \$1;
+#X obj 114 308 outlet;
+#X obj 114 178 t a;
+#X msg 177 207 trig1 \$1;
+#X msg 177 228 trig2 \$1;
+#X msg 177 249 trig \$1;
+#X obj 257 192 tgl 15 0 empty empty eg_1 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 257 213 tgl 15 0 empty empty eg_2 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 257 234 tgl 15 0 empty empty eg_1+2 17 7 0 10 -262144 -1 -1
+0 1;
+#X connect 0 0 1 0;
+#X connect 1 0 7 0;
+#X connect 2 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 2 1;
+#X connect 6 0 8 0;
+#X connect 7 0 2 0;
+#X connect 8 0 38 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 38 0;
+#X connect 13 0 14 0;
+#X connect 14 0 38 0;
+#X connect 15 0 16 0;
+#X connect 16 0 38 0;
+#X connect 17 0 19 0;
+#X connect 18 0 20 0;
+#X connect 19 0 38 0;
+#X connect 20 0 38 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 38 0;
+#X connect 25 0 35 0;
+#X connect 26 0 34 0;
+#X connect 27 0 33 0;
+#X connect 28 0 32 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 31 0 36 0;
+#X connect 32 0 37 0;
+#X connect 33 0 37 0;
+#X connect 34 0 37 0;
+#X connect 35 0 37 0;
+#X connect 36 0 37 0;
+#X connect 38 0 37 0;
+#X connect 39 0 37 0;
+#X connect 40 0 37 0;
+#X connect 41 0 37 0;
+#X connect 42 0 39 0;
+#X connect 43 0 40 0;
+#X connect 44 0 41 0;
+#X restore 232 303 pd automation;
+#N canvas 0 0 450 300 double-peak 0;
+#X obj 23 40 cnv 15 355 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 30 47 Here we take the attack and decay times of eg1 \, add
+them together and delay the onset of eg2 by that time. This allows
+us to have a second attack/decay phase after the first envelope has
+settled into it's sustain phase.;
+#X obj 322 150 inlet;
+#X obj 299 193 route a1 d1;
+#X obj 329 218 t b f;
+#X obj 299 226 +;
+#X obj 112 192 delay;
+#X obj 176 147 inlet;
+#X obj 204 249 -;
+#X obj 300 250 t b f;
+#X obj 70 216 delay;
+#X obj 113 246 delay;
+#X msg 115 215 trig2 1;
+#X msg 114 273 trig2 0;
+#X msg 41 188 trig1 1;
+#X msg 38 255 trig1 0;
+#X obj 43 279 outlet;
+#X obj 217 102 bng 14 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 251 129 sel 52;
+#X obj 250 106 key;
+#X obj 200 106 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-258113 -1;
+#X msg 24 111 vis 1;
+#X obj 21 140 s pd-double-peak;
+#X obj 13 222 outlet;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 3 1 4 0;
+#X connect 4 0 5 0;
+#X connect 4 1 5 1;
+#X connect 5 0 6 1;
+#X connect 5 0 9 0;
+#X connect 6 0 12 0;
+#X connect 6 0 11 0;
+#X connect 7 0 8 0;
+#X connect 7 0 10 1;
+#X connect 8 0 11 1;
+#X connect 9 0 8 0;
+#X connect 9 1 8 1;
+#X connect 10 0 15 0;
+#X connect 11 0 13 0;
+#X connect 12 0 16 0;
+#X connect 13 0 16 0;
+#X connect 14 0 16 0;
+#X connect 15 0 16 0;
+#X connect 17 0 14 0;
+#X connect 17 0 10 0;
+#X connect 17 0 6 0;
+#X connect 17 0 11 0;
+#X connect 17 0 23 0;
+#X connect 18 0 17 0;
+#X connect 19 0 18 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X coords 0 -1 1 1 135 18 1 100 100;
+#X restore 299 261 pd double-peak;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X obj 104 113 nbx 5 14 99.999 99999 1 0 empty empty sustain_time 0
+-6 0 10 -262144 -1 -1 4000 256;
+#X msg 141 56 4000;
+#X obj 140 19 loadbang;
+#X obj 102 146 outlet;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 78 30 2 100 100;
+#X restore 299 228 pd;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X obj 104 113 nbx 5 14 99.999 99999 1 0 empty empty sustain_time 0
+-6 0 10 -262144 -1 -1 4000 256;
+#X msg 141 56 4000;
+#X obj 140 19 loadbang;
+#X obj 102 146 outlet;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 78 30 2 100 100;
+#X restore 62 246 pd;
+#N canvas 0 0 450 382 send_triggers 0;
+#X obj 64 76 sel 49 50 51;
+#X obj 65 50 key;
+#X obj 229 57 inlet;
+#X obj 37 234 delay;
+#X obj 63 112 bng 24 250 50 0 empty empty 1 10 12 0 10 -262144 -1 -1
+;
+#X obj 93 112 bng 24 250 50 0 empty empty 2 10 12 0 10 -262144 -1 -1
+;
+#X obj 123 112 bng 24 250 50 0 empty empty 1+2 4 12 0 10 -262144 -1
+-1;
+#X msg 60 170 trig1 1;
+#X msg 37 255 trig1 0;
+#X msg 120 170 trig2 1;
+#X msg 47 212 stop;
+#X obj 37 192 t b b;
+#X obj 107 234 delay;
+#X msg 117 212 stop;
+#X obj 107 192 t b b;
+#X msg 107 255 trig2 0;
+#X obj 86 295 outlet;
+#X obj 207 166 outlet;
+#X connect 0 0 4 0;
+#X connect 0 1 5 0;
+#X connect 0 2 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 1;
+#X connect 2 0 12 1;
+#X connect 3 0 8 0;
+#X connect 4 0 7 0;
+#X connect 4 0 11 0;
+#X connect 4 0 17 0;
+#X connect 5 0 9 0;
+#X connect 5 0 14 0;
+#X connect 5 0 17 0;
+#X connect 6 0 7 0;
+#X connect 6 0 9 0;
+#X connect 6 0 11 0;
+#X connect 6 0 14 0;
+#X connect 6 0 17 0;
+#X connect 7 0 16 0;
+#X connect 8 0 16 0;
+#X connect 9 0 16 0;
+#X connect 10 0 3 0;
+#X connect 11 0 3 0;
+#X connect 11 1 10 0;
+#X connect 12 0 15 0;
+#X connect 13 0 12 0;
+#X connect 14 0 12 0;
+#X connect 14 1 13 0;
+#X connect 15 0 16 0;
+#X coords 0 -1 1 1 90 28 2 60 110;
+#X restore 62 280 pd send_triggers;
+#X text 43 357 Very high Q settings;
+#X text 42 369 cause extremely loud;
+#X text 42 382 self-oscillation!;
+#X obj 32 400 cnv 15 144 94 empty empty Q-LIMITING 20 12 0 18 -261234
+-86277 0;
+#X text 37 419 This little checkbox-->;
+#X text 37 430 disables the safety;
+#X text 37 442 Q-limit (0.735) and;
+#X text 36 454 lets the Q knob go;
+#X text 36 465 all the way up to 1;
+#X text 34 477 (turn the volume down!);
+#X obj 183 440 mix~;
+#X text 17 98 Because of this \, it is possible to create envelopes
+with to successive peaks or trounghs \, by delaying the second envelope
+by the sum of attack+decay from the first envelope. Click on the tiny
+bang in [pd double-peak] to find out how.;
+#X text 17 37 ...is a filter based on the mvcf~ object. It is an IIR
+filter which models a filter similar to the classic transistor-ladder
+filter. It has two ADSR envelope generators which may be triggered
+independently with [trig1( and [trig2( messages \, or together with
+a [trig( message.;
+#X obj 8 181 cnv 15 168 60 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X text 10 196 '3' and '4' to trigger the;
+#X text 11 208 different envelope;
+#X text 11 183 Use keyboard keys '1' \, '2' \,;
+#X text 11 220 combinations;
+#X msg 489 269 range 1 \$1;
+#X connect 0 0 35 0;
+#X connect 0 1 19 0;
+#X connect 0 1 21 1;
+#X connect 3 0 0 2;
+#X connect 3 1 0 3;
+#X connect 4 2 10 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 8 0 7 0;
+#X connect 8 0 7 1;
+#X connect 9 0 0 0;
+#X connect 10 0 43 0;
+#X connect 12 0 13 0;
+#X connect 13 0 9 0;
+#X connect 14 0 9 0;
+#X connect 15 0 9 0;
+#X connect 16 0 14 0;
+#X connect 17 0 15 0;
+#X connect 18 0 9 0;
+#X connect 20 0 0 1;
+#X connect 21 0 18 0;
+#X connect 21 1 0 1;
+#X connect 22 0 21 0;
+#X connect 23 0 24 0;
+#X connect 24 0 0 1;
+#X connect 24 1 18 0;
+#X connect 35 0 8 0;
+#X connect 43 0 11 0;

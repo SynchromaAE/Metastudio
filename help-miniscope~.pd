@@ -1,0 +1,37 @@
+#N canvas 0 0 472 366 10;
+#X obj 66 261 miniscope~;
+#X obj 41 19 cnv 15 400 96 empty empty miniscope~ 10 14 0 18 -184256
+-1822 0;
+#X obj 41 120 cnv 15 360 60 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 45 119 Message tagged control parameters;
+#X text 44 131 Any of the parameters may be altered by sending the
+object a message followed by a control parameter.;
+#X msg 357 160 on 1;
+#X text 48 41 ...is a small signal scope for investigating the waveform
+of the signal.;
+#X text 47 63 The window size is variable \, so that high or low frequencies
+may be usefully displayed. Since miniscope~ uses the bang~ object \,
+the graphical update is fast unless the CPU load is very high in -rt
+mode.;
+#X floatatom 66 183 0 0 0 0 - - -;
+#X obj 66 202 mtof;
+#X floatatom 66 222 0 0 0 0 - - -;
+#X msg 320 321 \; pd dsp 1;
+#X text 307 245 (C) 2009 Edward Kelly;
+#X text 300 260 GNU/GPL license enclosed;
+#X text 325 230 METASTUDIO 0.3;
+#X msg 309 160 size 1;
+#X obj 66 241 osc~ 344.529;
+#X obj 408 143 loadbang;
+#X text 43 164 radio button settings.;
+#X text 44 153 Sizes can be powers of 2 \, or;
+#X msg 245 160 size 1024;
+#X connect 5 0 0 1;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 16 0;
+#X connect 15 0 0 1;
+#X connect 16 0 0 0;
+#X connect 17 0 5 0;
+#X connect 20 0 0 1;

@@ -1,0 +1,118 @@
+#N canvas 3 89 968 600 10;
+#X declare -path .;
+#X obj 36 22 cnv 15 400 250 empty empty wavebank~ 10 8 0 12 -204786
+-13381 0;
+#X obj 455 100 wavebank~;
+#X obj 65 386 wavevoice~;
+#X obj 455 30 declare -path .;
+#X floatatom 587 298 5 0 0 0 - - -;
+#X obj 521 276 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 455 302 mix~;
+#N canvas 1 82 450 300 (subpatch) 0;
+#X obj 140 33 loadbang;
+#X msg 140 54 vol 93;
+#X obj 140 75 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore 531 302 pd;
+#X obj 445 342 dac~;
+#X text 43 37 wavebank~ is an object for loading an entire folder of
+samples \, compiling and saving a folder of samples and adding successive
+folders. If you require separate wavebank~ items then you can use wavebank_n~
+to keep samples libraries independent of each other.;
+#X obj 675 100 wavebank_n~ 1;
+#X msg 455 70 loadbank snd/bankWavs;
+#X obj 455 51 loadbang;
+#X text 43 94 Tables are automatically created for each sample \, with
+the naming convention wave_0001 \, wave_0002 ... wave_9999. Sizes are
+available by reading the wavesizes table.;
+#X text 43 129 when using wavebank_n~ the waves are called wave_0001_n
+\, so for the examples shown they are called wave_0001_1 \, wave_0002_1
+etc \, and wavesizes1 is used to read the sizes;
+#X obj 587 277 route waves;
+#X text 43 211 waves can also be used with the phasevocoder~ and the
+stwang~ objects;
+#X msg 65 365 wave \$1;
+#X obj 587 318 s waves;
+#X obj 65 346 nbx 5 14 1 22 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 1 256;
+#X msg 65 325 range 1 \$1;
+#X obj 65 305 r waves;
+#X msg 675 70 loadbang snd/Drumtraks;
+#X obj 675 51 loadbang;
+#X obj 225 386 wavevoice~ 1;
+#X text 43 166 for simple playback \, the wavevoice~ object provides
+a feature-rich method of playing back the samples in the wavebank~
+\, and wavevoice~ may be initialized with a number for wavebank_n~
+\, or this can be set with a [bank \$1( message;
+#X obj 123 365 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 144 364 48;
+#X msg 176 364 72;
+#X floatatom 807 298 5 0 0 0 - - -;
+#X obj 807 277 route waves;
+#X obj 807 318 s waves1;
+#X msg 225 365 wave \$1;
+#X obj 225 346 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X msg 225 325 range 1 \$1;
+#X obj 283 365 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 304 364 48;
+#X msg 336 364 72;
+#X obj 225 406 mixpan~;
+#X obj 65 406 mixpan~;
+#X obj 155 475 dac~;
+#N canvas 1 82 450 300 (subpatch) 0;
+#X obj 118 48 loadbang;
+#X msg 118 69 vol 95 \, pan -0.333;
+#X obj 118 90 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore 132 386 pd;
+#N canvas 1 82 450 300 (subpatch) 0;
+#X obj 118 48 loadbang;
+#X obj 118 90 outlet;
+#X msg 118 69 vol 95 \, pan 0.333;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X restore 304 386 pd;
+#X obj 225 305 r waves1;
+#X connect 1 0 6 0;
+#X connect 1 1 5 0;
+#X connect 1 2 15 0;
+#X connect 2 0 39 0;
+#X connect 4 0 18 0;
+#X connect 6 0 8 0;
+#X connect 6 0 8 1;
+#X connect 7 0 6 1;
+#X connect 10 2 30 0;
+#X connect 11 0 1 0;
+#X connect 12 0 11 0;
+#X connect 15 0 4 0;
+#X connect 17 0 2 0;
+#X connect 19 0 17 0;
+#X connect 20 0 19 0;
+#X connect 21 0 20 0;
+#X connect 22 0 10 0;
+#X connect 23 0 22 0;
+#X connect 24 0 38 0;
+#X connect 26 0 2 0;
+#X connect 27 0 2 0;
+#X connect 28 0 2 0;
+#X connect 29 0 31 0;
+#X connect 30 0 29 0;
+#X connect 32 0 24 0;
+#X connect 33 0 32 0;
+#X connect 34 0 33 0;
+#X connect 35 0 24 0;
+#X connect 36 0 24 0;
+#X connect 37 0 24 0;
+#X connect 38 0 40 0;
+#X connect 38 1 40 1;
+#X connect 39 0 40 0;
+#X connect 39 1 40 1;
+#X connect 41 0 39 1;
+#X connect 42 0 38 1;
+#X connect 43 0 34 0;

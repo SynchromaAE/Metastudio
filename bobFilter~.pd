@@ -1,0 +1,127 @@
+#N canvas 402 184 875 483 10;
+#X obj 61 311 bob~;
+#X obj 61 199 inlet~;
+#X obj 61 333 outlet~;
+#X obj 179 40 cnv 15 100 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 202 112 cnv 15 374 48 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 185 169 cnv 15 100 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X obj 394 233 mtof;
+#X obj 390 256 s \$0-lpfc;
+#X obj 269 144 hsl 246 12 14 136 0 0 \$0-lpfc_midi \$0-lpfc-set frequency
+25 6 1 10 -13381 -204786 -204786 9238 1;
+#X obj 206 144 nbx 6 12 -1e+37 1e+37 0 0 \$0-lpfc-num \$0-lpfc empty
+0 -6 1 10 -13381 -204786 -204786 261.626 256;
+#X obj 522 144 nbx 5 12 0.05 5 1 0 \$0-lpq \$0-lpq-set QL 0 -6 1 10
+-204786 -13381 -13381 1.07461 256;
+#X obj 393 210 r \$0-lpfc_midi;
+#X obj 379 346 loadbang;
+#X text 496 328 oversampling;
+#X obj 500 351 loadbang;
+#X msg 379 371 300;
+#X obj 75 280 +~, f 2;
+#X obj 206 127 nbx 5 14 10 600 1 0 \$0-saturation \$0-saturation-set
+saturation 0 -8 1 10 -146817 -577 -577 300 256;
+#X obj 293 313 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 298 292 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 377 396 s \$0-saturation-set;
+#X obj 276 127 hradio 12 1 0 4 \$0-oversampling \$0-oversampling-set
+oversamp 0 -8 1 10 -146817 -577 -577 1;
+#X msg 500 374 1;
+#X obj 500 398 s \$0-oversampling-set;
+#X obj 259 351 r \$0-oversampling;
+#X obj 259 373 + 1;
+#X msg 259 395 oversample \$1;
+#X msg 98 400 saturation \$1;
+#X obj 98 356 r \$0-saturation;
+#X obj 98 378 / 100;
+#X obj 176 238 r \$0-lpq;
+#X obj 176 260 pack f 20;
+#X obj 176 282 line~;
+#X obj 78 111 r \$0-lpfc-num;
+#X obj 78 133 pack f 10;
+#X obj 352 127 nbx 5 12 0 1e+37 0 0 \$0-t_interp \$0-t_interp-set porta
+56 6 1 10 -83269 -262130 -86853 100 256;
+#N canvas 433 184 450 300 auto 0;
+#X msg 8 11;
+#X obj 138 177 s \$0-lpq-set;
+#X obj 213 127 s \$0-t_interp-set;
+#X obj 88 212 s \$0-lpfc-set;
+#X obj 115 137 ftom;
+#X obj 89 72 route lpf_midi lpf_f lpq porta saturate oversample;
+#X obj 232 185 s \$0-saturation-set;
+#X obj 273 158 s \$0-oversampling-set;
+#X obj 90 36 inlet;
+#X msg 162 134 1;
+#X msg 63 157 60;
+#X msg 199 102 100;
+#X msg 221 150 300;
+#X msg 334 130 1;
+#X obj 169 28 loadbang;
+#X connect 4 0 3 0;
+#X connect 5 0 3 0;
+#X connect 5 1 4 0;
+#X connect 5 2 1 0;
+#X connect 5 3 2 0;
+#X connect 5 4 6 0;
+#X connect 5 5 7 0;
+#X connect 8 0 5 0;
+#X connect 9 0 1 0;
+#X connect 10 0 3 0;
+#X connect 11 0 2 0;
+#X connect 12 0 6 0;
+#X connect 13 0 7 0;
+#X connect 14 0 11 0;
+#X connect 14 0 10 0;
+#X connect 14 0 9 0;
+#X connect 14 0 12 0;
+#X connect 14 0 13 0;
+#X restore 482 64 pd auto;
+#X obj 482 33 inlet;
+#X obj 95 82 r \$0-t_interp;
+#X obj 78 155 line~;
+#X obj 499 270 phasor~;
+#X obj 499 292 cos~;
+#X obj 570 236 r \$0-bpmSync;
+#X obj 538 206 r \$0-beat;
+#X obj 538 247 0;
+#X obj 742 99 r \$0-bpm;
+#X obj 742 121 expr 60000/$f1;
+#X floatatom 742 143 0 0 0 0 - - -;
+#X obj 617 66 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X text 644 189 UNFINISHED!!!;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 6 0 7 0;
+#X connect 11 0 6 0;
+#X connect 12 0 15 0;
+#X connect 14 0 22 0;
+#X connect 15 0 20 0;
+#X connect 16 0 0 1;
+#X connect 22 0 23 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 0 0;
+#X connect 27 0 0 0;
+#X connect 28 0 29 0;
+#X connect 29 0 27 0;
+#X connect 30 0 31 0;
+#X connect 31 0 32 0;
+#X connect 32 0 0 2;
+#X connect 33 0 34 0;
+#X connect 34 0 39 0;
+#X connect 37 0 36 0;
+#X connect 38 0 34 1;
+#X connect 39 0 16 0;
+#X connect 40 0 41 0;
+#X connect 42 0 44 1;
+#X connect 43 0 44 0;
+#X connect 44 0 40 1;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X coords 0 -1 1 1 376 63 1 200 100;

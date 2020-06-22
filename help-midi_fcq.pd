@@ -1,0 +1,47 @@
+#N canvas 985 132 450 300 10;
+#X obj 34 146 ctlin 0;
+#X floatatom 34 166 5 0 127 0 - - -;
+#X obj 27 14 cnv 15 370 120 empty empty midi_fcq 10 14 0 18 -244214
+-45076 0;
+#X floatatom 34 245 0 0 0 3 frequency - -;
+#X obj 34 185 midi_fcq;
+#X msg 195 168 curve \$1;
+#X floatatom 195 149 5 1 16 0 - - -;
+#X obj 255 150 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X msg 255 168 mode \$1;
+#X obj 157 223 print midi_fcq;
+#X floatatom 95 223 0 0 0 0 q - -;
+#X floatatom 95 166 5 0 127 0 - - -;
+#X obj 95 146 ctlin 2;
+#X text 35 35 ...converts MIDI values (0-127) into frequency and q
+values for a variety of filter abstractions.;
+#X text 34 59 Curvature controls change the function from linear (curve
+= 1) to exponential control (curve > 1) for frequency output.;
+#X text 35 83 The range of q values can be altered for the traveler~
+\, svf_fl~ \, moog_fl~ and delay_fbf~ abstractions. This is linear
+or exponential depending on the abstraction \, and preset curves are
+applied to the output accordingly.;
+#X text 142 133 q-mode: traveler~ \, svf_fl~ \, moog_fl~ \, delay_fbf~
+;
+#X text 306 164 nogui version:;
+#X obj 395 165 m_fcq;
+#X text 262 192 also;
+#X obj 259 210 midi_fc;
+#X text 267 244 frequency curve only;
+#X obj 409 218 m_fc;
+#X text 395 218 =;
+#X text 138 260 (C) 2009 Edward Kelly;
+#X text 131 275 GNU/GPL license enclosed;
+#X text 156 245 METASTUDIO 0.3;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 4 0 3 0;
+#X connect 4 1 10 0;
+#X connect 4 2 9 0;
+#X connect 5 0 4 2;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 4 2;
+#X connect 11 0 4 1;
+#X connect 12 0 11 0;

@@ -1,0 +1,92 @@
+#N canvas 78 30 563 739 10;
+#X obj 3 -48 cnv 15 550 220 empty empty basic_mixing 20 12 0 18 -233198
+-62789 0;
+#X obj 28 -11 mix~;
+#X obj 118 -11 stmix~;
+#X obj 31 50 xfade~;
+#X text 196 -10 ...basic mono and stereo volume controls \, with limiters.
+;
+#N canvas 0 0 385 199 control 0;
+#X floatatom 43 59 5 0 112 2 volume - -;
+#X msg 43 84 vol \$1;
+#X msg 105 84 limit \$1;
+#X obj 105 61 tgl 15 0 empty empty limiting 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 43 121 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;
+#X restore 183 -36 pd control;
+#X obj 123 50 fadex~;
+#X floatatom 215 15 5 0 100 0 - - -;
+#X obj 215 33 / 100;
+#X obj 32 112 mixpan~;
+#X text 109 125 ...mix and pan a mono signal;
+#N canvas 0 0 336 188 control 0;
+#X msg 48 71 vol \$1;
+#X msg 107 71 pan \$1;
+#X floatatom 107 51 5 -45 45 2 pan - -;
+#X floatatom 48 51 5 0 112 2 volume - -;
+#X obj 48 125 outlet;
+#X connect 0 0 4 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X restore 109 95 pd control;
+#X obj 3 176 cnv 15 550 150 empty empty modulation 20 12 0 18 -200237
+-13381 0;
+#X obj 19 205 mixpanlfo~;
+#X text 169 201 this object has sine-wave modulators for the volume
+and pan. As with most metastudio objects \, click-dragging the numbers
+gives you a greater range of values than the sliders (and these are
+saved in the patch).;
+#X obj 3 330 cnv 15 550 350 empty empty integrated_mixers 20 12 0 18
+-200315 -13330 0;
+#X obj 22 357 mix5++;
+#X obj 23 500 mix12~;
+#X text 169 246 thus it can be used for tremelo or ring modulation
+\, pan-sweeping or stereo (180 degree phase) amplitude modulation.
+;
+#X text 190 61 ...equal power crossfade \, and fade-between output
+channels.;
+#X text 21 616 |;
+#X text 21 626 |;
+#X text 21 633 V;
+#X text 84 616 |;
+#X text 84 626 |;
+#X text 84 633 V;
+#X text 26 642 stereo out;
+#X text 147 616 |;
+#X text 147 623 V;
+#X text 135 633 send 1;
+#X text 210 616 |;
+#X text 210 623 V;
+#X text 272 616 |;
+#X text 272 623 V;
+#X text 335 616 |;
+#X text 335 623 V;
+#X text 398 616 |;
+#X text 398 623 V;
+#X text 198 633 send 2;
+#X text 260 633 send 3;
+#X text 323 633 send 4;
+#X text 386 633 send 5;
+#X text 261 363 the two mixers here are fully controllable \,;
+#X text 261 374 and have their own internal patching mechanism.;
+#X text 261 385 Because the digital system of signal routing;
+#X text 261 396 cannot contain direct feedback loops \, it is;
+#X text 261 407 impossible to use the aux sends of these mixers;
+#X text 261 418 to route a signal back into the mixer.;
+#X text 261 433 Invariably you need more than one of these;
+#X text 261 444 mixers e.g. one for dry signals and one for;
+#X text 260 455 effect returns.;
+#X text 364 110 (C) 2009 Edward Kelly;
+#X text 357 125 GNU/GPL license enclosed;
+#X text 382 95 METASTUDIO 0.3;
+#X connect 5 0 2 2;
+#X connect 5 0 1 1;
+#X connect 7 0 8 0;
+#X connect 8 0 6 1;
+#X connect 8 0 3 2;
+#X connect 11 0 9 1;

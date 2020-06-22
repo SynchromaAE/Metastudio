@@ -1,0 +1,69 @@
+help files for:
+(easy)
+adsr_pat~
+eadsr_pat~
+miniscope~
+minispect~
+oscilloscope~
+mu~
+vu~
+all mixers
+record_m~, record_s~
+pass, pass4
+pip~
+
+(comprehensive)
+chunkplay~
+chunkvoice~
+compression~ and gui for compression~
+countpulse
+crunch_stereo~
+damped~
+delay_swing~
+fmf_perc~
+freeverber~
+hp2lp4~, hp2lp6~, hplp2~, hplp4~, hplp6~
+isoseq
+
+midi_fc, midi_pc, midi_pf, midi_spiral, midipish, midisamplevoice~
+
+mhelf~
+moog_fl~
+muug_fl~
+newshot~
+phasynth~
+wavefolder_synth~
+polyphase~
+quadloop~
+patchmap
+recst~
+resynth~
+rhythm_element
+sadsrr~
+samplay~
+seq_rhythm
+sigclip~ sigdec~ (rewrite?) sigfb~, sigfold~, sigsat~
+simplesynth~
+sinosc~, trisaw
+smin~
+sqsaw~
+stereo_drift~
+stamp_vocode~
+stfb~
+stin~
+straveler~
+synchro_7
+tabmask~
+tcalc
+tracker64
+vcaeg~
+vcfvcaeg~
+vcfvcaeg_st~
+wavebank~
+wavefolder_synth~
+wavevoice~
+
+no help, but described in the patch:
+blockdelay
+blockprelay
+stepkeys

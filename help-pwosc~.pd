@@ -1,0 +1,400 @@
+#N canvas 59 100 706 640 10;
+#X obj 397 110 cnv 15 290 64 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 31 9 cnv 15 400 96 empty empty pwosc~ 10 14 0 18 -232576 -45076
+0;
+#X text 213 289 V;
+#X msg 446 73 \; pd dsp 1;
+#X obj 31 110 cnv 15 360 60 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 35 109 Message tagged control parameters;
+#X obj 31 175 cnv 15 360 40 empty empty empty 20 12 0 14 -175479 -66577
+0;
+#X text 44 177 For a list of control parameters for this;
+#X text 44 191 unit \, click on this subpatch -->;
+#N canvas 582 355 854 394 control 0;
+#X obj 211 295 outlet;
+#X floatatom 29 140 5 0 10000 2 frequency - -;
+#X floatatom 88 140 5 -24 136 2 pitch - -;
+#X msg 29 160 freq \$1;
+#X msg 88 160 pitch \$1;
+#X floatatom 141 45 3 0 360 2 phase - -;
+#X obj 203 139 tgl 15 0 empty empty sync* -3 -8 0 10 -262144 -1 -1
+0 1;
+#X floatatom 260 138 0 0 0 2 glide - -;
+#X obj 300 101 tgl 15 0 empty empty bipolar** 0 -6 0 10 -262144 -1
+-1 0 1;
+#X msg 141 158 phase \$1;
+#X msg 203 158 sync \$1;
+#X msg 260 159 glide \$1;
+#X msg 300 159 bip \$1;
+#X obj 422 141 bng 15 250 50 0 empty empty pbang* 17 7 0 10 -262144
+-258113 -1;
+#X msg 422 159 pbang;
+#X obj 153 69 deg2rad;
+#X obj 202 69 / 360;
+#X text 468 224 *the phase is in degrees. If sync is turned on \, the
+phase is reset to this value when a pitch or freq message is received.
+Alternatively \, to set the phase manually \, send the module a pbang
+message.;
+#X floatatom 153 90 5 0 0 3 radians - -;
+#X floatatom 202 90 5 0 0 3 0-1 - -;
+#X text 175 27 in degrees*;
+#X text 468 271 **the output waveform may be bipolar (-1 to 1) or unipolar
+(0 to 1). This can be used for a variety of low frequency oscillator
+configurations and modulation functions. See the am_example patch to
+see how this may be used.;
+#X floatatom 365 98 5 -100 100 2 pulsewidth - -;
+#X obj 365 119 / 100;
+#X floatatom 365 140 5 0 0 0 - - -;
+#X msg 347 159 pw \$1;
+#X obj 22 212 loadbang;
+#X msg 22 274 all 220 57 50 1 100 1 0.5;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 9 0;
+#X connect 5 0 15 0;
+#X connect 5 0 16 0;
+#X connect 6 0 10 0;
+#X connect 7 0 11 0;
+#X connect 8 0 12 0;
+#X connect 9 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 14 0;
+#X connect 14 0 0 0;
+#X connect 15 0 18 0;
+#X connect 16 0 19 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 0 0;
+#X connect 26 0 27 0;
+#X connect 27 0 0 0;
+#X restore 254 194 pd control parameters;
+#X text 91 288 V;
+#X text 91 280 |;
+#X text 91 270 |;
+#X text 213 281 |;
+#X obj 43 529 dac~;
+#X obj 397 179 cnv 15 290 154 empty empty empty 20 12 0 14 -204786
+-66577 0;
+#X text 399 222 CONTROL: message tagged control parameters;
+#X text 399 193 SIGNAL: audio out;
+#X text 400 236 All manipulations of the GUI \, patch file;
+#X text 401 248 locations and patch changes are sent out;
+#X text 402 260 of the second outlet so that they may be;
+#X text 401 272 recorded.;
+#X text 330 289 V;
+#X text 330 281 |;
+#X text 330 272 |;
+#X text 330 378 V;
+#X text 330 370 |;
+#X text 330 360 |;
+#X text 253 387 automation and patching out;
+#X text 42 257 control parameters;
+#X msg 97 150 freq 440;
+#X msg 154 150 pitch 53;
+#X text 44 53 Together with other modules \, it allows one to create
+modular FM \, AM \, wavetable \, phase-distortion and subtractive synthesis
+systems.;
+#X text 399 110 Metastudio waveforms have three or more inlets;
+#X text 399 128 CONTROL:message tagged control parameters;
+#X text 399 179 Metastudio modular oscillators have 3 outlets;
+#X text 399 207 SIGNAL: frequency out;
+#X text 211 367 V;
+#X text 211 359 |;
+#X text 188 376 frequency;
+#X msg 122 464 vol 94;
+#X obj 122 442 loadbang;
+#X obj 57 464 *~;
+#X obj 78 440 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 99 392 hradio 15 1 0 3 empty \$0-example this-patch 0 -8 0 10
+-262144 -1 -1 0;
+#X obj 83 416 == 0;
+#N canvas 20 117 450 300 label 0;
+#X obj 125 208 s \$0-example;
+#X obj 77 74 inlet;
+#X obj 77 101 select 0 1 2;
+#X msg 241 185 0;
+#X msg 77 148 label this-patch;
+#X msg 97 126 label modulation;
+#X obj 276 147 loadbang;
+#X msg 201 124 label fm-example;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 2 1 5 0;
+#X connect 2 2 7 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 3 0;
+#X connect 7 0 0 0;
+#X restore 118 415 pd label;
+#X obj 185 464 *~;
+#X obj 212 465 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 212 443 == 1;
+#X text 401 288 The parameters are also sent out as a list;
+#X text 402 300 so that they can be configured as part of a;
+#X text 402 312 modular synthesis system.;
+#X obj 444 352 unpack f f f f f f f;
+#X floatatom 444 520 0 0 0 3 frequency - -;
+#X floatatom 463 486 0 0 0 3 pitch - -;
+#X floatatom 483 465 3 0 360 1 phase - -;
+#X obj 502 445 tgl 15 0 empty empty sync 17 7 0 10 -262144 -1 -1 1
+1;
+#X floatatom 522 425 0 0 0 1 glide - -;
+#X obj 541 406 tgl 15 0 empty empty bipolar 17 7 0 10 -262144 -1 -1
+1 1;
+#X obj 358 341 route all;
+#X text 106 363 output;
+#X text 194 388 outlet~;
+#X text 253 257 pulse-width modulation;
+#X text 162 269 frequency modulation;
+#X obj 351 366 print pwosc;
+#N canvas 415 95 610 710 mod-example 0;
+#X obj 42 15 cnv 15 400 120 empty empty modulation 10 14 0 18 -232000
+-45076 0;
+#X obj 42 355 cnv 15 250 150 empty empty empty 64 14 0 18 -260544 -86277
+0;
+#X obj 37 140 cnv 15 260 210 empty empty FM 144 14 0 18 -159719 -13330
+0;
+#X obj 293 136 cnv 4 4 214 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 37 506 cnv 4 260 4 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 37 136 cnv 4 4 214 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 37 136 cnv 4 542 4 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X msg 56 415 pitch \$1;
+#X msg 193 413 glide \$1;
+#X obj 193 391 nbx 5 18 0 10000 0 0 empty \$0-glide glide 0 -8 0 16
+-262144 -1 -1 40 256;
+#X obj 56 393 nbx 5 18 0 127 0 0 empty \$0-pitch pitch 0 -8 0 16 -262144
+-1 -1 40.702 256;
+#X obj 47 522 outlet~;
+#X text 69 81 as with all metastudio modular units \, the parameters
+can be adjusted per-object for more variations.;
+#X obj 37 15 cnv 4 4 120 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 37 10 cnv 4 408 4 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 441 15 cnv 4 4 120 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 53 229 sinosc~;
+#X obj 54 324 *~;
+#X obj 81 324 *;
+#X obj 108 324 t b f;
+#X obj 81 301 nbx 5 18 0.001 10 1 0 empty \$0-index_1 index 0 -8 0
+16 -262144 -1 -1 10 256;
+#X obj 37 355 cnv 4 4 155 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 37 350 cnv 4 542 4 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 298 141 cnv 15 280 208 empty empty PWM 144 14 0 18 -158144 -13330
+0;
+#X obj 314 190 sinosc~;
+#X obj 315 285 *~;
+#X obj 342 262 nbx 5 18 0.001 1 1 0 empty \$0-index_2 PWM 0 -8 0 16
+-262144 -1 -1 1 256;
+#X text 45 39 The pwosc~ can be modulated in two ways - frequency and
+pulsewidth.;
+#N canvas 5 48 450 300 init 0;
+#X obj 64 106 s \$0-index_1;
+#X obj 162 108 s \$0-index_2;
+#X msg 65 64 0.1;
+#X msg 179 65 0.8;
+#X obj 82 32 loadbang;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 4 0 2 0;
+#X connect 4 0 3 0;
+#X restore 394 655 pd init;
+#X obj 309 365 route freq;
+#X obj 293 355 cnv 4 4 155 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X obj 55 184 *;
+#X obj 55 161 nbx 5 18 0.001 80 1 0 empty \$0-cmr_1 CM-ratio 0 -8 0
+16 -262144 -1 -1 5.996 256;
+#X msg 55 205 freq \$1;
+#X obj 82 184 t b f;
+#N canvas 601 537 740 300 init 0;
+#X obj 99 204 s \$0-cmr_1;
+#X msg 101 165 0.01;
+#X obj 179 204 s \$0-index_1;
+#X obj 269 204 s \$0-index_2;
+#X obj 363 207 s \$0-pitch;
+#X obj 463 207 s \$0-glide;
+#X msg 455 170 40;
+#X obj 140 115 loadbang;
+#X msg 565 157 size 2;
+#X obj 568 204 outlet;
+#X obj 303 8 inlet;
+#X msg 625 151 size 1;
+#X obj 628 202 outlet;
+#X obj 479 69 unpack f f f f f;
+#X msg 220 80 59.736 40.702 5.039 4.697 1;
+#X obj 499 120 s \$0-pitch_2;
+#X msg 204 106 52.736 40.702 5.996 10 1;
+#X msg 388 15 on 1;
+#X msg 240 54 59.736 40.702 8.964 4.697 1;
+#X msg 246 34 56.666 40.702 2.98 4.697 0.8;
+#X obj 527 34 inlet;
+#X msg 464 30 on 0;
+#X msg 355 169 29;
+#X msg 273 161 0.4;
+#X msg 590 95 52.736;
+#X obj 169 14 sel 0 1 2 3 4;
+#X msg 603 50 -80;
+#X connect 1 0 0 0;
+#X connect 1 0 2 0;
+#X connect 6 0 5 0;
+#X connect 7 0 1 0;
+#X connect 7 0 23 0;
+#X connect 7 0 22 0;
+#X connect 7 0 6 0;
+#X connect 7 0 8 0;
+#X connect 7 0 11 0;
+#X connect 8 0 9 0;
+#X connect 10 0 17 0;
+#X connect 10 0 25 0;
+#X connect 11 0 12 0;
+#X connect 13 0 15 0;
+#X connect 13 1 4 0;
+#X connect 13 2 0 0;
+#X connect 13 3 2 0;
+#X connect 13 4 3 0;
+#X connect 14 0 13 0;
+#X connect 16 0 13 0;
+#X connect 17 0 9 0;
+#X connect 17 0 12 0;
+#X connect 18 0 13 0;
+#X connect 19 0 13 0;
+#X connect 20 0 21 0;
+#X connect 20 0 6 0;
+#X connect 20 0 22 0;
+#X connect 20 0 23 0;
+#X connect 20 0 1 0;
+#X connect 20 0 26 0;
+#X connect 21 0 9 0;
+#X connect 21 0 12 0;
+#X connect 22 0 4 0;
+#X connect 23 0 3 0;
+#X connect 24 0 15 0;
+#X connect 25 0 16 0;
+#X connect 25 1 14 0;
+#X connect 25 2 18 0;
+#X connect 25 3 19 0;
+#X connect 25 4 1 0;
+#X connect 25 4 23 0;
+#X connect 25 4 22 0;
+#X connect 25 4 6 0;
+#X connect 25 4 24 0;
+#X connect 26 0 15 0;
+#X restore 441 491 pd init;
+#X obj 575 136 cnv 4 4 214 empty empty empty 20 12 0 14 -33289 -66577
+0;
+#X msg 314 170 pitch \$1;
+#X obj 314 150 r \$0-pitch_2;
+#X obj 423 473 hradio 15 1 0 5 empty empty presets 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 505 476 bng 15 250 50 0 empty empty reset 17 7 0 10 -262144
+-1 -1;
+#X obj 163 545 miniscope~;
+#X obj 375 545 miniscope~;
+#X obj 47 440 pwosc~;
+#X msg 385 456 0;
+#X obj 385 413 del 10;
+#X obj 385 392 loadbang;
+#X connect 7 0 43 0;
+#X connect 8 0 16 0;
+#X connect 8 0 43 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 16 0 17 0;
+#X connect 17 0 43 1;
+#X connect 18 0 17 1;
+#X connect 19 0 18 0;
+#X connect 19 1 18 1;
+#X connect 20 0 18 0;
+#X connect 24 0 25 0;
+#X connect 25 0 42 0;
+#X connect 25 0 43 2;
+#X connect 26 0 25 1;
+#X connect 29 0 19 0;
+#X connect 29 0 34 0;
+#X connect 31 0 33 0;
+#X connect 32 0 31 0;
+#X connect 33 0 16 0;
+#X connect 34 0 31 0;
+#X connect 34 1 31 1;
+#X connect 35 0 41 1;
+#X connect 35 0 42 1;
+#X connect 37 0 24 0;
+#X connect 38 0 37 0;
+#X connect 39 0 35 0;
+#X connect 40 0 35 1;
+#X connect 43 0 11 0;
+#X connect 43 0 41 0;
+#X connect 43 2 29 0;
+#X connect 44 0 39 0;
+#X connect 45 0 44 0;
+#X connect 46 0 45 0;
+#X restore 184 414 pd mod-example;
+#X floatatom 561 384 5 0 0 1 pulsewidth - -;
+#X text 38 31 ...is a square to pulse oscillator.;
+#X msg 212 150 pw 0.5;
+#N canvas 10 71 450 300 init 0;
+#X obj 140 115 loadbang;
+#X obj 168 204 outlet;
+#X msg 165 157 size 2 \, on 1;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X restore 261 503 pd init;
+#X text 34 121 Any of the parameters may be altered by sending the
+object a message followed by a control parameter.;
+#X obj 97 305 pwosc~;
+#X text 399 142 SIGNAL: frequency modulation;
+#X text 399 156 SIGNAL: pulsewidth modulation;
+#X obj 115 528 miniscope~;
+#X obj 57 485 mix~;
+#X text 526 579 (C) 2009 Edward Kelly;
+#X text 519 594 GNU/GPL license enclosed;
+#X text 544 564 METASTUDIO 0.3;
+#X connect 9 0 72 0;
+#X connect 30 0 72 0;
+#X connect 31 0 72 0;
+#X connect 40 0 76 1;
+#X connect 41 0 40 0;
+#X connect 42 0 76 0;
+#X connect 43 0 42 1;
+#X connect 44 0 45 0;
+#X connect 44 0 46 0;
+#X connect 44 0 49 0;
+#X connect 45 0 43 0;
+#X connect 47 0 76 0;
+#X connect 48 0 47 1;
+#X connect 49 0 48 0;
+#X connect 53 0 54 0;
+#X connect 53 1 55 0;
+#X connect 53 2 56 0;
+#X connect 53 3 57 0;
+#X connect 53 4 58 0;
+#X connect 53 5 59 0;
+#X connect 53 6 67 0;
+#X connect 60 0 53 0;
+#X connect 66 0 47 0;
+#X connect 69 0 72 0;
+#X connect 70 0 75 1;
+#X connect 72 0 42 0;
+#X connect 72 2 60 0;
+#X connect 72 2 65 0;
+#X connect 76 0 14 0;
+#X connect 76 0 14 1;
+#X connect 76 0 75 0;

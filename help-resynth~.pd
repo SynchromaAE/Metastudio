@@ -1,0 +1,178 @@
+#N canvas 352 151 1011 542 10;
+#X obj 54 260 resynth~ 1024 4;
+#X obj 54 447 mix~;
+#X obj 54 491 dac~;
+#X obj 41 112 cnv 15 380 130 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 41 12 cnv 15 380 94 empty empty resynth~ 10 14 0 18 -232576
+-45076 0;
+#X text 153 222 CONTROL: message tagged control parameters;
+#X obj 557 42 cnv 15 260 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 559 42 Message tagged control parameters;
+#X text 558 73 sending the object a message followed by a;
+#X text 558 86 value in the second inlet:;
+#X obj 457 111 cnv 15 360 40 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 460 112 For a list of control parameters for this;
+#X text 460 126 unit \, click on this subpatch -->;
+#N canvas 40 106 687 336 control 0;
+#X obj 211 295 outlet;
+#X floatatom 35 140 5 1 4 2 bank* - -;
+#X floatatom 88 140 5 1 128 0 - - -;
+#X floatatom 152 140 5 0 100 0 - - -;
+#X floatatom 216 117 5 -100 0 0 - - -;
+#X msg 188 67 patch \$1;
+#X msg 249 67 randpat;
+#X text 63 50 load a patches file;
+#X text 177 20 recall a;
+#X text 185 30 patch;
+#X text 254 40 random;
+#X text 257 50 patch;
+#X floatatom 188 47 5 1 9 0 - - -;
+#X text 336 70 polarity;
+#X obj 274 138 tgl 15 0 empty empty loop -2 -6 0 10 -262144 -1 -1 0
+1;
+#X obj 216 138 / 100;
+#X obj 28 28 loadbang;
+#X msg 35 160 bank \$1;
+#X text 53 111 sample;
+#X text 83 123 sample;
+#X msg 88 160 sample \$1;
+#X msg 152 160 offset \$1;
+#X text 146 123 offset**;
+#X text 216 101 decay;
+#X msg 216 160 decay \$1;
+#X msg 274 160 loop \$1;
+#X msg 30 67 file datasets/samplay.pat;
+#X obj 324 138 tgl 15 0 empty empty reverse -2 -6 0 10 -262144 -1 -1
+0 1;
+#X msg 324 160 dir \$1;
+#X obj 374 138 tgl 15 0 empty empty alternate*** -2 -6 0 10 -262144
+-1 -1 0 1;
+#X msg 374 160 alt \$1;
+#X text 325 244 *samples are read from one of four samplebox objects
+;
+#X text 324 256 **sample offset is a proportion of the sample length.
+The offset parameter is in 1/128ths of the sample.;
+#X text 323 278 ***the sample may be looped forwards \, reversed \,
+or alternating direction.;
+#X connect 1 0 17 0;
+#X connect 2 0 20 0;
+#X connect 3 0 21 0;
+#X connect 4 0 15 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 12 0 5 0;
+#X connect 14 0 25 0;
+#X connect 15 0 24 0;
+#X connect 16 0 26 0;
+#X connect 17 0 0 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 24 0 0 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 27 0 28 0;
+#X connect 28 0 0 0;
+#X connect 29 0 30 0;
+#X connect 30 0 0 0;
+#X restore 672 129 pd control parameters;
+#X text 559 59 Any of the parameters may be altered by;
+#X msg 720 91 sample 4;
+#X text 48 78 pitch is a transposition \, so that a pitch of 0 is the
+original pitch of the sample.;
+#X text 43 112 resynth~ has two inlets:;
+#X text 44 125 CONTROL: bang = trig \, float = tranpose + trig;
+#X msg 114 143 rand 1;
+#X text 159 143 = trig;
+#X msg 128 163 rand 2;
+#X msg 143 183 rand 3;
+#X text 172 163 = trig and random start/end;
+#X text 188 183 = trig and random start/end/transpose;
+#X msg 159 203 stop;
+#X text 192 203 = cut;
+#X obj 54 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 75 144 5 0 0 0 - - -;
+#X text 398 238 |;
+#X text 398 245 V;
+#X text 398 232 |;
+#X obj 457 168 samplebox_1~;
+#X msg 824 147 loadbank snd/samples_1;
+#X obj 824 127 loadbang;
+#N canvas 5 48 863 340 automation 0;
+#X obj 72 244 s \$0-start_time-set;
+#X obj 136 221 s \$0-end_time-set;
+#X obj 110 268 s \$0-time-set;
+#X obj 190 243 s \$0-level-set;
+#X obj 230 169 s \$0-a_time-set;
+#X obj 248 187 s \$0-d_time-set;
+#X obj 252 212 s \$0-transpose-set;
+#X obj 275 236 s \$0-tab-set;
+#X obj 327 153 s \$0-tv_fst-set;
+#X obj 335 175 s \$0-tv_fend-set;
+#X obj 369 192 s \$0-tv_ast-set;
+#X obj 366 208 s \$0-tv_aend-set;
+#X obj 393 222 s \$0-a_times-set;
+#X obj 476 164 s \$0-pv_fst-set;
+#X obj 480 181 s \$0-pv_fend-set;
+#X obj 488 198 s \$0-pv_ast-set;
+#X obj 497 218 s \$0-pv_aend-set;
+#X obj 503 235 s \$0-p_a_times-set;
+#X obj 599 222 s \$0-pitchscrub-set;
+#X obj 594 205 s \$0-timescrub-set;
+#X obj 597 176 s \$0-p_modamp-set;
+#X obj 601 160 s \$0-modamp-set;
+#X obj 41 131 s \$0-scratch;
+#X obj 85 108 s \$0-speed;
+#X obj 81 5 inlet;
+#X obj 83 30 route scratch speed start time end level a d trans tab
+t-fst t-fend t-ast t-aend t-amult p-fst p-fend p-ast p-aend p-amult
+t-am p-am t-scrub p-scrub decay;
+#X connect 24 0 25 0;
+#X connect 25 0 22 0;
+#X connect 25 1 23 0;
+#X connect 25 2 0 0;
+#X connect 25 3 2 0;
+#X connect 25 4 1 0;
+#X connect 25 5 3 0;
+#X connect 25 6 4 0;
+#X connect 25 7 5 0;
+#X connect 25 8 6 0;
+#X connect 25 9 7 0;
+#X connect 25 10 8 0;
+#X connect 25 11 9 0;
+#X connect 25 12 10 0;
+#X connect 25 13 11 0;
+#X connect 25 14 12 0;
+#X connect 25 15 13 0;
+#X connect 25 16 14 0;
+#X connect 25 17 15 0;
+#X connect 25 18 16 0;
+#X connect 25 19 17 0;
+#X connect 25 20 21 0;
+#X connect 25 21 20 0;
+#X connect 25 22 19 0;
+#X connect 25 23 18 0;
+#X restore 833 79 pd automation;
+#X text 48 34 ...is an fft phase vocoder \, with modulation oscillators
+for time and pitch. The modulators are sampled at control-rate relative
+to the blocksize \, so that higher frequencies result in a sequence
+of timbres or pitches.;
+#X obj 458 500 dac~;
+#X obj 457 444 mixpan~;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;
+#X connect 19 0 0 0;
+#X connect 21 0 0 0;
+#X connect 22 0 0 0;
+#X connect 25 0 0 0;
+#X connect 27 0 0 0;
+#X connect 28 0 0 0;
+#X connect 32 0 38 0;
+#X connect 33 0 32 0;
+#X connect 34 0 33 0;
+#X connect 38 0 37 0;
+#X connect 38 1 37 1;

@@ -1,0 +1,4 @@
+#N canvas 1 82 954 479 10;
+#X obj 36 22 cnv 15 400 250 empty empty stwang~ 10 8 0 12 -204800 -13330
+0;
+#X obj 453 23 stwang~;

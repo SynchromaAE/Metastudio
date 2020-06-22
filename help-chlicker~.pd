@@ -1,0 +1,267 @@
+#N canvas 229 213 634 569 10;
+#X obj 31 164 cnv 15 270 64 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 31 9 cnv 15 400 153 empty empty chlicker~ 10 14 0 18 -232576
+-45076 0;
+#X text 239 306 V;
+#X text 168 287 automation and patching;
+#X text 448 23 nogui version =;
+#X text 33 194 CONTROL: message tagged control parameters;
+#X msg 446 73 \; pd dsp 1;
+#X obj 307 165 cnv 15 260 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 309 165 Message tagged control parameters;
+#X text 308 196 sending the object a message followed by a;
+#X text 308 209 value in the second inlet:;
+#X obj 207 231 cnv 15 360 40 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 210 232 For a list of control parameters for this;
+#X text 210 246 unit \, click on this subpatch -->;
+#N canvas 56 99 884 516 control 0;
+#X obj 211 295 outlet;
+#X floatatom 46 141 5 0 2000 0 - - -;
+#X floatatom 88 140 5 0 0 0 - - -;
+#X floatatom 260 139 5 0 10000 0 - - -;
+#X floatatom 349 139 5 -100 100 0 - - -;
+#X floatatom 415 139 5 0 2000 0 - - -;
+#X floatatom 461 138 5 20 2000 0 - - -;
+#X floatatom 506 138 5 0 100 0 - - -;
+#X floatatom 563 117 5 -100 0 0 - - -;
+#X floatatom 141 137 5 0 100 0 - - -;
+#X msg 812 158 on \$1;
+#X obj 812 139 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 805 122 on/off;
+#X floatatom 203 115 5 -100 0 0 - - -;
+#X msg 188 67 patch \$1;
+#X msg 249 67 randpat;
+#X text 63 50 load a patches file;
+#X text 177 20 recall a;
+#X text 185 30 patch;
+#X text 254 40 random;
+#X text 257 50 patch;
+#X floatatom 188 47 5 1 9 0 - - -;
+#X msg 46 161 aa \$1;
+#X text 47 113 amp;
+#X text 44 123 attack;
+#X text 90 111 amp;
+#X text 86 123 decay;
+#X msg 260 159 feg \$1;
+#X text 260 108 freq;
+#X text 252 120 eg depth;
+#X msg 349 159 pitch \$1;
+#X text 337 122 base pitch;
+#X msg 88 160 da \$1;
+#X msg 415 159 af \$1;
+#X msg 461 159 df \$1;
+#X text 412 111 freq;
+#X text 413 122 attack;
+#X text 462 111 freq;
+#X text 458 121 decay;
+#X msg 506 159 frand \$1;
+#X text 502 111 freq;
+#X text 498 121 randomize;
+#X text 560 90 freq;
+#X text 143 110 amp;
+#X text 126 121 randomize;
+#X text 205 88 amp;
+#X text 621 120 volume;
+#X floatatom 629 137 5 0 0 0 - - -;
+#X msg 629 158 vol \$1;
+#X msg 563 158 fbias \$1;
+#X msg 141 158 arand \$1;
+#X msg 203 158 abias \$1;
+#X floatatom 679 137 5 0 0 0 - - -;
+#X msg 679 158 porta \$1;
+#X text 671 120 portamento;
+#X text 295 109 polarity;
+#X obj 312 127 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 203 136 / 100;
+#X obj 563 136 / 100;
+#X obj 744 139 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 744 158 hp \$1;
+#X text 203 99 bias*;
+#X text 560 101 bias*;
+#X text 319 302 *the bias is adjustable between -1 and 0 This controls
+the randomization of envelope times. A setting of -1 means that envelopes
+will always be contracted \, whereas a setting of 0 means that envelopes
+will be expanded. Mximum expansion doubles the times of the attack
+and release \, whereas contraction may result in envelope times of
+1/100th the set value.;
+#X text 737 122 highpass**;
+#X text 321 382 **a highpass filter may be used on the output \, so
+that there are no sub-audio frequencies present at the output. However
+\, if this module is used to modulate another audio generator then
+you may wish to turn this off. This will simulate a direct coupled
+(DC) analogue circuit.;
+#X obj 28 28 loadbang;
+#X floatatom 44 235 5 0 0 0 - - -;
+#X msg 44 257 dmod \$1;
+#X text 39 208 decay;
+#X text 35 218 modify***;
+#X text 321 441 ***decay modify is a parameter that is not stored in
+the patch. This is used to extend or contract the decay times of the
+envelopes in live performance.;
+#X floatatom 518 217 5 1 16 2 harmonic - -;
+#X msg 518 236 harm \$1;
+#X floatatom 577 218 5 0 100 2 level - -;
+#X obj 577 238 / 100;
+#X msg 577 259 hlev \$1;
+#X obj 632 213 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 632 240 5 0 0 0 - - -;
+#X obj 688 213 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 688 240 5 0 0 0 - - -;
+#X msg 632 259 ahmod \$1;
+#X msg 688 259 dhmod \$1;
+#X text 620 195 attack;
+#X text 681 195 decay;
+#X text 620 185 multipliers****;
+#X text 320 475 ****attack and decay times for the harmonic's amplitude
+envelope are the main attack and decay times * these numbers;
+#X floatatom 748 240 5 0 1000 2 harmonic-porta - -;
+#X msg 748 259 hslew \$1;
+#X msg 300 159 fpol \$1;
+#X msg 16 80 file datasets/chlick.pat;
+#X connect 1 0 22 0;
+#X connect 2 0 32 0;
+#X connect 3 0 27 0;
+#X connect 4 0 30 0;
+#X connect 5 0 33 0;
+#X connect 6 0 34 0;
+#X connect 7 0 39 0;
+#X connect 8 0 58 0;
+#X connect 9 0 50 0;
+#X connect 10 0 0 0;
+#X connect 11 0 10 0;
+#X connect 13 0 57 0;
+#X connect 14 0 0 0;
+#X connect 15 0 0 0;
+#X connect 21 0 14 0;
+#X connect 22 0 0 0;
+#X connect 27 0 0 0;
+#X connect 30 0 0 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 0 0;
+#X connect 39 0 0 0;
+#X connect 47 0 48 0;
+#X connect 48 0 0 0;
+#X connect 49 0 0 0;
+#X connect 50 0 0 0;
+#X connect 51 0 0 0;
+#X connect 52 0 53 0;
+#X connect 53 0 0 0;
+#X connect 56 0 89 0;
+#X connect 57 0 51 0;
+#X connect 58 0 49 0;
+#X connect 59 0 60 0;
+#X connect 60 0 0 0;
+#X connect 66 0 90 0;
+#X connect 67 0 68 0;
+#X connect 68 0 0 0;
+#X connect 72 0 73 0;
+#X connect 73 0 0 0;
+#X connect 74 0 75 0;
+#X connect 75 0 76 0;
+#X connect 76 0 0 0;
+#X connect 77 0 78 0;
+#X connect 78 0 81 0;
+#X connect 79 0 80 0;
+#X connect 80 0 82 0;
+#X connect 81 0 0 0;
+#X connect 82 0 0 0;
+#X connect 87 0 88 0;
+#X connect 88 0 0 0;
+#X connect 89 0 0 0;
+#X connect 90 0 0 0;
+#X restore 430 249 pd control parameters;
+#X text 125 305 V;
+#X text 125 297 |;
+#X text 125 287 |;
+#X text 82 276 pitch and trigger;
+#X obj 23 283 random 2;
+#X obj 23 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 239 298 |;
+#X text 309 182 Any of the parameters may be altered by;
+#X obj 117 530 dac~;
+#X obj 366 401 cnv 15 260 94 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X text 368 429 CONTROL: message tagged control parameters;
+#X text 368 415 SIGNAL: audio out;
+#X text 369 442 All manipulations of the GUI \, patch file;
+#X text 370 454 locations and patch changes are sent out;
+#X text 371 466 of the second outlet so that they may be;
+#X text 370 478 recorded.;
+#X text 368 401 Metastudio generators have two outlets;
+#X floatatom 110 254 5 2 130 0 - - -;
+#X obj 23 262 metro 250;
+#X text 33 180 CONTROL: 1 or bang = trig \, 2+ = pitch + trig;
+#X text 33 208 SIGNAL: frequency modulation;
+#X text 352 306 V;
+#X text 352 298 |;
+#X text 352 288 |;
+#X text 299 276 frequency modulation;
+#X text 352 532 V;
+#X text 352 524 |;
+#X text 352 514 |;
+#X text 276 541 automation and patching out;
+#X text 33 164 Metastudio Drums have two or three inlets:;
+#N canvas 6 75 289 245 modulate 0;
+#X obj 54 120 osc~;
+#X floatatom 54 81 5 0 0 2 frequency - -;
+#X obj 54 100 mtof;
+#X obj 54 140 *~ 0;
+#X floatatom 89 104 5 0 0 2 index - -;
+#X obj 129 62 route pitch;
+#X obj 89 123 *;
+#X obj 129 82 mtof;
+#X obj 129 41 inlet;
+#X obj 54 160 outlet~;
+#X obj 128 102 t b f;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 3 0 9 0;
+#X connect 4 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 3 1;
+#X connect 7 0 10 0;
+#X connect 8 0 5 0;
+#X connect 10 0 6 0;
+#X connect 10 1 6 1;
+#X restore 370 364 pd modulate;
+#X obj 126 320 chlicker~;
+#X obj 384 514 print chlicker;
+#X msg 469 214 harm 3;
+#X text 37 108 chlicker~ also has a harmonic added to the base frequency
+\, and the amplitude envelope for this is modified from the base envelope.
+the a-d-mod parameters are multipliers for the attack and decay times
+of the amp-envelope.;
+#X obj 545 23 chlik~;
+#X obj 23 305 tgl 15 0 empty empty trig 17 7 0 10 -262144 -1 -1 0 1
+;
+#X text 38 31 ...is an analogue drum synthesizer \, with attack and
+decay envelopes for the amplitude and the pitch. The timings of these
+envelopes can be subtly randomized \, and this randomization is biased
+long or short \, so that each instance of the sound is slightly different
+while the basic morphology of the sound remains the same.;
+#X text 454 310 (C) 2009 Edward Kelly;
+#X text 447 325 GNU/GPL license enclosed;
+#X text 472 295 METASTUDIO 0.3;
+#X connect 14 0 46 1;
+#X connect 19 0 51 0;
+#X connect 20 0 33 0;
+#X connect 32 0 46 0;
+#X connect 33 0 19 0;
+#X connect 45 0 46 2;
+#X connect 46 0 23 0;
+#X connect 46 0 23 1;
+#X connect 46 1 45 0;
+#X connect 46 1 47 0;
+#X connect 48 0 46 1;
+#X connect 51 0 46 0;

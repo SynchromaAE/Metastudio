@@ -1,0 +1,757 @@
+#N canvas 22 20 1022 733 10;
+#X declare -lib vasp;
+#X obj 132 418 sampler_matrix~;
+#X obj 17 490 mix12~;
+#X obj 532 360 loadbang;
+#X obj 17 613 dac~;
+#X obj 532 402 samplebox_1~;
+#X msg 532 381 loadbank snd/samples_1;
+#N canvas 0 0 450 435 init 0;
+#X obj 119 88 kalashnikov 12;
+#X obj 133 165 * 8.27273;
+#X obj 143 123 t f f;
+#X obj 75 213 makefilename p%d;
+#X obj 70 158 + 1;
+#X obj 80 249 pack s f;
+#X obj 129 185 - 45;
+#X obj 118 67 loadbang;
+#X obj 82 306 outlet;
+#X obj 220 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 191 242 max;
+#X obj 80 278 route list;
+#X connect 0 1 2 0;
+#X connect 0 2 10 0;
+#X connect 1 0 6 0;
+#X connect 2 0 4 0;
+#X connect 2 1 1 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 11 0;
+#X connect 6 0 5 1;
+#X connect 7 0 0 0;
+#X connect 9 0 0 0;
+#X connect 10 0 8 0;
+#X connect 11 0 8 0;
+#X restore 456 469 pd init;
+#N canvas 0 0 393 203 init 0;
+#X obj 33 42 loadbang;
+#X obj 33 80 del 1000;
+#X obj 33 138 outlet;
+#X msg 33 116 channels 12 \, poly 4 \, make \, monopoly 1;
+#X text 39 97 you can reconfigure the sampler_matrix~ remotely!;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 3 0 2 0;
+#X restore 132 397 pd init;
+#X obj 11 -29 cnv 15 400 86 empty empty sampler_matrix~ 10 14 0 18
+-232576 -45076 0;
+#X obj 687 70 cnv 15 260 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 689 70 Message tagged control parameters;
+#X text 688 101 sending the object a message followed by a;
+#X text 688 114 value in the second inlet:;
+#X obj 587 139 cnv 15 360 40 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 590 140 For a list of control parameters for this;
+#X text 590 154 unit \, click on this subpatch -->;
+#N canvas 56 99 899 470 control 0;
+#X obj 94 190 outlet;
+#X obj 75 27 tgl 15 0 empty empty poly* 17 7 0 10 -262144 -1 -1 1 1
+;
+#N canvas 145 350 450 300 inint 0;
+#X msg 90 91 1;
+#X obj 91 65 loadbang;
+#X obj 197 86 inlet;
+#X obj 197 117 sel 0 1;
+#X msg 154 155 label mono;
+#X msg 233 153 label poly;
+#X obj 113 188 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 6 0;
+#X restore 20 26 pd inint;
+#X msg 75 46 poly \$1;
+#X obj 133 28 tgl 15 0 empty empty loop 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 133 47 loop \$1;
+#X obj 189 28 tgl 15 0 empty empty reverse 17 7 0 10 -262144 -1 -1
+0 1;
+#X msg 189 47 dir \$1;
+#X obj 253 28 tgl 15 0 empty empty alternate** 17 7 0 10 -262144 -1
+-1 0 1;
+#X msg 253 47 alt \$1;
+#X obj 343 27 hradio 15 1 0 4 empty empty samplebox 0 -8 0 10 -262144
+-1 -1 0;
+#X obj 343 46 + 1;
+#X msg 343 67 bank \$1;
+#X floatatom 409 27 5 1 32 2 sample*** - -;
+#X msg 409 48 sample \$1;
+#X floatatom 488 30 5 0 99999 2 duration**** - -;
+#X msg 488 50 dur \$1;
+#X floatatom 565 31 5 0 128 2 offset***** - -;
+#X msg 565 51 offset \$1;
+#X floatatom 644 31 5 0.1 1000 2 attack - -;
+#X floatatom 683 30 5 0.1 1000 2 decay - -;
+#X msg 643 51 a \$1;
+#X msg 683 51 d \$1;
+#X floatatom 721 30 5 0 100 2 sustain - -;
+#X msg 721 51 s \$1;
+#X floatatom 766 31 5 0.1 10000 2 release - -;
+#X msg 766 52 r \$1;
+#X floatatom 816 31 5 0 120 2 pitch****** - -;
+#X msg 816 52 pitch \$1;
+#X msg 795 -9 60;
+#X obj 795 -29 loadbang;
+#X text 379 149 *although each sampler channel is nominally polyphonic
+\, it may be switched to monophonic operation.;
+#X text 379 175 **the sample may be played forwards or reversed \,
+but when looping is enabled the sample may be looped in alternate directions
+(boomerang looping);
+#X text 380 213 ***samples are loaded and saved in the samplebox objects.
+The bank switch chooses which of the four sampleboxes the sample is
+read from.;
+#X text 379 251 ****if the duration is set to 0 \, the release portion
+of the amplitude envelope is ignored and the sample is played all the
+way through. If it is set to a positive number \, the amplitude envelope
+enters its release phase after duration(ms).;
+#X text 378 309 *****the length of the sample is divided by 127 \,
+and so the offset is in 1/127ths of the sample. Of course this may
+be a float \, and so it is not limited to the 0-127 precision of MIDI
+7-bit controller messages;
+#X text 376 357 ******the pitch is relative to middle C (MIDI note
+60) so for example a pitch of 48 plays the sample an octave lower than
+its original pitch;
+#X connect 1 0 2 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 0;
+#X connect 8 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 0 0;
+#X connect 13 0 14 0;
+#X connect 14 0 0 0;
+#X connect 15 0 16 0;
+#X connect 16 0 0 0;
+#X connect 17 0 18 0;
+#X connect 18 0 0 0;
+#X connect 19 0 21 0;
+#X connect 20 0 22 0;
+#X connect 21 0 0 0;
+#X connect 22 0 0 0;
+#X connect 23 0 24 0;
+#X connect 24 0 0 0;
+#X connect 25 0 26 0;
+#X connect 26 0 0 0;
+#X connect 27 0 28 0;
+#X connect 28 0 0 0;
+#X connect 29 0 27 0;
+#X connect 30 0 29 0;
+#X restore 810 157 pd control parameters;
+#X text 689 87 Any of the parameters may be altered by;
+#X text 18 -7 ...is a self-configuring polyphonic sampler based on
+the samplevoice~ object.;
+#X text 18 17 up to twelve seperate samplers may be created with up
+to 16 notes polyphony each. These are accessed by sending note lists
+to each channel.;
+#X obj 11 61 cnv 15 400 96 empty empty notelist 10 14 0 18 -204793
+-13330 0;
+#X text 18 83 ...creates note lists for the polyphonic sampler_matrix~.
+;
+#X text 19 95 separate notelist objects can be used for each channel
+of the sampler_matrix \, or they may be used to trigger different channels
+if configured to do so. Here \, two notelist objects are used to trigger
+channels in sequence from 1-6 and 7-12 respectively.;
+#N canvas 0 0 584 321 stepthrough 0;
+#X obj 83 152 == 0;
+#X obj 50 173 spigot;
+#X obj 138 104 cup;
+#X obj 111 57 inlet;
+#X obj 111 78 t a b;
+#X obj 50 194 outlet;
+#X obj 130 173 spigot;
+#X obj 130 194 outlet;
+#X obj 183 85 >= 5;
+#X obj 183 105 sel 1;
+#X obj 183 125 del 0;
+#X msg 154 84 0;
+#X obj 163 152 == 1;
+#X obj 210 173 spigot;
+#X obj 210 194 outlet;
+#X obj 243 152 == 2;
+#X obj 285 173 spigot;
+#X obj 285 194 outlet;
+#X obj 318 152 == 3;
+#X obj 360 173 spigot;
+#X obj 360 194 outlet;
+#X obj 435 173 spigot;
+#X obj 435 194 outlet;
+#X obj 393 152 == 4;
+#X obj 468 152 == 5;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 2 0 8 0;
+#X connect 2 0 12 0;
+#X connect 2 0 15 0;
+#X connect 2 0 18 0;
+#X connect 2 0 23 0;
+#X connect 2 0 24 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 0 6 0;
+#X connect 4 0 13 0;
+#X connect 4 0 16 0;
+#X connect 4 0 19 0;
+#X connect 4 0 21 0;
+#X connect 4 1 2 0;
+#X connect 6 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 2 0;
+#X connect 12 0 6 1;
+#X connect 13 0 14 0;
+#X connect 15 0 13 1;
+#X connect 16 0 17 0;
+#X connect 18 0 16 1;
+#X connect 19 0 20 0;
+#X connect 21 0 22 0;
+#X connect 23 0 19 1;
+#X connect 24 0 21 1;
+#X restore 33 243 pd stepthrough;
+#X obj 33 373 s ps_1-in;
+#X obj 178 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -86277 -261234
+-1;
+#X obj 194 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -86853 -261682
+-1;
+#X obj 49 353 s ps_2-in;
+#X obj 65 333 s ps_3-in;
+#X obj 81 313 s ps_4-in;
+#X obj 97 293 s ps_5-in;
+#X obj 114 273 s ps_6-in;
+#X obj 209 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -83269 -262130
+-1;
+#X obj 225 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -13381 -204786
+-1;
+#X obj 240 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -13330 -204800
+-1;
+#X obj 256 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -16662 -203904
+-1;
+#X obj 342 243 print notelist1;
+#N canvas 0 0 584 321 stepthrough 0;
+#X obj 83 152 == 0;
+#X obj 50 173 spigot;
+#X obj 138 104 cup;
+#X obj 111 57 inlet;
+#X obj 111 78 t a b;
+#X obj 50 194 outlet;
+#X obj 130 173 spigot;
+#X obj 130 194 outlet;
+#X obj 183 85 >= 5;
+#X obj 183 105 sel 1;
+#X obj 183 125 del 0;
+#X msg 154 84 0;
+#X obj 163 152 == 1;
+#X obj 210 173 spigot;
+#X obj 210 194 outlet;
+#X obj 243 152 == 2;
+#X obj 285 173 spigot;
+#X obj 285 194 outlet;
+#X obj 318 152 == 3;
+#X obj 360 173 spigot;
+#X obj 360 194 outlet;
+#X obj 435 173 spigot;
+#X obj 435 194 outlet;
+#X obj 393 152 == 4;
+#X obj 468 152 == 5;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 2 0 8 0;
+#X connect 2 0 12 0;
+#X connect 2 0 15 0;
+#X connect 2 0 18 0;
+#X connect 2 0 23 0;
+#X connect 2 0 24 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 0 6 0;
+#X connect 4 0 13 0;
+#X connect 4 0 16 0;
+#X connect 4 0 19 0;
+#X connect 4 0 21 0;
+#X connect 4 1 2 0;
+#X connect 6 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 2 0;
+#X connect 12 0 6 1;
+#X connect 13 0 14 0;
+#X connect 15 0 13 1;
+#X connect 16 0 17 0;
+#X connect 18 0 16 1;
+#X connect 19 0 20 0;
+#X connect 21 0 22 0;
+#X connect 23 0 19 1;
+#X connect 24 0 21 1;
+#X restore 443 243 pd stepthrough;
+#X obj 278 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -45076 -232576
+-1;
+#X obj 294 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -16662 -203904
+-1;
+#X obj 309 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -13330 -204800
+-1;
+#X obj 325 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -13381 -204786
+-1;
+#X obj 340 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -83269 -262130
+-1;
+#X obj 356 269 bng 12 150 50 0 empty empty empty 17 7 0 10 -86853 -261682
+-1;
+#X obj 752 243 print notelist2;
+#N canvas 461 661 450 354 rhythmik 0;
+#X obj 101 101 cnv 15 183 26 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X floatatom 229 107 5 10 500 1 bpm - -;
+#X obj 245 150 expr 60000/$f1;
+#X obj 105 104 tgl 23 0 empty empty GO 5 7 0 10 -262144 -1 -1 0 1;
+#X obj 134 107 tgl 17 0 empty empty random_pitch 19 7 0 10 -262144
+-1 -1 1 1;
+#X obj 99 201 == 0;
+#X obj 66 227 spigot;
+#X obj 160 201 == 1;
+#X obj 127 226 spigot;
+#X obj 244 172 / 3;
+#X obj 244 193 * 4;
+#X obj 52 198 metro;
+#X obj 280 28 loadbang;
+#X floatatom 79 179 5 0 0 0 - - -;
+#X obj 127 246 random 48;
+#X obj 127 267 + 24;
+#X obj 127 288 t b f;
+#X msg 154 308 pitch \$1;
+#X obj 66 323 outlet;
+#X obj 154 328 outlet;
+#X obj 282 247 == 0;
+#X obj 249 273 spigot;
+#X obj 353 197 == 1;
+#X obj 320 222 spigot;
+#X obj 320 242 random 48;
+#X obj 320 263 + 24;
+#X obj 320 284 t b f;
+#X msg 347 304 pitch \$1;
+#X obj 259 319 outlet;
+#X obj 347 324 outlet;
+#X obj 232 238 metro;
+#X floatatom 259 219 5 0 0 0 - - -;
+#X msg 163 55 1;
+#X msg 259 57 240;
+#X connect 1 0 2 0;
+#X connect 2 0 9 0;
+#X connect 2 0 13 0;
+#X connect 3 0 11 0;
+#X connect 3 0 30 0;
+#X connect 4 0 5 0;
+#X connect 4 0 7 0;
+#X connect 4 0 20 0;
+#X connect 4 0 22 0;
+#X connect 5 0 6 1;
+#X connect 6 0 18 0;
+#X connect 7 0 8 1;
+#X connect 8 0 14 0;
+#X connect 9 0 10 0;
+#X connect 10 0 31 0;
+#X connect 11 0 6 0;
+#X connect 11 0 8 0;
+#X connect 12 0 33 0;
+#X connect 12 0 32 0;
+#X connect 13 0 11 1;
+#X connect 14 0 15 0;
+#X connect 15 0 16 0;
+#X connect 16 0 18 0;
+#X connect 16 1 17 0;
+#X connect 17 0 19 0;
+#X connect 20 0 21 1;
+#X connect 21 0 28 0;
+#X connect 22 0 23 1;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 28 0;
+#X connect 26 1 27 0;
+#X connect 27 0 29 0;
+#X connect 30 0 23 0;
+#X connect 30 0 21 0;
+#X connect 31 0 30 1;
+#X connect 32 0 4 0;
+#X connect 33 0 1 0;
+#X coords 0 -1 1 1 185 30 2 100 100;
+#X restore 352 154 pd rhythmik;
+#X obj 443 373 s ps_7-in;
+#X obj 459 353 s ps_8-in;
+#X obj 475 334 s ps_9-in;
+#X obj 491 313 s ps_10-in;
+#X obj 507 293 s ps_11-in;
+#X obj 524 273 s ps_12-in;
+#X obj 443 187 notelist;
+#X obj 33 187 notelist;
+#X msg 849 119 alt 1 \, loop 1;
+#X obj 594 268 cnv 15 380 80 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X text 596 277 <---in order to be compatible with Pd-extended-0.40.3
+\, the symbols for sending note data to the samplers are fixed. This
+means that there can only be one sampler_matrix~ running at any one
+time.;
+#X text 612 322 ...coming soon: iemguts enabled self-configuring machines.
+;
+#N canvas 153 172 740 630 patch-based 0;
+#X obj 20 20 cnv 15 380 100 empty empty patch-based_operation 20 12
+0 18 -262130 -83269 0;
+#X text 31 42 At the core of the sampler_matrix~ object is the samplevoice
+object. This is in fact a no-gui variant of the sampler~ object \,
+and retains the internal state-saving mechanism. It is possible to
+create patch files using the sampler object \, and then send patch
+messages (instead of notelists) to the sampler_matrix~;
+#X obj 310 26 samplevoice~;
+#X obj -65 324 dac~;
+#X obj -58 154 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 84 152 file datasets/sampler.pat;
+#X obj 84 132 loadbang;
+#X obj 101 273 s ps_1-auto;
+#X obj 115 253 s ps_2-auto;
+#X obj 127 233 s ps_3-auto;
+#X obj 141 213 s ps_4-auto;
+#X obj 153 193 s ps_5-auto;
+#X obj 167 173 s ps_6-auto;
+#X obj 103 469 s ps_7-auto;
+#X obj 117 449 s ps_8-auto;
+#X obj 127 429 s ps_9-auto;
+#X obj 141 409 s ps_10-auto;
+#X obj 153 389 s ps_11-auto;
+#X obj 167 369 s ps_12-auto;
+#X obj 261 163 cnv 15 380 150 empty empty empty 20 12 0 14 -261682
+-66577 0;
+#X text 266 164 <---each channel of the sampler_matrix~ has a global
+input \, and settings for the sampler may be configured across the
+entire channel. These settings are always overridden by a notelist
+\, or a patch message provided a file is loaded. One method for configuring
+the sampler_matrix~ is to use the notelist object to configure parameters
+globally \, and send bangs or floats (for pitch) to the sampler_matrix~
+channels.;
+#X obj -56 368 sampler~;
+#X obj -63 520 dac~;
+#X obj -56 350 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -58 172 sampler~;
+#X obj 86 328 loadbang;
+#X msg 86 348 file datasets/sampler2.pat;
+#X text 265 253 Another method \, demostrated here \, is to have a
+patches file generated using a sampler~ object (shown left) and by
+loading the patches file into each channel (or a different patches
+file per-channel) sending patch messages to the sampler matrix rather
+than notelists.;
+#N canvas 630 241 450 300 generate 0;
+#X obj 101 101 cnv 15 103 26 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X floatatom 149 107 5 10 500 1 bpm - -;
+#X obj 245 150 expr 60000/$f1;
+#X obj 105 104 tgl 23 0 empty empty GO 5 7 0 10 -262144 -1 -1 0 1;
+#X obj 244 172 / 3;
+#X obj 244 193 * 4;
+#X obj 52 198 metro;
+#X obj 280 28 loadbang;
+#X floatatom 79 179 5 0 0 0 - - -;
+#X obj 66 323 outlet;
+#X obj 259 319 outlet;
+#X obj 233 250 metro;
+#X floatatom 259 219 5 0 0 0 - - -;
+#X msg 259 57 240;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 2 0 12 0;
+#X connect 3 0 6 0;
+#X connect 3 0 11 0;
+#X connect 4 0 5 0;
+#X connect 5 0 8 0;
+#X connect 6 0 9 0;
+#X connect 7 0 13 0;
+#X connect 8 0 6 1;
+#X connect 11 0 10 0;
+#X connect 12 0 11 1;
+#X connect 13 0 1 0;
+#X coords 0 -1 1 1 105 30 1 100 100;
+#X restore 320 344 pd generate;
+#X obj 320 378 random 9;
+#X obj 418 378 random 9;
+#X msg 320 399 patch \$1;
+#X msg 418 399 patch \$1;
+#N canvas 0 0 584 321 stepthrough 0;
+#X obj 83 152 == 0;
+#X obj 50 173 spigot;
+#X obj 138 104 cup;
+#X obj 111 57 inlet;
+#X obj 111 78 t a b;
+#X obj 50 194 outlet;
+#X obj 130 173 spigot;
+#X obj 130 194 outlet;
+#X obj 183 85 >= 5;
+#X obj 183 105 sel 1;
+#X obj 183 125 del 0;
+#X msg 154 84 0;
+#X obj 163 152 == 1;
+#X obj 210 173 spigot;
+#X obj 210 194 outlet;
+#X obj 243 152 == 2;
+#X obj 285 173 spigot;
+#X obj 285 194 outlet;
+#X obj 318 152 == 3;
+#X obj 360 173 spigot;
+#X obj 360 194 outlet;
+#X obj 435 173 spigot;
+#X obj 435 194 outlet;
+#X obj 393 152 == 4;
+#X obj 468 152 == 5;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 2 0 8 0;
+#X connect 2 0 12 0;
+#X connect 2 0 15 0;
+#X connect 2 0 18 0;
+#X connect 2 0 23 0;
+#X connect 2 0 24 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 0 6 0;
+#X connect 4 0 13 0;
+#X connect 4 0 16 0;
+#X connect 4 0 19 0;
+#X connect 4 0 21 0;
+#X connect 4 1 2 0;
+#X connect 6 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 2 0;
+#X connect 12 0 6 1;
+#X connect 13 0 14 0;
+#X connect 15 0 13 1;
+#X connect 16 0 17 0;
+#X connect 18 0 16 1;
+#X connect 19 0 20 0;
+#X connect 21 0 22 0;
+#X connect 23 0 19 1;
+#X connect 24 0 21 1;
+#X restore 213 429 pd stepthrough;
+#X obj 213 579 s ps_1-in;
+#X obj 308 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -86277 -261234
+-1;
+#X obj 324 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -86853 -261682
+-1;
+#X obj 229 559 s ps_2-in;
+#X obj 245 539 s ps_3-in;
+#X obj 261 519 s ps_4-in;
+#X obj 277 499 s ps_5-in;
+#X obj 294 479 s ps_6-in;
+#X obj 339 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -83269 -262130
+-1;
+#X obj 355 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -13381 -204786
+-1;
+#X obj 370 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -13330 -204800
+-1;
+#X obj 386 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -16662 -203904
+-1;
+#N canvas 0 0 584 321 stepthrough 0;
+#X obj 83 152 == 0;
+#X obj 50 173 spigot;
+#X obj 138 104 cup;
+#X obj 111 57 inlet;
+#X obj 111 78 t a b;
+#X obj 50 194 outlet;
+#X obj 130 173 spigot;
+#X obj 130 194 outlet;
+#X obj 183 85 >= 5;
+#X obj 183 105 sel 1;
+#X obj 183 125 del 0;
+#X msg 154 84 0;
+#X obj 163 152 == 1;
+#X obj 210 173 spigot;
+#X obj 210 194 outlet;
+#X obj 243 152 == 2;
+#X obj 285 173 spigot;
+#X obj 285 194 outlet;
+#X obj 318 152 == 3;
+#X obj 360 173 spigot;
+#X obj 360 194 outlet;
+#X obj 435 173 spigot;
+#X obj 435 194 outlet;
+#X obj 393 152 == 4;
+#X obj 468 152 == 5;
+#X connect 0 0 1 1;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 2 0 8 0;
+#X connect 2 0 12 0;
+#X connect 2 0 15 0;
+#X connect 2 0 18 0;
+#X connect 2 0 23 0;
+#X connect 2 0 24 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 0 6 0;
+#X connect 4 0 13 0;
+#X connect 4 0 16 0;
+#X connect 4 0 19 0;
+#X connect 4 0 21 0;
+#X connect 4 1 2 0;
+#X connect 6 0 7 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 2 0;
+#X connect 12 0 6 1;
+#X connect 13 0 14 0;
+#X connect 15 0 13 1;
+#X connect 16 0 17 0;
+#X connect 18 0 16 1;
+#X connect 19 0 20 0;
+#X connect 21 0 22 0;
+#X connect 23 0 19 1;
+#X connect 24 0 21 1;
+#X restore 503 429 pd stepthrough;
+#X obj 408 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -45076 -232576
+-1;
+#X obj 424 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -16662 -203904
+-1;
+#X obj 439 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -13330 -204800
+-1;
+#X obj 455 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -13381 -204786
+-1;
+#X obj 470 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -83269 -262130
+-1;
+#X obj 486 455 bng 12 150 50 0 empty empty empty 17 7 0 10 -86853 -261682
+-1;
+#X obj 503 579 s ps_7-in;
+#X obj 519 559 s ps_8-in;
+#X obj 535 540 s ps_9-in;
+#X obj 551 519 s ps_10-in;
+#X obj 567 499 s ps_11-in;
+#X obj 584 479 s ps_12-in;
+#X connect 4 0 24 0;
+#X connect 5 0 24 1;
+#X connect 5 0 7 0;
+#X connect 5 0 8 0;
+#X connect 5 0 9 0;
+#X connect 5 0 10 0;
+#X connect 5 0 11 0;
+#X connect 5 0 12 0;
+#X connect 6 0 5 0;
+#X connect 21 0 22 0;
+#X connect 21 0 22 1;
+#X connect 23 0 21 0;
+#X connect 24 0 3 0;
+#X connect 24 0 3 1;
+#X connect 25 0 26 0;
+#X connect 26 0 21 1;
+#X connect 26 0 13 0;
+#X connect 26 0 14 0;
+#X connect 26 0 15 0;
+#X connect 26 0 16 0;
+#X connect 26 0 17 0;
+#X connect 26 0 18 0;
+#X connect 28 0 29 0;
+#X connect 28 1 30 0;
+#X connect 29 0 31 0;
+#X connect 30 0 32 0;
+#X connect 31 0 33 0;
+#X connect 32 0 46 0;
+#X connect 33 0 35 0;
+#X connect 33 0 34 0;
+#X connect 33 1 37 0;
+#X connect 33 1 36 0;
+#X connect 33 2 38 0;
+#X connect 33 2 42 0;
+#X connect 33 3 39 0;
+#X connect 33 3 43 0;
+#X connect 33 4 40 0;
+#X connect 33 4 44 0;
+#X connect 33 5 41 0;
+#X connect 33 5 45 0;
+#X connect 46 0 47 0;
+#X connect 46 0 53 0;
+#X connect 46 1 48 0;
+#X connect 46 1 54 0;
+#X connect 46 2 49 0;
+#X connect 46 2 55 0;
+#X connect 46 3 50 0;
+#X connect 46 3 56 0;
+#X connect 46 4 51 0;
+#X connect 46 4 57 0;
+#X connect 46 5 52 0;
+#X connect 46 5 58 0;
+#X restore 684 352 pd patch-based operation and global settings;
+#X text 183 397 <---remote configuration;
+#X connect 0 0 1 0;
+#X connect 0 1 1 1;
+#X connect 0 2 1 2;
+#X connect 0 3 1 3;
+#X connect 0 4 1 4;
+#X connect 0 5 1 5;
+#X connect 0 6 1 6;
+#X connect 0 7 1 7;
+#X connect 0 8 1 8;
+#X connect 0 9 1 9;
+#X connect 0 10 1 10;
+#X connect 0 11 1 11;
+#X connect 1 0 3 0;
+#X connect 1 1 3 1;
+#X connect 2 0 5 0;
+#X connect 5 0 4 0;
+#X connect 6 0 1 12;
+#X connect 7 0 0 0;
+#X connect 16 0 52 1;
+#X connect 23 0 25 0;
+#X connect 23 0 24 0;
+#X connect 23 1 27 0;
+#X connect 23 1 26 0;
+#X connect 23 2 28 0;
+#X connect 23 2 32 0;
+#X connect 23 3 29 0;
+#X connect 23 3 33 0;
+#X connect 23 4 30 0;
+#X connect 23 4 34 0;
+#X connect 23 5 31 0;
+#X connect 23 5 35 0;
+#X connect 37 0 38 0;
+#X connect 37 0 46 0;
+#X connect 37 1 39 0;
+#X connect 37 1 47 0;
+#X connect 37 2 40 0;
+#X connect 37 2 48 0;
+#X connect 37 3 41 0;
+#X connect 37 3 49 0;
+#X connect 37 4 42 0;
+#X connect 37 4 50 0;
+#X connect 37 5 43 0;
+#X connect 37 5 51 0;
+#X connect 45 0 53 0;
+#X connect 45 1 53 1;
+#X connect 45 2 52 0;
+#X connect 45 3 52 1;
+#X connect 52 0 37 0;
+#X connect 52 1 44 0;
+#X connect 53 0 23 0;
+#X connect 53 1 36 0;
+#X connect 54 0 52 1;

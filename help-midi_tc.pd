@@ -1,0 +1,29 @@
+#N canvas 985 109 450 261 10;
+#X obj 34 146 ctlin 0;
+#X floatatom 34 166 5 0 127 0 - - -;
+#X obj 27 14 cnv 15 370 120 empty empty midi_tc 10 14 0 18 -244214
+-45076 0;
+#X floatatom 34 223 0 0 0 3 time(ms) - -;
+#X msg 179 165 curve \$1;
+#X floatatom 179 146 5 1 16 0 - - -;
+#X obj 179 221 print midi_tc;
+#X text 35 35 ...converts MIDI values (0-127) into time values for
+delay or window times.;
+#X text 34 59 Curvature controls change the function from linear (curve
+= 1) to exponential control (curve > 1).;
+#X text 35 83 Creation arguments set the upper and lower values of
+the output range. In fact this unit can be used to rescale MIDI values
+to any given range where exponentiality may or may not be desired.
+;
+#X text 248 150 nogui version:;
+#X obj 340 151 m_tc 200 10;
+#X obj 34 185 midi_tc 216384 0.5;
+#X text 284 200 (C) 2009 Edward Kelly;
+#X text 277 215 GNU/GPL license enclosed;
+#X text 302 185 METASTUDIO 0.3;
+#X connect 0 0 1 0;
+#X connect 1 0 12 0;
+#X connect 4 0 12 1;
+#X connect 5 0 4 0;
+#X connect 12 0 3 0;
+#X connect 12 1 6 0;

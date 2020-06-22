@@ -1,0 +1,290 @@
+#N canvas 1 74 774 378 10;
+#X obj 21 19 cnv 15 420 66 empty empty mix12~ 10 14 0 18 -142784 -45076
+0;
+#X text 464 149 automation and patching;
+#X obj 445 23 cnv 15 300 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 447 23 Message tagged control parameters;
+#X text 446 54 sending the object a message followed by a;
+#X text 446 67 value in the second inlet:;
+#X obj 345 89 cnv 15 400 40 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 348 90 For a list of control parameters for this;
+#X text 348 104 unit \, click on this subpatch -->;
+#N canvas 199 74 1080 545 control 0;
+#X obj 53 319 outlet;
+#X msg 188 67 patch \$1;
+#X msg 249 67 randpat;
+#X text 28 63 load a patches file;
+#X text 177 20 recall a;
+#X text 185 30 patch;
+#X text 254 40 random;
+#X text 257 50 patch;
+#X floatatom 188 47 5 1 9 0 - - -;
+#X obj 28 28 loadbang;
+#X floatatom 44 127 5 -45 45 2 pan(1) - -;
+#X floatatom 106 127 5 0 100 2 volume(3) - -;
+#X obj 167 128 tgl 15 0 empty empty on(10) 0 -6 0 10 -262144 -1 -1
+0 1;
+#X msg 44 147 p1 \$1;
+#X msg 288 147 a1a1 \$1;
+#X obj 288 129 tgl 14 0 \$0-9_fx_1 \$0-9_fx_1-set ch1send1 -18 -6 0
+9 -211520 -90133 -90133 0 1;
+#X obj 338 128 tgl 15 0 \$0-9_fx_2 \$0-9_fx_2-set ch4send2 -17 -6 0
+9 -260524 -143491 -143491 0 1;
+#X obj 392 128 tgl 15 0 \$0-9_fx_3 \$0-9_fx_3-set ch6send3 -18 -6 0
+9 -262113 -83269 -83269 0 1;
+#X obj 445 128 tgl 15 0 \$0-9_fx_4 \$0-9_fx_4-set ch3send4 -18 -6 0
+9 -53169 -13330 -13330 0 1;
+#X obj 498 128 tgl 15 0 \$0-9_fx_5 \$0-9_fx_5-set ch11send5 -18 -6
+0 9 -162368 -16662 -16662 0 1;
+#X msg 106 147 v3 \$1;
+#X msg 167 147 in10 \$1;
+#X msg 338 147 a4a2 \$1;
+#X msg 392 147 a6a3 \$1;
+#X msg 445 147 a3a4 \$1;
+#X msg 498 147 a11a5 \$1;
+#X floatatom 563 126 5 0 112 2 send_level(send2) - -;
+#X msg 563 146 aux2 \$1;
+#X floatatom 670 126 5 0 112 2 send_level(send5) - -;
+#X msg 670 146 aux5 \$1;
+#X msg 779 146 limit \$1;
+#X obj 779 127 tgl 15 0 empty empty limit_output -8 -6 0 10 -262144
+-1 -1 0 1;
+#X msg 16 80 file datasets/mix12.pat;
+#X floatatom 192 197 5 0 100 2 random_sends*** - -;
+#X floatatom 99 202 5 0 45 2 random_pan* - -;
+#X msg 99 221 randpan \$1;
+#X msg 192 229 randroute \$1;
+#X text 218 202 %;
+#X msg 415 232 fadetime \$1;
+#X floatatom 415 187 5 0 99999 2 fade_time***** - -;
+#X msg 562 232 stchan 1 \$1;
+#X obj 562 206 tgl 15 0 empty empty 1+2 0 -6 0 10 -262144 -1 -1 0 1
+;
+#X obj 502 206 tgl 15 0 empty empty all 0 -6 0 10 -262144 -1 -1 0 1
+;
+#X msg 502 232 stmix \$1;
+#X obj 642 206 tgl 15 0 empty empty 3+4 0 -6 0 10 -262144 -1 -1 0 1
+;
+#X obj 722 206 tgl 15 0 empty empty 5+6 0 -6 0 10 -262144 -1 -1 0 1
+;
+#X obj 802 206 tgl 15 0 empty empty 7+8 0 -6 0 10 -262144 -1 -1 0 1
+;
+#X msg 642 232 stchan 2 \$1;
+#X msg 722 232 stchan 3 \$1;
+#X msg 802 232 stchan 4 \$1;
+#X obj 892 206 tgl 15 0 empty empty 9+10 -3 -6 0 10 -262144 -1 -1 0
+1;
+#X obj 962 206 tgl 15 0 empty empty 11+12 -5 -6 0 10 -262144 -1 -1
+0 1;
+#X msg 882 232 stchan 5 \$1;
+#X msg 962 232 stchan 6 \$1;
+#X text 499 182 -----------------------------stereo;
+#X msg 876 147 max;
+#X text 857 120 all inputs on;
+#X text 857 131 all faders up;
+#X msg 700 423 fadetime 2000 \, v1 50;
+#X text 618 444 followed by;
+#X text 582 462 will fade v1 to 50dB in 2000 milliseconds and v2 to
+0 in 500 milliseconds.;
+#X msg 296 367 randpan 23 \, stchan 1 1;
+#X msg 442 468 randroute 50;
+#X msg 221 147 allin \$1;
+#X obj 221 128 tgl 15 0 empty empty on(all) 0 -6 0 10 -262144 -1 -1
+0 1;
+#X floatatom 46 201 5 0 112 2 output - -;
+#X msg 46 221 out \$1;
+#X text 582 485 The fade happens on the audio \, but this is not visually
+represented - the graphical faders jump straight to the value \, but
+the audio is faded.;
+#X text 752 182 channels**---------------------------;
+#X text 160 382 **stereo channels may be set individually or globally.
+When a pair of channels is linked as a stereo channel \, the left slider
+will control the levels for both left and right channels. Watch channels
+7 and 8:;
+#X msg 395 421 stchan 4 1 \, v7 100;
+#X msg 700 444 fadetime 500 \, v2 92;
+#X msg 307 232 randvol 96 \$1;
+#X floatatom 306 215 5 0 100 2 random_volume**** - -;
+#X msg 822 299 randvol 90 100;
+#X msg 619 328 randvol 96 25;
+#X text 578 313 maximum randomness with 90dB as the maximum possible
+volume and;
+#X text 580 346 a small amount of randomness with the maximum possible
+volume of 96dB. Stereo channels are set as a pair (with the same value
+for both sliders.;
+#X text 160 315 *random panning may be set on all channels. The argument
+is how much + or - 0 (centre) the maximum pan setting will be in degrees.
+The range is 0 to 45 Since this affects all channels it is a good idea
+to set stereo channels afterwards like so:;
+#X text 158 440 ***sends may be set randomly on or off. The argument
+is the percentage of sends that will be on. The following will set
+roughly half the sends on \, and half off:;
+#X text 579 271 ****random volumes may be set for all channels. The
+first argument is the maximum volume \, and the second argument is
+the percentage of randomness e.g.;
+#X text 578 383 *****all of the sliders (input volume \, aux send and
+output volume) have fade times \, and these may be set for each fader
+if they are coupled with a message to change the fader value \, e.g.
+;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 8 0 1 0;
+#X connect 9 0 32 0;
+#X connect 10 0 13 0;
+#X connect 11 0 20 0;
+#X connect 12 0 21 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
+#X connect 15 0 14 0;
+#X connect 16 0 22 0;
+#X connect 17 0 23 0;
+#X connect 18 0 24 0;
+#X connect 19 0 25 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 22 0 0 0;
+#X connect 23 0 0 0;
+#X connect 24 0 0 0;
+#X connect 25 0 0 0;
+#X connect 26 0 27 0;
+#X connect 27 0 0 0;
+#X connect 28 0 29 0;
+#X connect 29 0 0 0;
+#X connect 30 0 0 0;
+#X connect 31 0 30 0;
+#X connect 32 0 0 0;
+#X connect 33 0 36 0;
+#X connect 34 0 35 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 38 0 0 0;
+#X connect 39 0 38 0;
+#X connect 40 0 0 0;
+#X connect 41 0 40 0;
+#X connect 42 0 43 0;
+#X connect 43 0 0 0;
+#X connect 44 0 47 0;
+#X connect 45 0 48 0;
+#X connect 46 0 49 0;
+#X connect 47 0 0 0;
+#X connect 48 0 0 0;
+#X connect 49 0 0 0;
+#X connect 50 0 52 0;
+#X connect 51 0 53 0;
+#X connect 52 0 0 0;
+#X connect 53 0 0 0;
+#X connect 55 0 0 0;
+#X connect 58 0 0 0;
+#X connect 61 0 0 0;
+#X connect 62 0 0 0;
+#X connect 63 0 0 0;
+#X connect 64 0 63 0;
+#X connect 65 0 66 0;
+#X connect 66 0 0 0;
+#X connect 70 0 0 0;
+#X connect 71 0 0 0;
+#X connect 72 0 0 0;
+#X connect 73 0 72 0;
+#X connect 74 0 0 0;
+#X connect 75 0 0 0;
+#X restore 581 107 pd control parameters;
+#X text 48 179 V;
+#X text 48 171 |;
+#X text 48 151 |;
+#X text 447 40 Any of the parameters may be altered by;
+#X text 486 179 V;
+#X text 486 171 |;
+#X text 486 161 |;
+#X text 486 330 V;
+#X text 486 322 |;
+#X text 486 312 |;
+#X text 467 339 automation and patching out;
+#X obj 48 194 mix12~;
+#X text 48 161 1;
+#X text 84 179 V;
+#X text 84 171 |;
+#X text 84 151 |;
+#X text 121 179 V;
+#X text 121 171 |;
+#X text 156 179 V;
+#X text 156 171 |;
+#X text 156 151 |;
+#X text 192 179 V;
+#X text 192 171 |;
+#X text 192 151 |;
+#X text 229 179 V;
+#X text 229 171 |;
+#X text 229 151 |;
+#X text 266 179 V;
+#X text 266 171 |;
+#X text 266 151 |;
+#X text 302 179 V;
+#X text 302 171 |;
+#X text 302 151 |;
+#X text 339 179 V;
+#X text 339 171 |;
+#X text 339 151 |;
+#X text 376 179 V;
+#X text 376 171 |;
+#X text 376 151 |;
+#X text 412 179 V;
+#X text 412 171 |;
+#X text 412 152 |;
+#X text 449 179 V;
+#X text 449 152 |;
+#X text 84 161 2;
+#X text 156 161 4;
+#X text 121 161 3;
+#X text 192 161 5;
+#X text 229 161 6;
+#X text 266 161 7;
+#X text 302 161 8;
+#X text 339 161 9;
+#X text 374 161 10;
+#X text 410 162 11;
+#X text 449 171 |;
+#X text 447 161 12;
+#X text 121 151 |;
+#X text 51 141 /-----------------------------inputs;
+#X text 269 142 ------------------------------|;
+#X text 172 341 V;
+#X text 172 333 |;
+#X text 172 313 |;
+#X text 235 341 V;
+#X text 235 333 |;
+#X text 235 313 |;
+#X text 297 341 V;
+#X text 297 333 |;
+#X text 360 341 V;
+#X text 360 333 |;
+#X text 360 313 |;
+#X text 423 341 V;
+#X text 423 333 |;
+#X text 423 313 |;
+#X text 47 341 V;
+#X text 47 333 |;
+#X text 47 313 |;
+#X text 109 341 V;
+#X text 109 333 |;
+#X text 109 313 |;
+#X text 235 323 2;
+#X text 360 323 4;
+#X text 297 323 3;
+#X text 423 323 5;
+#X text 297 313 |;
+#X text 130 323 sends: 1;
+#X text 47 323 L;
+#X text 109 323 R;
+#X text 56 322 -stereo-;
+#X obj 506 297 print mix12;
+#X text 29 41 ...is a 12-in \, stereo out mixer with five auxilliary
+sends \, mono or stereo channels \, timed fades \, randomization of
+parameters and optional stereo limiting.;
+#X msg 637 72 v9 86;
+#X text 552 205 METASTUDIO 0.5;
+#X text 528 221 2005-2014 Edward Kelly;
+#X connect 9 0 21 12;
+#X connect 21 7 98 0;
+#X connect 100 0 21 12;

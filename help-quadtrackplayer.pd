@@ -1,0 +1,87 @@
+#N canvas 4 55 1036 495 10;
+#X obj 3 202 quadtrackplayer;
+#X obj 3 7 cnv 15 438 140 empty empty quadtrackplayer 20 12 0 28 -163135
+-13381 0;
+#X text 17 50 The high GUI demands of the quadtracker often cause all
+the GUI objects in PD to become unresponsive. Because of this \, it
+is advised to program your patterns using the quadtracker \, and then
+when you are performing load them into the quadtrackplayer object (below).
+This object plays back patterns developed on the quadtracker without
+the GUI for programming.;
+#X obj 454 7 cnv 15 550 440 empty empty empty 20 12 0 14 -224120 -66577
+0;
+#X text 665 295 <---beat subdivision (4 is standard 16th notes);
+#X text 665 275 <---number of subdivisions per-tick;
+#X text 620 251 <---sub-tick retriggers on;
+#X text 665 329 <---swing %;
+#X text 564 351 <---send notes thru when editing;
+#X text 582 400 <---total number of patterns;
+#X text 511 205 <---current tick position (and reset position);
+#X text 529 152 <---start tick;
+#X text 511 230 <---number of loops played;
+#X text 513 77 <---sync mode allows you to set two sequences running
+out-of-time (or in different polyrhythmic subdivisions) and then sync
+them at the start of the bar with the [sync( pulse. ext mode overrides
+this \, and gets its clock from an external [pos( or [trig( message.
+;
+#X text 512 19 <---play starts and stops the sequencer;
+#X text 512 35 <---pat(tern) mode plays a single pattern of the sequence
+\, and song mode plays the patterns sequentially (pat 0 \, pat 1 etc)
+;
+#X obj 463 21 tgl 18 0 \$0-seq-on \$0-seq-on-set play -2 -5 0 10 -220667
+-355 -355 0 1;
+#X obj 485 36 tgl 18 0 \$0-seqmode \$0-seqmode-set pat 2 -5 0 10 -220667
+-355 -355 0 1;
+#X obj 475 79 tgl 18 0 \$0-sync \$0-sync-set sync -2 -5 0 10 -241142
+-143491 -90133 0 1;
+#X obj 475 109 tgl 18 0 \$0-clock-ext \$0-clock-ext-set ext 2 -5 0
+10 -241142 -143491 -90133 0 1;
+#X obj 462 316 hsl 200 12 2 400 0 0 \$0-tempo \$0-tempo-set tempo 35
+5 0 12 -204780 -42247 -42247 0 0;
+#X obj 459 328 nbx 7 12 2 2000 0 0 \$0-tempo-disp \$0-tempo empty 0
+-6 0 12 -204780 -42246 -42246 2 256;
+#X obj 476 179 nbx 2 12 1 64 0 0 \$0-len \$0-len-set len 25 6 0 8 -175864
+-1109 -1109 1 256;
+#X obj 476 155 nbx 2 12 1 64 0 0 \$0-start \$0-start-set start 25 6
+0 8 -175864 -1109 -1109 1 256;
+#X obj 499 167 nbx 2 12 1 64 0 0 \$0-step \$0-step-set step -21 6 0
+8 -175864 -1109 -1109 1 256;
+#X obj 476 206 nbx 2 12 1 128 0 0 empty \$0-pos-display position -3
+-6 0 8 -262144 -1 -1 1 256;
+#X obj 476 206 nbx 2 12 1 128 0 0 \$0-pos-disp \$0-pos-display empty
+0 -6 0 10 -262144 -1 -1 1 256;
+#X obj 464 235 nbx 3 12 0 9999 0 0 empty \$0-count-display count 0
+17 0 12 -262144 -1 -1 0 256;
+#X obj 464 235 nbx 3 12 1 9999 0 0 \$0-count-disp \$0-count-display
+empty 0 -6 0 12 -262144 -1 -1 1 256;
+#X obj 476 218 bng 8 250 50 0 \$0-reset \$0-reset-bng reset 11 4 0
+7 -261689 -42246 -143491;
+#X obj 462 370 bng 18 250 50 0 \$0-seq-load empty LOAD 21 9 0 12 -225271
+-42246 -42246;
+#X obj 603 331 nbx 5 12 -99.9 99.9 0 0 \$0-swing-num \$0-swing-set
+swing -36 5 0 12 -204780 -13381 -13381 0 256;
+#X obj 470 416 nbx 2 14 1 99 0 0 \$0-cuput \$0-cpdcop total 0 -7 0
+12 -232507 -90133 -90133 1 256;
+#X obj 470 416 nbx 2 14 1 99 0 0 \$0-patterns-num \$0-patterns-num-set
+empty -6 -5 0 12 -232507 -90133 -90133 1 256;
+#X obj 529 406 nbx 2 14 0 0 0 0 \$0-current-pattern \$0-current-pattern-set
+current -8 19 0 12 -232507 -90133 -90133 0 256;
+#X obj 547 352 tgl 14 0 \$0-thru \$0-thru-set thru -4 -7 0 10 -204786
+-13381 -13381 0 1;
+#X text 457 428 ----patterns----;
+#X obj 627 289 nbx 3 10 1 99 0 0 \$0-div-real-num \$0-div-real empty
+0 -6 0 8 -199801 -50198 -50198 1 256;
+#X obj 496 283 nbx 3 10 1 99 0 0 \$0-num-real-pipe \$0-num-real empty
+0 -6 0 8 -204337 -66893 -66893 1 256;
+#X obj 496 299 hradio 10 1 0 16 \$0-adddiv-div \$0-adddiv-div-set div
+-18 4 0 9 -195704 -50199 -50199 0;
+#X obj 496 273 hradio 10 1 0 16 \$0-adddiv-num \$0-adddiv-num-set num
+-18 4 0 9 -204336 -66893 -66893 0;
+#X obj 549 248 tgl 18 0 \$0-retrigs \$0-retrigs-set retrigs 21 9 0
+12 -184283 -13381 -1537 0 1;
+#X text 529 166 <---sequence ticks to skip on each clock tick;
+#X text 529 180 <---loop length in ticks;
+#X text 665 315 <---tempo in beats-per-minute;
+#X text 582 417 <---current (select) pattern;
+#X text 21 32 ...plays back patterns made with the [quadtracker];
+#X text 511 373 <---load a bank of patterns;

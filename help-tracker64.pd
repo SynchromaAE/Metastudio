@@ -1,0 +1,637 @@
+#N canvas 11 61 1030 929 10;
+#X obj 10 7 cnv 15 440 166 empty empty tracker64 20 18 0 28 -163135
+-13330 0;
+#X text 25 37 ...is one of the sequencers included with metastudio-0.5
+and incorporates keyboard entry \, switchable polyrhythm \, variable
+density randomization \, multiple modes of playback and a variety of
+stored parameters.;
+#X obj 17 636 tracker64;
+#X text 88 636 <--- click on the tracker to open the interface;
+#X obj 32 197 cnv 15 48 19 empty \$0-select empty 20 12 0 14 -262144
+-66577 0;
+#X obj 10 177 cnv 15 270 39 empty empty empty 20 12 0 14 -224120 -66577
+0;
+#X obj 164 179 nbx 3 14 1 999 0 0 empty empty inst -32 7 0 12 -203904
+-16662 -16662 1 256;
+#X obj 12 197 tgl 16 0 \$0-edit_pattern \$0-pattern_edit edit 19 12
+0 12 -261234 -86277 -86277 0 1;
+#X obj 84 179 nbx 3 14 -1 140 0 0 \$0-vol \$0-vol-set vol -23 7 0 12
+-203392 -40982 -40978 0 256;
+#X obj 245 179 nbx 2 14 1 99 0 0 empty empty trig -32 7 0 12 -223803
+-74007 -74007 1 256;
+#X obj 164 196 tgl 16 0 \$0-set_instnote \$0-set_instnote-set edit
+19 12 0 12 -203904 -16662 -16662 0 1;
+#X obj 20 179 nbx 3 14 -1499 999 0 0 \$0-notenum \$0-notenum-set note
+12 19 0 10 -261234 -86277 -86277 0 256;
+#X obj 62 199 nbx 1 14 -1e+37 1e+37 0 0 \$0-octave \$0-octave-set 8ve
+22 8 0 12 -261234 -86277 -86277 0 256;
+#X obj 108 196 tgl 16 0 \$0-set_volnote \$0-set_volnote-set edit 19
+12 0 12 -203392 -40978 -40978 0 1;
+#X obj 221 196 tgl 16 0 \$0-set_retrignote \$0-set_retrignote-set edit
+19 12 0 12 -223803 -74007 -74007 0 1;
+#X obj 164 179 nbx 3 14 1 999 0 0 \$0-inst \$0-inst-set inst -32 7
+0 12 -203904 -16662 -16662 1 256;
+#X obj 245 179 nbx 2 14 1 99 0 0 \$0-retrig \$0-retrig-set trig -32
+7 0 12 -223803 -74007 -74007 1 256;
+#X obj 453 548 cnv 15 60 286 empty empty empty 20 12 0 14 -200369 -42246
+0;
+#X obj 461 566 tgl 18 0 \$0-seq-on \$0-seq-on-set play -2 -5 0 10 -220667
+-355 -355 0 1;
+#X obj 461 613 tgl 18 0 \$0-sync \$0-sync-set sync -2 -5 0 10 -241142
+-143491 -90133 0 1;
+#X obj 459 748 nbx 3 12 1 64 0 0 \$0-len \$0-len-set length 0 -5 0
+12 -175864 -1109 -1109 1 256;
+#X obj 459 694 nbx 3 12 1 64 0 0 \$0-start \$0-start-set start 0 -5
+0 12 -175864 -1109 -1109 1 256;
+#X obj 459 721 nbx 3 12 1 64 0 0 \$0-step \$0-step-set skip 0 -5 0
+12 -175864 -1109 -1109 1 256;
+#X obj 488 613 tgl 18 0 \$0-clock-ext \$0-clock-ext-set ext 2 -5 0
+10 -241142 -143491 -90133 0 1;
+#X obj 460 776 nbx 2 12 1 128 0 0 empty \$0-pos-display position -1
+-8 0 10 -262144 -1 -1 1 256;
+#X obj 459 775 nbx 2 14 1 128 0 0 \$0-pos-disp \$0-pos-display empty
+0 -6 0 12 -262144 -1 -1 1 256;
+#X obj 459 814 nbx 3 12 0 9999 0 0 \$0-count_set \$0-count-display
+count 0 -6 0 10 -262144 -1 -1 0 256;
+#X obj 459 789 bng 12 250 50 0 \$0-reset \$0-reset-bng reset 15 6 0
+9 -261689 -42246 -143491;
+#X obj 488 566 tgl 18 0 \$0-seqmode \$0-seqmode-set pat 2 -5 0 10 -220667
+-355 -355 0 1;
+#X obj 453 7 cnv 15 60 370 empty empty rhythm 4 8 0 14 -159093 -22171
+0;
+#X obj 477 73 vradio 12 1 0 16 \$0-adddiv-num \$0-adddiv-num-set num
+-1 -5 0 10 -204337 -66893 -13381 0;
+#X obj 497 73 vradio 12 1 0 16 \$0-adddiv-div \$0-adddiv-div-set div
+-4 199 0 10 -199801 -50198 -16662 0;
+#X obj 477 278 nbx 3 12 1 99 0 0 \$0-div-real-num \$0-div-real empty
+0 -6 0 10 -199801 -50198 -50198 1 256;
+#X obj 476 50 nbx 2 12 1 99 0 0 \$0-num-real-pipe \$0-num-real empty
+0 -6 0 10 -204337 -66893 -66893 1 256;
+#X obj 458 40 vsl 12 295 6 300 0 0 \$0-tempo \$0-tempo-set tempo -2
+-9 0 12 -208875 -42246 -513 0 0;
+#X obj 455 338 nbx 6 12 1 999 1 0 \$0-tempo-disp \$0-tempo empty 0
+-6 0 9 -204780 -42246 -42246 1 256;
+#X obj 453 378 cnv 15 60 44 empty empty bank 12 8 0 14 -171377 -42246
+0;
+#X obj 456 403 bng 14 450 50 0 \$0-seq-load empty LOAD -3 -4 0 8 -225271
+-42246 -42246;
+#X obj 495 403 bng 14 450 50 0 \$0-seq-save empty SAVE -3 -4 0 8 -261689
+-258699 -143491;
+#X obj 476 404 bng 10 250 50 0 \$0-resave empty re- 1 -5 0 8 -261689
+-258699 -143491;
+#X obj 455 363 nbx 5 12 -99.9 99.9 0 0 \$0-swing-num \$0-swing-set
+swing 3 -5 0 10 -204780 -13381 -13381 0 256;
+#X text 497 362 %;
+#X obj 481 309 tgl 20 0 \$0-retrigs \$0-retrigs-set retrigs -6 -5 0
+9 -184283 -961 -1537 0 1;
+#X obj 526 67 cnv 15 60 98 empty empty pattern 2 8 0 14 -188065 -42246
+0;
+#X obj 538 94 nbx 2 14 1 99 0 0 \$0-cuput \$0-cpdcop total 0 -5 0 12
+-232507 -90133 -90133 1 256;
+#X obj 538 94 nbx 2 14 1 99 0 0 \$0-patterns-num \$0-patterns-num-set
+empty -6 -5 0 12 -232507 -90133 -90133 1 256;
+#X obj 538 112 nbx 2 14 0 0 0 0 \$0-current-pattern \$0-current-pattern-set
+current -8 19 0 12 -232507 -90133 -90133 0 256;
+#X obj 533 147 bng 14 250 50 0 \$0-new-pattern \$0-new-pattern-bng
+copy -4 -5 0 10 -232507 -90133 -90133;
+#X obj 563 147 bng 14 450 50 0 \$0-init_all \$0-init_all-bng init -4
+-5 0 10 -232507 -90133 -90133;
+#X obj 526 169 cnv 15 60 104 empty empty empty 4 6 0 10 -134011 -13330
+0;
+#X obj 548 182 bng 14 250 50 0 \$0-reframe \$0-reframe-bng reframe
+-18 -5 0 12 -175423 -46498 -46498;
+#X obj 535 257 nbx 3 12 1 64 0 0 \$0-reframe_len \$0-reframe_len-set
+length 0 -5 0 12 -175864 -1109 -1109 1 256;
+#X obj 535 209 nbx 3 12 1 64 0 0 \$0-reframe_st \$0-reframe_st-set
+start 0 -5 0 12 -175864 -1109 -1109 1 256;
+#X obj 535 233 nbx 3 12 1 64 0 0 \$0-reframe_step \$0-reframe_step-set
+skip 0 -5 0 12 -175864 -1109 -1109 1 256;
+#X obj 453 425 cnv 15 60 60 empty empty empty 4 6 0 10 -240886 -13330
+0;
+#X obj 466 443 tgl 32 0 \$0-thru \$0-thru-set thru -4 -8 0 16 -204786
+-13381 -13381 0 1;
+#X obj 453 485 cnv 15 60 60 empty empty empty 4 6 0 10 -240886 -13330
+0;
+#X obj 463 523 nbx 2 18 1 64 0 0 \$0-midi_step-num \$0-0-midi_step
+step 0 -5 0 14 -175864 -1109 -1109 1 256;
+#X obj 462 489 tgl 21 0 \$0-midi_stepseq \$0-midi_stepseq-set MIDI
+0 -6 0 10 -175864 -13330 -13330 0 1;
+#N canvas 5 57 450 300 add-div 0;
+#X obj 332 -78 + 1;
+#X obj 334 -54 s \$0-num-real;
+#X obj 332 -101 r \$0-adddiv-num;
+#X obj 178 -140 r \$0-adddiv-div;
+#X msg 56 -13 1;
+#X msg 73 -30 2;
+#X msg 90 -47 4;
+#X msg 107 -64 8;
+#X obj 55 10 s \$0-div-real;
+#X msg 295 -31 4.5;
+#X msg 312 -14 9;
+#X msg 124 -14 1.5;
+#X msg 141 -31 3;
+#X msg 158 -48 6;
+#X msg 175 -14 12;
+#X msg 192 -31 2.5;
+#X msg 209 -14 5;
+#X msg 226 -31 10;
+#X msg 243 -14 3.5;
+#X msg 261 -31 7;
+#X msg 278 -14 14;
+#X obj 56 -89 sel 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 3 0 21 0;
+#X connect 4 0 8 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 0;
+#X connect 7 0 8 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
+#X connect 11 0 8 0;
+#X connect 12 0 8 0;
+#X connect 13 0 8 0;
+#X connect 14 0 8 0;
+#X connect 15 0 8 0;
+#X connect 16 0 8 0;
+#X connect 17 0 8 0;
+#X connect 18 0 8 0;
+#X connect 19 0 8 0;
+#X connect 20 0 8 0;
+#X connect 21 0 4 0;
+#X connect 21 1 5 0;
+#X connect 21 2 6 0;
+#X connect 21 3 7 0;
+#X connect 21 4 11 0;
+#X connect 21 5 12 0;
+#X connect 21 6 13 0;
+#X connect 21 7 14 0;
+#X connect 21 8 15 0;
+#X connect 21 9 16 0;
+#X connect 21 10 17 0;
+#X connect 21 11 18 0;
+#X connect 21 12 19 0;
+#X connect 21 13 20 0;
+#X connect 21 14 9 0;
+#X connect 21 15 10 0;
+#X restore 665 11 pd add-div;
+#X text 517 277 <---beat subdivision (4 is standard 16th notes);
+#X text 515 49 <---number of subdivisions per-tick;
+#X text 517 309 <---sub-tick retriggers on;
+#X text 517 361 <---swing %;
+#X text 517 401 <---load \, save or overwrite a bank of patterns;
+#X text 517 449 <---send notes thru when editing;
+#X text 517 489 <---MIDI step sequencing;
+#X text 25 303 use / and * to navigate through octaves;
+#X text 25 329 use < and > to navigate through instrument values;
+#X text 25 342 use + and - to navigate through retrig values;
+#X obj 104 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 105 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 114 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 115 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 124 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 125 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 134 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 135 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 144 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 145 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 154 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 155 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 164 452 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 165 453 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 111 453 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 121 453 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 141 453 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 151 453 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 161 453 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 104 497 z;
+#X text 114 497 x;
+#X text 124 497 c;
+#X text 134 497 v;
+#X text 144 497 b;
+#X text 154 497 n;
+#X text 164 497 m;
+#X text 109 437 s;
+#X text 119 437 d;
+#X text 139 437 g;
+#X text 149 437 h;
+#X text 159 437 j;
+#X obj 98 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 99 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 108 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 109 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 118 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 119 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 128 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 129 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 138 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 139 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 148 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 149 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 158 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 159 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 105 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 115 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 135 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 145 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 155 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 32 499 Octave -1:;
+#X text 98 417 q;
+#X text 108 417 w;
+#X text 118 418 e;
+#X text 128 417 r;
+#X text 138 417 t;
+#X text 148 417 y;
+#X text 158 417 u;
+#X text 104 357 2;
+#X text 114 357 3;
+#X text 134 357 5;
+#X text 144 357 6;
+#X text 154 357 7;
+#X obj 168 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 169 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 178 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 179 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 188 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 189 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 198 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 199 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 208 372 cnv 10 10 60 empty empty empty 20 12 0 14 -1 -66577
+0;
+#X obj 209 373 cnv 8 8 58 empty empty empty 20 12 0 14 -262144 -66577
+0;
+#X obj 175 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 185 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X obj 205 373 cnv 6 6 38 empty empty empty 20 12 0 14 -1 -66577 0
+;
+#X text 168 417 i;
+#X text 178 417 o;
+#X text 188 418 p;
+#X text 198 417 [;
+#X text 208 417 ];
+#X text 174 357 9;
+#X text 184 357 0;
+#X text 204 357 =;
+#X text 231 384 Other keys:;
+#X text 231 398 * = Octave up;
+#X text 231 409 / = Octave down;
+#X text 32 419 Octave 0:;
+#X text 231 421 > = Instrument up;
+#X text 231 433 < = Instrument down;
+#X text 231 445 \, = Velocity (vol) up;
+#X text 231 456 . = Velocity (vol) down;
+#X text 231 467 + = Retrigger up;
+#X text 231 478 - = Retrigger down;
+#X text 585 95 <---total number of patterns;
+#X text 585 112 <---select a pattern;
+#X text 586 146 <---copy-to-new and erase-current;
+#X text 586 179 <---re-order the pattern (into a new pattern) starting
+at the start value \, for length ticks \, skipping the skip value of
+ticks with each step.;
+#X text 25 89 tracker64 is a tracker in the style of Buzz \, Octamed
+\, Fasttracker 2 \, Renoise etc. You can enter all of the sequenced
+parameters from the keyboard \, and notes can be re-triggered within
+a tick. This is just a sequencer \, and can be routed to any sound
+generator with a suitable modification of the output.;
+#X obj 17 678 clinoker~;
+#N canvas 10 67 856 392 route_messages 0;
+#X obj 15 96 unpack f f f f f f f f;
+#X text 24 77 pitch \, vol \, inst \, retrig \, pnum1 \, p1 \, pnum2
+\, p2;
+#X obj 369 34 loadbang;
+#X obj 15 38 inlet;
+#X obj 369 251 outlet;
+#X obj 37 331 outlet;
+#X msg 146 216 patch \$1;
+#X obj 146 196 f;
+#X obj 15 140 moses -1500;
+#X msg 93 216 vol \$1;
+#X obj 37 169 t f b b;
+#X obj 93 196 f;
+#X obj 105 120 pack;
+#X obj 146 120 pack;
+#X obj 146 165 route 1 2 3;
+#X obj 15 241 sel -1501;
+#X msg 24 264 0;
+#X text 75 286 numbers upwards of -1500 are considered to be MIDI pitches.
+-1501 is the "note off" message.;
+#X msg 369 70 file datasets/clinok.pat \, on 1;
+#X text 400 119 The last four numbers are the two pairs of [parameter_num
+parameter_value] that may be used to control parameters of any object.
+Here they are used to control three parameters of the [stereo_drift~]
+abstraction \, but they may be used to control anything.;
+#X msg 437 206 delpitch \$1;
+#X msg 523 206 fb \$1;
+#X msg 567 206 lpf \$1;
+#X text 388 53 patches file for [clinoker~];
+#X obj 501 236 outlet;
+#X connect 0 0 8 0;
+#X connect 0 1 11 1;
+#X connect 0 2 7 1;
+#X connect 0 4 12 0;
+#X connect 0 5 12 1;
+#X connect 0 6 13 0;
+#X connect 0 7 13 1;
+#X connect 2 0 18 0;
+#X connect 3 0 0 0;
+#X connect 6 0 4 0;
+#X connect 7 0 6 0;
+#X connect 8 0 15 0;
+#X connect 8 1 10 0;
+#X connect 9 0 4 0;
+#X connect 10 0 5 0;
+#X connect 10 1 11 0;
+#X connect 10 2 7 0;
+#X connect 11 0 9 0;
+#X connect 12 0 14 0;
+#X connect 13 0 14 0;
+#X connect 14 0 20 0;
+#X connect 14 1 21 0;
+#X connect 14 2 22 0;
+#X connect 15 0 16 0;
+#X connect 16 0 5 0;
+#X connect 18 0 4 0;
+#X connect 20 0 24 0;
+#X connect 21 0 24 0;
+#X connect 22 0 24 0;
+#X restore 17 657 pd route_messages;
+#X obj 321 676 print tracker_out;
+#X text 232 363 key 1 = note off;
+#X text 25 316 use \, and . to navigate through volume values;
+#X obj 17 887 stereo_drift~;
+#X text 518 776 <---current tick position (and reset position);
+#X text 517 693 <---start tick;
+#X text 517 720 <---sequence ticks to skip on each tick;
+#X text 517 748 <---loop length;
+#X text 518 812 <---number of loops played;
+#N canvas 182 195 1029 229 control_out 0;
+#X obj 50 38 inlet;
+#X floatatom 50 88 5 0 0 0 - - -;
+#X obj 50 66 route pos count;
+#X floatatom 111 88 5 0 0 0 - - -;
+#X msg 685 179 sync;
+#X msg 685 133 trig;
+#X msg 685 156 pulse;
+#X floatatom 173 111 5 0 0 0 - - -;
+#X floatatom 230 111 5 0 0 0 - - -;
+#X floatatom 289 111 5 0 0 0 - - -;
+#X floatatom 360 111 5 0 0 0 - - -;
+#X text 43 101 current;
+#X text 39 113 position;
+#X text 105 101 patterns;
+#X text 109 113 played;
+#X text 173 125 tick;
+#X text 160 136 duration;
+#X text 359 137 value;
+#X obj 193 66 route dur num div divreal tempo swing;
+#X floatatom 407 111 5 0 0 0 - - -;
+#X floatatom 453 111 5 0 0 0 - - -;
+#X text 450 124 swing %;
+#X text 404 125 tempo;
+#X text 286 125 --subdivision--;
+#X text 286 137 radio;
+#X text 283 149 button;
+#X text 224 124 numeral;
+#X obj 526 65 route patterns pat;
+#X text 514 124 number of;
+#X text 518 135 patterns;
+#X text 590 124 current;
+#X text 589 135 pattern;
+#X floatatom 526 111 5 0 0 0 - - -;
+#X floatatom 597 111 5 0 0 0 - - -;
+#X obj 685 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 733 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 781 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 724 134 happens every tick played;
+#X obj 685 65 route trig pulse sync;
+#X text 730 157 happens every subtick \, when num > 1;
+#X text 722 180 happens at the beginning of a bar;
+#X text 197 9 ---------------CONTROL OUTPUTS------------------;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 2 1 3 0;
+#X connect 2 2 18 0;
+#X connect 18 0 7 0;
+#X connect 18 1 8 0;
+#X connect 18 2 9 0;
+#X connect 18 3 10 0;
+#X connect 18 4 19 0;
+#X connect 18 5 20 0;
+#X connect 18 6 27 0;
+#X connect 27 0 32 0;
+#X connect 27 1 33 0;
+#X connect 27 2 38 0;
+#X connect 38 0 34 0;
+#X connect 38 1 35 0;
+#X connect 38 2 36 0;
+#X restore 116 616 pd control_out;
+#X text 518 616 <---sync mode allows you to set two sequences running
+out-of-time (or in different polyrhythmic subdivisions) and then sync
+them at the start of the bar with the [sync( pulse. ext mode overrides
+this \, and gets its clock from an external [pos( or [trig( message.
+;
+#X text 517 558 <---play starts and stops the sequencer;
+#X text 517 574 <---pat(tern) mode plays a single pattern of the sequence
+\, and song mode plays the patterns sequentially (pat 0 \, pat 1 etc)
+;
+#N canvas 9 65 648 300 (subpatch) 0;
+#X obj 95 94 loadbang;
+#X obj 95 140 outlet;
+#X msg 95 118 mono 1 \, mix 11 \, freq 5.6 \, depth 1.1 \, phase 0.5
+\, porta 2;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X restore 232 887 pd;
+#X obj 17 1069 stmix~;
+#X obj 17 1109 dac~;
+#N canvas 34 73 1085 733 control_in 0;
+#X obj 42 612 outlet;
+#X msg 42 43 file datasets/tracker_1.pattern;
+#X obj 42 20 loadbang;
+#X msg 603 500 sync;
+#X msg 603 531 trig;
+#X text 631 560 when ext mode is on \, this sets explicitly the tick
+position and plays the tick;
+#X text 574 591 be careful when ext mode is on to either send;
+#X text 934 591 or;
+#X msg 898 591 trig;
+#X msg 579 560 pos \$1;
+#X floatatom 561 540 5 1 64 0 - - -;
+#X msg 955 591 pos \$1;
+#X text 903 611 but not both!;
+#X text 575 626 use the [synchro_7] object to synchronize up to 7 sequencers
+;
+#X msg 68 95 pat \$1;
+#X floatatom 68 78 5 0 2 2 pattern_number - -;
+#X text 110 21 load a .pattern file;
+#X msg 85 119 reset;
+#X text 129 119 play from start of pattern;
+#X msg 103 141 randpat;
+#X text 160 141 random pattern selection;
+#X msg 119 162 next;
+#X text 155 162 next pattern;
+#X floatatom 131 183 5 30 999 1 tempo - -;
+#X msg 131 202 tempo \$1;
+#X text 639 532 when ext mode is on \, this counts one tick;
+#X text 642 501 when sync mode is on \, this resets the bar position
+to 0 and bangs the clock;
+#X msg 153 223 start;
+#X msg 153 244 stop;
+#X msg 153 265 cont;
+#X text 195 223 start;
+#X text 188 244 stop;
+#X text 188 265 continue;
+#X msg 464 53 set mnote 32 60;
+#X msg 464 74 set vol 32 92;
+#X msg 464 95 set inst 32 50;
+#X msg 464 116 set retrig 32 3;
+#X msg 464 137 set pnum_1 32 1;
+#X msg 464 158 set param_1 32 57;
+#X msg 464 179 set pnum_2 32 2;
+#X msg 464 200 set param_2 32 96;
+#X text 589 56 Any sequence parameter may be set externally to the
+sequencer. Sending a set message \, followed by what you want to set
+(see left) followed by the tick number \, followed by the value will
+set the parameter for the sequence tick.;
+#X msg 522 374 len 48;
+#X msg 514 352 step 3;
+#X msg 507 330 begin 13;
+#X msg 494 287 num 3;
+#X msg 500 308 div 6;
+#X text 536 286 number of subdivisions per-tick;
+#X text 546 307 subdivision per-tick (radio-button value);
+#X text 569 329 start tick of the sequence;
+#X text 564 350 sequence ticks to skip per-clock tick;
+#X text 571 374 length of the pattern playback in clock-ticks;
+#X text 597 395 swing % of the beat (-99% - 99%);
+#X msg 491 257 paras 2 3 2 17 32 148 20;
+#X text 462 238 num div step begin length tempo swing;
+#X msg 529 396 swing -33;
+#X msg 157 304 c_ext \$1;
+#X obj 157 286 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 219 303 external clock (ext mode);
+#X text 608 432 MIDI step mode is used by packing the note number and
+velocity \, and sending it into the objet as a [midi \$1 \$2( message
+;
+#X obj 530 424 notein;
+#X obj 530 444 pack;
+#X msg 530 464 midi \$1 \$2;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 9 0 0 0;
+#X connect 10 0 9 0;
+#X connect 14 0 0 0;
+#X connect 15 0 14 0;
+#X connect 17 0 0 0;
+#X connect 19 0 0 0;
+#X connect 21 0 0 0;
+#X connect 23 0 24 0;
+#X connect 24 0 0 0;
+#X connect 27 0 0 0;
+#X connect 28 0 0 0;
+#X connect 29 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 0 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 38 0 0 0;
+#X connect 39 0 0 0;
+#X connect 40 0 0 0;
+#X connect 42 0 0 0;
+#X connect 43 0 0 0;
+#X connect 44 0 0 0;
+#X connect 45 0 0 0;
+#X connect 46 0 0 0;
+#X connect 53 0 0 0;
+#X connect 55 0 0 0;
+#X connect 56 0 0 0;
+#X connect 57 0 56 0;
+#X connect 60 0 61 0;
+#X connect 60 1 61 1;
+#X connect 61 0 62 0;
+#X connect 62 0 0 0;
+#X restore 17 616 pd control_in;
+#X text 182 489 Keypad 0 = Delete note;
+#X text 518 523 <---note duration (in ticks) for midi step sequencing
+;
+#X text 24 531 When the edit box is checked \, arrow keys are used
+to navigate around the sequence \, and holding down the LEFT_SHIFT
+key allows you to select an area. If you keep LEFT_SHIFT held down
+and press the C key \, an area of values is copied. These may be pasted
+by moving the cursor to the desired location and pressing LEFT_SHIFT
++ V.;
+#X text 80 517 Navigation ----- Copy ------ Paste;
+#X text 24 221 Sequences are edited using the qwerty keyboard. When
+the edit box is checked for notes \, notes may be entered into the
+note column and other values may be entered by positioning the white
+cursor over the value and typing the number quickly on the keyboard.
+When the checkboxes for vol \, inst and retrig are checked \, they
+are added with notes.;
+#X connect 2 0 171 0;
+#X connect 2 0 170 0;
+#X connect 2 1 180 0;
+#X connect 169 0 174 0;
+#X connect 170 0 169 0;
+#X connect 170 1 169 1;
+#X connect 170 2 174 2;
+#X connect 174 0 185 0;
+#X connect 174 1 185 1;
+#X connect 184 0 174 2;
+#X connect 185 0 186 0;
+#X connect 185 1 186 1;
+#X connect 187 0 2 0;

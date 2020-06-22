@@ -1,0 +1,407 @@
+#N canvas 79 82 713 642 10;
+#X obj 31 233 cnv 15 316 64 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X obj 31 9 cnv 15 430 216 empty empty clinoker~ 10 14 0 18 -232576
+-45076 0;
+#X text 196 391 V;
+#X text 125 372 automation and patching;
+#X text 473 24 nogui version =;
+#X text 33 265 CONTROL: message tagged control parameters;
+#X msg 551 80 \; pd dsp 1;
+#X obj 353 230 cnv 15 310 114 empty empty empty 20 12 0 14 -203904
+-66577 0;
+#X text 360 235 Message tagged control parameters;
+#X text 358 264 sending the object a message followed by a;
+#X text 358 277 value in the second inlet:;
+#X obj 273 304 cnv 15 360 40 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 276 305 For a list of control parameters for this;
+#X text 276 319 unit \, click on this subpatch -->;
+#N canvas 484 167 1021 614 control 0;
+#X obj 582 373 outlet;
+#X floatatom 30 138 5 0 2000 0 - - -, f 5;
+#X floatatom 72 137 5 0 0 0 - - -, f 5;
+#X floatatom 244 136 5 0 10000 0 - - -, f 5;
+#X floatatom 333 136 5 -100 100 0 - - -, f 5;
+#X floatatom 399 136 5 0 2000 0 - - -, f 5;
+#X floatatom 445 135 5 20 2000 0 - - -, f 5;
+#X floatatom 490 135 5 0 100 0 - - -, f 5;
+#X floatatom 547 114 5 -100 0 0 - - -, f 5;
+#X floatatom 125 134 5 0 100 0 - - -, f 5;
+#X msg 796 155 on \$1;
+#X obj 796 136 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X text 789 119 on/off;
+#X floatatom 187 112 5 -100 0 0 - - -, f 5;
+#X msg 192 64 patch \$1;
+#X msg 253 64 randpat;
+#X text 47 47 load a patches file;
+#X text 181 17 recall a;
+#X text 189 27 patch;
+#X text 258 37 random;
+#X text 261 47 patch;
+#X floatatom 192 44 5 1 9 0 - - -, f 5;
+#X msg 30 158 aa \$1;
+#X text 31 110 amp;
+#X text 28 120 attack;
+#X text 74 108 amp;
+#X text 70 120 decay;
+#X msg 244 156 feg \$1;
+#X text 244 105 freq;
+#X text 236 117 eg depth;
+#X msg 333 156 pitch \$1;
+#X text 321 119 base pitch;
+#X msg 72 157 da \$1;
+#X msg 399 156 af \$1;
+#X msg 445 156 df \$1;
+#X text 396 108 freq;
+#X text 397 119 attack;
+#X text 446 108 freq;
+#X text 442 118 decay;
+#X msg 490 156 frand \$1;
+#X text 486 108 freq;
+#X text 482 118 randomize;
+#X text 544 87 freq;
+#X text 127 107 amp;
+#X text 110 118 randomize;
+#X text 189 85 amp;
+#X text 605 117 volume;
+#X floatatom 613 134 5 0 0 0 - - -, f 5;
+#X msg 613 155 vol \$1;
+#X msg 547 155 fbias \$1;
+#X msg 125 155 arand \$1;
+#X msg 187 155 abias \$1;
+#X floatatom 663 134 5 0 0 0 - - -, f 5;
+#X msg 663 155 porta \$1;
+#X text 655 117 portamento;
+#X text 279 106 polarity;
+#X obj 296 124 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 187 133 / 100;
+#X obj 547 133 / 100;
+#X obj 728 136 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 728 155 hp \$1;
+#X text 187 96 bias*;
+#X text 544 98 bias*;
+#X text 27 320 *the bias is adjustable between -1 and 0 This controls
+the randomization of envelope times. A setting of -1 means that envelopes
+will always be contracted \, whereas a setting of 0 means that envelopes
+will be expanded. Mximum expansion doubles the times of the attack
+and release \, whereas contraction may result in envelope times of
+1/100th the set value.;
+#X text 721 119 highpass**;
+#X text 29 400 **a highpass filter may be used on the output \, so
+that there are no sub-audio frequencies present at the output. However
+\, if this module is used to modulate another audio generator then
+you may wish to turn this off. This will simulate a direct coupled
+(DC) analogue circuit.;
+#X obj 28 28 loadbang;
+#X floatatom 28 232 5 0 0 0 - - -, f 5;
+#X text 23 205 decay;
+#X text 19 215 modify***;
+#X text 29 459 ***decay modify is a parameter that is not stored in
+the patch. This is used to extend or contract the decay times of the
+envelopes in live performance.;
+#X obj 396 210 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 396 237 5 0 0 0 - - -, f 5;
+#X obj 452 210 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 452 237 5 0 0 0 - - -, f 5;
+#X text 384 192 attack;
+#X text 445 192 decay;
+#X text 384 182 multipliers****;
+#X msg 284 156 fpol \$1;
+#X msg 297 246 ftype \$1;
+#X msg 230 219 q \$1;
+#X msg 662 255 off+ \$1;
+#X msg 712 255 noise \$1;
+#X msg 770 255 ntype \$1;
+#X msg 692 343 fmf1 \$1;
+#X msg 750 343 fmf2 \$1;
+#X msg 808 343 fmf3 \$1;
+#X msg 873 343 warp \$1;
+#X msg 396 256 amod \$1;
+#X msg 452 256 dmod \$1;
+#X text 28 493 ****attack and decay times for the noise amplitude envelope
+are the main attack and decay times * these numbers. The filter frequency
+envelope and offset are based on the pitch envelope * these numbers.
+;
+#X text 28 539 *****The filter frequency envelope and offset are based
+on the pitch envelope * these numbers.;
+#X text 28 563 ******The filter frequency envelope depth and offset
+are based on the pitch envelope depth and offset * these numbers.;
+#X obj 506 210 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 506 237 5 0 0 0 - - -, f 5;
+#X obj 562 210 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 562 237 5 0 0 0 - - -, f 5;
+#X text 494 192 attack;
+#X text 555 192 decay;
+#X msg 506 256 famod \$1;
+#X msg 562 256 fdmod \$1;
+#X text 384 171 amplitude;
+#X text 494 171 filter frequency;
+#X msg 618 256 egx \$1;
+#X obj 618 210 vsl 15 21 0.25 4 1 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 618 237 5 0 0 0 - - -, f 5;
+#X obj 674 210 vsl 15 21 -99 99 0 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1000 1;
+#X floatatom 674 237 5 0 0 0 - - -, f 5;
+#X text 606 192 depth;
+#X text 667 192 offset;
+#X text 606 171 filter frequency;
+#X text 494 182 multipliers*****;
+#X text 606 182 multipliers******;
+#X obj 770 235 hradio 17 1 0 3 empty empty White 0 -8 0 10 -262144
+-1 -1 0;
+#N canvas 0 50 450 300 lbl 0;
+#X obj 96 62 inlet;
+#X obj 102 154 outlet;
+#X obj 94 89 sel 0 1 2;
+#X msg 59 118 label White;
+#X msg 151 120 label Pink;
+#X msg 231 121 label FM;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X restore 822 235 pd lbl;
+#X floatatom 712 236 3 0 100 0 - - -, f 3;
+#X text 706 208 noise;
+#X text 706 220 level;
+#X obj 692 325 nbx 5 14 0.2 20000 1 0 empty empty frequency 0 -8 0
+10 -262144 -1 -1 0.2 256;
+#X obj 750 325 nbx 5 14 0.2 20000 1 0 empty empty frequency 0 -8 0
+10 -262144 -1 -1 0.2 256;
+#X obj 808 325 nbx 5 14 0.2 20000 1 0 empty empty frequency 0 -8 0
+10 -262144 -1 -1 0.2 256;
+#X text 704 283 frequency modulation;
+#X text 689 296 oscillator frequencies*******;
+#X obj 297 225 hradio 17 1 0 3 empty empty Low 0 -8 0 10 -262144 -1
+-1 0;
+#N canvas 0 50 450 300 lbl 0;
+#X obj 96 62 inlet;
+#X obj 102 154 outlet;
+#X obj 94 89 sel 0 1 2;
+#X msg 55 118 label Low;
+#X msg 124 117 label High;
+#X msg 202 118 label Band;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 2 2 5 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X restore 349 225 pd lbl;
+#X floatatom 873 281 5 0 0 2 - - -, f 5;
+#X obj 873 301 / 10;
+#X floatatom 873 322 5 0 0 0 - - -, f 5;
+#X text 855 254 modulation;
+#X text 869 264 index;
+#X text 316 187 filter;
+#X text 321 200 type;
+#X obj 230 201 nbx 5 14 0 1 0 0 empty empty filter_q 0 -8 0 10 -262144
+-1 -1 0 256;
+#X msg 929 343 rspect;
+#X text 919 312 randomized;
+#X text 908 324 fm frequencies;
+#X msg 28 64 file datasets/clinok.pat;
+#X msg 852 119 1;
+#X obj 852 96 loadbang;
+#X obj 83 28 delay 1000;
+#X text 421 425 *******the noise source may be white noise \, pink
+noise or a three oscillator fm synth. The modulation index (warp factor)
+sets the amount by which oscillator 1 modulates oscillator 2 and oscillator
+2 modulates oscillator 3 internally. By sending the object an rspect
+message \, the frequencies of these oscillators may be randomized.
+Frequencies may be set manually using the fmf1 \, fmf2 and fmf3 messages.
+;
+#X msg 28 254 dmodify \$1;
+#X connect 1 0 22 0;
+#X connect 2 0 32 0;
+#X connect 3 0 27 0;
+#X connect 4 0 30 0;
+#X connect 5 0 33 0;
+#X connect 6 0 34 0;
+#X connect 7 0 39 0;
+#X connect 8 0 58 0;
+#X connect 9 0 50 0;
+#X connect 10 0 0 0;
+#X connect 11 0 10 0;
+#X connect 13 0 57 0;
+#X connect 14 0 0 0;
+#X connect 15 0 0 0;
+#X connect 21 0 14 0;
+#X connect 22 0 0 0;
+#X connect 27 0 0 0;
+#X connect 30 0 0 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 0 0;
+#X connect 39 0 0 0;
+#X connect 47 0 48 0;
+#X connect 48 0 0 0;
+#X connect 49 0 0 0;
+#X connect 50 0 0 0;
+#X connect 51 0 0 0;
+#X connect 52 0 53 0;
+#X connect 53 0 0 0;
+#X connect 56 0 78 0;
+#X connect 57 0 51 0;
+#X connect 58 0 49 0;
+#X connect 59 0 60 0;
+#X connect 60 0 0 0;
+#X connect 66 0 136 0;
+#X connect 66 0 139 0;
+#X connect 67 0 141 0;
+#X connect 71 0 72 0;
+#X connect 72 0 88 0;
+#X connect 73 0 74 0;
+#X connect 74 0 89 0;
+#X connect 78 0 0 0;
+#X connect 79 0 0 0;
+#X connect 80 0 0 0;
+#X connect 81 0 0 0;
+#X connect 83 0 0 0;
+#X connect 84 0 0 0;
+#X connect 85 0 0 0;
+#X connect 86 0 0 0;
+#X connect 87 0 0 0;
+#X connect 88 0 0 0;
+#X connect 89 0 0 0;
+#X connect 93 0 94 0;
+#X connect 94 0 99 0;
+#X connect 95 0 96 0;
+#X connect 96 0 100 0;
+#X connect 99 0 0 0;
+#X connect 100 0 0 0;
+#X connect 103 0 0 0;
+#X connect 104 0 105 0;
+#X connect 105 0 103 0;
+#X connect 106 0 107 0;
+#X connect 107 0 81 0;
+#X connect 113 0 83 0;
+#X connect 113 0 114 0;
+#X connect 114 0 113 0;
+#X connect 115 0 82 0;
+#X connect 118 0 84 0;
+#X connect 119 0 85 0;
+#X connect 120 0 86 0;
+#X connect 123 0 124 0;
+#X connect 123 0 79 0;
+#X connect 124 0 123 0;
+#X connect 125 0 126 0;
+#X connect 126 0 127 0;
+#X connect 127 0 87 0;
+#X connect 132 0 80 0;
+#X connect 133 0 0 0;
+#X connect 136 0 0 0;
+#X connect 137 0 11 0;
+#X connect 138 0 137 0;
+#X connect 139 0 15 0;
+#X connect 141 0 0 0;
+#X restore 506 322 pd control parameters;
+#X text 69 394 V;
+#X text 69 386 |;
+#X text 88 314 pitch and trigger;
+#X text 38 31 ...is an analogue drum simulator \, with attack and decay
+envelopes for the amplitude and the pitch. The timings of these envelopes
+can be subtly randomized \, and this randomization is biased long or
+short \, so that each instance of the sound is slightly different while
+the basic morphology of the sound remains the same.;
+#X obj 23 364 random 2;
+#X obj 23 324 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 196 383 |;
+#X text 359 250 Any of the parameters may be altered by;
+#X obj 50 619 dac~;
+#X obj 366 482 cnv 15 300 94 empty empty empty 20 12 0 14 -204786 -66577
+0;
+#X text 373 512 CONTROL: message tagged control parameters;
+#X text 373 498 SIGNAL: audio out;
+#X text 374 525 All manipulations of the GUI \, patch file;
+#X text 375 537 locations and patch changes are sent out;
+#X text 376 549 of the second outlet so that they may be;
+#X text 375 561 recorded.;
+#X text 373 484 Metastudio generators have two outlets;
+#X floatatom 51 316 5 2 130 0 - - -, f 5;
+#X obj 23 343 metro 250;
+#X text 33 251 CONTROL: 1 or bang = trig \, 2+ = pitch + trig;
+#X text 33 279 SIGNAL: frequency modulation;
+#X text 339 391 V;
+#X text 339 383 |;
+#X text 339 373 |;
+#X text 286 361 frequency modulation;
+#X text 340 630 V;
+#X text 340 622 |;
+#X text 340 612 |;
+#X text 264 639 automation and patching out;
+#X text 33 233 Metastudio Drums have two or three inlets:;
+#N canvas 11 98 289 245 modulate 0;
+#X obj 54 120 osc~;
+#X floatatom 54 81 5 0 0 2 frequency - -, f 5;
+#X obj 54 100 mtof;
+#X obj 54 140 *~ 0;
+#X floatatom 89 104 5 0 0 2 index - -, f 5;
+#X obj 129 62 route pitch;
+#X obj 89 123 *;
+#X obj 129 82 mtof;
+#X obj 129 41 inlet;
+#X obj 54 160 outlet~;
+#X obj 128 102 t b f;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 3 0 9 0;
+#X connect 4 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 3 1;
+#X connect 7 0 10 0;
+#X connect 8 0 5 0;
+#X connect 10 0 6 0;
+#X connect 10 1 6 1;
+#X restore 370 445 pd modulate;
+#X obj 51 407 clinoker~;
+#X obj 364 613 print clinoker;
+#X text 37 114 clinoker~ also has a filtered noise source consisting
+of either white noise \, pink noise or FM noise. The spectrum of the
+3-operator FM sunth is triggered randomly \, but is save with the patch.
+The modulation index is set via the warp parameter. The attack and
+decay times of the filter envelope and noise amplitude envelope are
+derived from the pitch and amplitude envelope \, as multiples of the
+attack and decay times. .;
+#X text 95 325 |;
+#X text 75 370 /;
+#X text 71 378 /;
+#X text 83 354 /;
+#X text 79 362 /;
+#X text 85 350 /;
+#X text 93 334 /;
+#X text 89 342 /;
+#X obj 23 385 tgl 15 0 empty empty trig 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 584 24 clinok~;
+#X msg 549 282 fbias -0.4;
+#X text 464 380 (C) 2009 Edward Kelly;
+#X text 457 395 GNU/GPL license enclosed;
+#X text 482 365 METASTUDIO 0.3;
+#X connect 14 0 46 1;
+#X connect 19 0 57 0;
+#X connect 20 0 33 0;
+#X connect 32 0 46 0;
+#X connect 33 0 19 0;
+#X connect 45 0 46 2;
+#X connect 46 0 23 0;
+#X connect 46 0 23 1;
+#X connect 46 1 45 0;
+#X connect 46 1 47 0;
+#X connect 57 0 46 0;
+#X connect 59 0 46 1;

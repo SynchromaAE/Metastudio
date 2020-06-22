@@ -1,0 +1,57 @@
+#N canvas 5 48 505 394 10;
+#X obj 34 201 midi_pcf;
+#X obj 34 155 ctlin 0;
+#X floatatom 34 176 5 0 127 0 - - -;
+#X obj 90 155 ctlin 2;
+#X floatatom 90 176 5 0 127 0 - - -;
+#X floatatom 34 309 0 0 0 3 transpose_coarse - -;
+#X floatatom 90 275 0 0 0 3 transpose_fine - -;
+#X obj 147 257 print midi_pcf;
+#X msg 147 180 0spot \$1;
+#X msg 205 179 ccurve \$1;
+#X msg 269 179 fcurve \$1;
+#X floatatom 147 161 5 0 11 0 - - -;
+#X floatatom 205 160 5 1 16 0 - - -;
+#X floatatom 269 160 5 1 16 0 - - -;
+#X text 144 134 centre;
+#X text 144 144 indent;
+#X text 202 142 coarse;
+#X text 266 142 fine;
+#X text 202 132 ---curvature---;
+#X obj 17 14 cnv 15 370 120 empty empty midi_pcf 10 14 0 18 -244214
+-45076 0;
+#X text 25 35 ...converts MIDI values (0-127) into coarse and fine
+transposition values e.g. for controlling the pitchshift~ abstraction.
+;
+#X text 24 68 Curvature controls change the function from linear (curve
+= 1) to exponential control (curve > 1).;
+#X text 26 93 A centre indent can be specified to make the 0-point
+easier to find \, so that for example the middle 8 values output 0
+when the 0-spot parameter is set to 4;
+#X text 214 207 nogui version:;
+#X obj 304 209 m_pcf;
+#X obj 304 256 midi_pc;
+#X obj 305 315 midi_pf;
+#X text 308 239 also coarse:;
+#X text 313 299 and fine:;
+#X text 317 356 ...single channel units;
+#X obj 446 268 m_pc;
+#X obj 446 325 m_pf;
+#X text 431 268 =;
+#X text 432 324 =;
+#X text 151 330 (C) 2009 Edward Kelly;
+#X text 144 345 GNU/GPL license enclosed;
+#X text 169 315 METASTUDIO 0.3;
+#X connect 0 0 5 0;
+#X connect 0 1 6 0;
+#X connect 0 2 7 0;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 1;
+#X connect 8 0 0 2;
+#X connect 9 0 0 2;
+#X connect 10 0 0 2;
+#X connect 11 0 8 0;
+#X connect 12 0 9 0;
+#X connect 13 0 10 0;

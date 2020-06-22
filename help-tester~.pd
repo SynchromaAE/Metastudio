@@ -1,0 +1,17 @@
+#N canvas 0 0 450 300 10;
+#X obj 186 132 tester~;
+#X obj 31 14 cnv 15 400 50 empty empty tester~ 10 18 0 18 -232576 -45076
+0;
+#X msg 155 103 loop \$1;
+#X msg 207 103 play;
+#X msg 240 103 load;
+#X obj 155 83 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 175 214 dac~;
+#X text 41 43 ...plays a soundfile.;
+#X connect 0 0 6 0;
+#X connect 0 0 6 1;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 2 0;
