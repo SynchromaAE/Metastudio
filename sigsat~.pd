@@ -1,0 +1,35 @@
+#N canvas 5 89 452 348 10;
+#X declare -path sigpack;
+#X obj 179 227 declare -path sigpack;
+#X obj 151 83 cnv 15 89 27 empty empty empty 8 6 0 10 -42246 -261689
+0;
+#X obj 265 17 loadbang;
+#X obj 18 30 inlet~;
+#X obj 23 263 outlet~;
+#N canvas 0 22 458 308 automation 0;
+#X obj 99 54 inlet;
+#X obj 96 87 route thresh;
+#X obj 79 170 s \$0-saturate-set;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore 84 58 pd automation;
+#X obj 84 37 inlet;
+#X msg 263 42 1;
+#X obj 54 152 r \$0-saturate-num;
+#X obj 24 207 saturate~ 1;
+#X obj 266 66 s \$0-saturate-set;
+#X obj 81 95 cnv 15 159 27 empty empty empty 8 6 0 10 -42246 -261689
+0;
+#X obj 88 106 hsl 101 12 -1 1 0 0 \$0-saturate \$0-saturate-set threshold
+-2 -5 0 8 -90133 -225271 -225271 10000 1;
+#X obj 190 106 nbx 4 12 -1 1 0 0 \$0-saturate-num \$0-saturate empty
+0 -6 1 10 -90133 -225271 -1 1 256;
+#X obj 24 233 hip~ 18;
+#X connect 2 0 7 0;
+#X connect 3 0 9 0;
+#X connect 6 0 5 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 1;
+#X connect 9 0 14 0;
+#X connect 14 0 4 0;
+#X coords 0 -1 1 1 161 45 1 80 80;

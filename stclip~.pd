@@ -1,0 +1,59 @@
+#N canvas 15 93 619 416 10;
+#X obj 81 96 cnv 15 159 52 empty empty empty 8 6 0 10 -70913 -225280
+0;
+#X msg 423 42 1;
+#X obj 412 135 * -1;
+#X obj 425 17 loadbang;
+#X obj 23 27 inlet~;
+#X obj 23 363 outlet~;
+#N canvas 0 0 450 300 automation 0;
+#X obj 99 54 inlet;
+#X obj 96 87 route pos neg sym;
+#X obj 121 140 s \$0-neg-set;
+#X obj 163 114 s \$0-sym-set;
+#X obj 79 170 s \$0-pos-set;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 1 1 2 0;
+#X connect 1 2 3 0;
+#X restore 244 54 pd automation;
+#X obj 243 31 inlet;
+#X obj 141 83 cnv 15 99 52 empty empty empty 8 6 0 10 -70913 -225280
+0;
+#X obj 88 104 hsl 101 12 0 1 0 0 \$0-pos \$0-pos-set positive -2 -5
+0 8 -10435 -225271 -225271 10000 1;
+#X obj 88 126 hsl 101 12 -1 0 0 0 \$0-neg \$0-neg-set negative -2 17
+0 8 -10435 -225271 -225271 0 1;
+#X obj 88 116 hsl 145 10 1 0 0 0 \$0-sym \$0-sym-set symmetric -2 5
+0 8 -225271 -10435 -10435 0 1;
+#X obj 191 104 nbx 4 12 -1 1 0 0 \$0-pos-num \$0-pos empty 0 -6 0 10
+-10435 -225271 -1 1 256;
+#X obj 191 126 nbx 4 12 -1 1 0 0 \$0-neg-num \$0-neg empty 0 -6 0 10
+-10435 -225271 -1 -1 256;
+#X obj 427 66 s \$0-sym-set;
+#X obj 416 104 r \$0-sym;
+#X obj 455 141 s \$0-pos-set;
+#X obj 412 166 s \$0-neg-set;
+#X obj 24 307 clip~ -1 1;
+#X obj 56 274 r \$0-neg-num;
+#X obj 133 306 r \$0-pos-num;
+#X obj 57 238 clip~ -1 1;
+#X obj 89 205 r \$0-neg-num;
+#X obj 166 237 r \$0-pos-num;
+#X obj 67 27 inlet~;
+#X obj 95 362 outlet~;
+#X connect 1 0 14 0;
+#X connect 2 0 17 0;
+#X connect 3 0 1 0;
+#X connect 4 0 18 0;
+#X connect 7 0 6 0;
+#X connect 15 0 2 0;
+#X connect 15 0 16 0;
+#X connect 18 0 5 0;
+#X connect 19 0 18 1;
+#X connect 20 0 18 2;
+#X connect 21 0 25 0;
+#X connect 22 0 21 1;
+#X connect 23 0 21 2;
+#X connect 24 0 21 0;
+#X coords 0 -1 1 1 161 71 1 80 80;

@@ -1,0 +1,58 @@
+#N canvas 574 133 702 300 10;
+#X obj 291 63 cnv 15 78 34 empty empty empty 20 12 0 14 -167232 -66577
+0;
+#X obj 201 75 cnv 15 168 22 empty empty empty 20 12 0 14 -167232 -66577
+0;
+#X symbolatom 435 161 0 0 0 0 - - -;
+#X obj 207 85 bng 10 250 50 0 empty empty load -6 -5 0 9 -260848 -86277
+-45076;
+#X obj 226 79 bng 10 250 50 0 empty empty play -4 14 0 9 -180203 -2562
+-13381;
+#X obj 285 138 openpanel;
+#X msg 193 108 1;
+#X msg 282 177 open \$1;
+#X msg 249 110 set \$1;
+#X obj 211 21 inlet;
+#X obj 330 112 t b b;
+#X obj 280 208 outlet;
+#X obj 150 183 outlet~;
+#X obj 160 149 readsf~ 1;
+#X msg 210 172 done;
+#X symbolatom 244 78 17 0 0 0 - - -;
+#X obj 386 188 stripdir;
+#X msg 386 208 set \$1;
+#X obj 320 64 tgl 12 0 empty empty loop 15 6 0 12 -262144 -1 -1 0 1
+;
+#X obj 210 234 spigot;
+#X obj 208 42 route open play file stop loop;
+#X msg 72 83 0;
+#X connect 2 0 7 0;
+#X connect 3 0 5 0;
+#X connect 4 0 10 0;
+#X connect 5 0 7 0;
+#X connect 5 0 8 0;
+#X connect 5 0 16 0;
+#X connect 6 0 13 0;
+#X connect 6 0 11 0;
+#X connect 7 0 13 0;
+#X connect 8 0 2 0;
+#X connect 9 0 20 0;
+#X connect 10 0 6 0;
+#X connect 10 0 11 0;
+#X connect 10 1 2 0;
+#X connect 13 0 12 0;
+#X connect 13 1 14 0;
+#X connect 13 1 19 0;
+#X connect 14 0 11 0;
+#X connect 16 0 17 0;
+#X connect 17 0 15 0;
+#X connect 18 0 19 1;
+#X connect 19 0 10 0;
+#X connect 20 0 3 0;
+#X connect 20 1 4 0;
+#X connect 20 2 7 0;
+#X connect 20 2 8 0;
+#X connect 20 3 21 0;
+#X connect 20 4 18 0;
+#X connect 21 0 13 0;
+#X coords 0 -1 1 1 170 40 1 200 60;

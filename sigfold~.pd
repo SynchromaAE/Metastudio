@@ -1,0 +1,45 @@
+#N canvas 5 89 450 300 10;
+#X declare -path sigpack;
+#X obj 81 96 cnv 15 159 43 empty empty empty 8 6 0 10 -355 -257472
+0;
+#X obj 265 17 loadbang;
+#X obj 18 30 inlet~;
+#X obj 23 263 outlet~;
+#N canvas 0 0 450 300 automation 0;
+#X obj 99 54 inlet;
+#X obj 96 87 route amp over;
+#X obj 79 170 s \$0-fold_amp-set;
+#X obj 121 140 s \$0-fold_over-set;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X restore 84 54 pd automation;
+#X obj 84 37 inlet;
+#X obj 24 207 foldover~ 0 0;
+#X obj 56 174 r \$0-fold_amp-num;
+#X obj 133 206 r \$0-fold_over-num;
+#X msg 263 42 0;
+#X obj 266 66 s \$0-fold_over-set;
+#X obj 266 94 s \$0-fold_amp-set;
+#X obj 151 83 cnv 15 89 43 empty empty empty 8 6 0 10 -355 -257472
+0;
+#X obj 88 105 hsl 101 12 0 0.1 0 0 \$0-fold_amp \$0-fold_amp-set amp
+-2 -5 1 8 -42246 -262131 -262131 0 1;
+#X obj 88 117 hsl 101 12 0 1 0 0 \$0-fold_over \$0-fold_over-set over
+-2 17 1 8 -42246 -262131 -262131 0 1;
+#X obj 191 105 nbx 4 12 0 0.1 0 0 \$0-fold_amp-num \$0-fold_amp empty
+0 -6 1 10 -42246 -262131 -1 0 256;
+#X obj 191 117 nbx 4 12 0 1 0 0 \$0-fold_over-num \$0-fold_over empty
+0 -6 1 10 -42246 -262131 -1 0 256;
+#X obj 24 236 hip~ 18;
+#X obj 185 245 declare -path sigpack;
+#X connect 1 0 9 0;
+#X connect 2 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 17 0;
+#X connect 7 0 6 1;
+#X connect 8 0 6 2;
+#X connect 9 0 10 0;
+#X connect 9 0 11 0;
+#X connect 17 0 3 0;
+#X coords 0 -1 1 1 161 61 1 80 80;
