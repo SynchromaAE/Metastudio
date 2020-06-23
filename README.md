@@ -16,5 +16,7 @@ sigpack
 hcs
 maxlib
 ext13
+tof
+moonlib
 
 Enjoy!
